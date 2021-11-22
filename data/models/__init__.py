@@ -163,3 +163,8 @@ class Supplier(Base):
     phone_number = Column(String(45), nullable=False)
     email = Column(String(45), nullable=False)
 
+
+class SupplierHasCpsOrder(Base):
+    __tablename__ = "suppliers_has_cps_orders"
+    suppliers_supplier_id = Column(Integer, ForeignKey('suppliers.supplier_id'))
+    cps_orders_internal_order_no = Column(Integer, ForeignKey('cps_orders.internal_order_no'))
