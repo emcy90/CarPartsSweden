@@ -1,4 +1,4 @@
-from sqlalchemy import Integer, Column, String, ForeignKey, Date, Text
+from sqlalchemy import Integer, Column, String, ForeignKey, Date, Text, DECIMAL
 
 from data.db import Base
 
@@ -70,4 +70,20 @@ class CustomerCar(Base):
     color = Column(String(45), nullable=False)
     model = Column(String(45), nullable=False)
     year_model = Column(String(45), nullable=False)
+
+
+class OrderDetail(Base):
+    __tablename__ = "ordersdetails"
+    orders_order_no = Column(Integer, ForeignKey('orders.order_no'))
+    products_product_id = Column(Integer, ForeignKey('products.product_id'))
+    quantity = Column(Integer, nullable=False)
+    price_each = Column(DECIMAL(10, 2), nullable=False)
+
+
+class Payment(Base):
+    __tablename__ = "payments"
+    payments_no = Column(Integer, primary_key=True, autoincrement=True)
+    # payment_date = Column(String(45), nullable=False)
+    payment_amount = Column(DECIMAL(10, 2), nullable=False)
+    customers_id_customers = Column(Integer, ForeignKey('customers.id_customers'))
 
