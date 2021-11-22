@@ -1,4 +1,4 @@
-from sqlalchemy import Integer, Column, String, ForeignKey
+from sqlalchemy import Integer, Column, String, ForeignKey, Date, Text
 
 from data.db import Base
 
@@ -40,4 +40,15 @@ class ManufacturerHasCpsOrder(Base):
 
     manufacturers_manufacturer_id = Column(Integer, ForeignKey('manufacturers.manufacturer_id'))
     cps_orders_internal_order_no = Column(Integer, ForeignKey('cps_orders.internal_order_no'))
+
+
+class Order(Base):
+    __tablename__ = "orders"
+    order_no = Column(Integer, primary_key=True, autoincrement=True)
+    order_date = Column(Date,  nullable=False)
+    required_date = Column(Date, nullable=False)
+    shipping_date = Column(Date)
+    status = Column(String(45), nullable=False)
+    comments = Column(Text)
+
 
