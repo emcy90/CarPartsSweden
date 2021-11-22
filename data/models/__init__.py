@@ -1,4 +1,5 @@
 from sqlalchemy import Integer, Column, String, ForeignKey, Date, Text, DECIMAL
+from sqlalchemy.dialects.mysql import MEDIUMTEXT, MEDIUMBLOB
 
 from data.db import Base
 
@@ -87,3 +88,10 @@ class Payment(Base):
     payment_amount = Column(DECIMAL(10, 2), nullable=False)
     customers_id_customers = Column(Integer, ForeignKey('customers.id_customers'))
 
+
+class Productline(Base):
+    __tablename__ = "productlines"
+    productline = Column(String(50), primary_key=True, nullable=False)
+    text_description = Column(String(5000))
+    html_description = Column(MEDIUMTEXT)
+    image = Column(MEDIUMBLOB)
