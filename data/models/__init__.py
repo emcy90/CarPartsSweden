@@ -22,4 +22,22 @@ class Customer(Base):
     orders_order_no = Column(Integer, ForeignKey('orders.order_no'))
 
 
+class Manufacture(Base):
+    __tablename__ = "manufactures"
+
+    manufacturer_id = Column(Integer, primary_key=True, autoincrement=True)
+    name_manufacturer = Column(String(45), nullable=False)
+    main_office_adress1 = Column(String(100), nullable=False)
+    main_office_adress2 = Column(String(100))
+    main_office_name = Column(String(100), nullable=False)
+    contact_person_name = Column(String(200), nullable=False)
+    contact_person_phone = Column(String(45), nullable=False)
+    contact_person_email = Column(String(45), nullable=False)
+
+
+class ManufacturerHasCpsOrder(Base):
+    __tablename__ = "manufactures_has_cps_orders"
+
+    manufacturers_manufacturer_id = Column(Integer, ForeignKey('manufacturers.manufacturer_id'))
+    cps_orders_internal_order_no = Column(Integer, ForeignKey('cps_orders.internal_order_no'))
 
