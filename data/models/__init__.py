@@ -106,3 +106,13 @@ class Product(Base):
     outprice = Column(DECIMAL(10, 2), nullable=False)
     productlines = Column(String(50), ForeignKey('productlines.productline'))
 
+
+class Staff(Base):
+    __tablename__ = "staffs"
+    id_staff = Column(Integer, primary_key=True, autoincrement=False)
+    first_name = Column(String(45), nullable=False)
+    last_name = Column(String(45), nullable=False)
+    job_title = Column(String(45), nullable=False)
+    phone = Column(String(45), nullable=False)
+    reports_to = Column(String(45))
+    store = Column(String(45))
