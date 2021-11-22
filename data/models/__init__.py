@@ -52,3 +52,14 @@ class Order(Base):
     comments = Column(Text)
 
 
+class CpsOrder(Base):
+    __tablename__ = "cps_orders"
+    internal_order_no = Column(Integer, primary_key=True, autoincrement=True)
+    order_date = Column(Date, nullable=False)
+    required_date = Column(Date)
+    shipping_date = Column(Date)
+    status = Column(String(45), nullable=False)
+    comments = Column(Text)
+    order_no_comments = Column(Text)
+
+
