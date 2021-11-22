@@ -95,3 +95,14 @@ class Productline(Base):
     text_description = Column(String(5000))
     html_description = Column(MEDIUMTEXT)
     image = Column(MEDIUMBLOB)
+
+
+class Product(Base):
+    __tablename__ = "products"
+    product_id = Column(Integer, primary_key=True, autoincrement=True)
+    product_name = Column(String(45), nullable=False)
+    product_description = Column(Text, nullable=False)
+    inprice = Column(DECIMAL(10, 2), nullable=False)
+    outprice = Column(DECIMAL(10, 2), nullable=False)
+    productlines = Column(String(50), ForeignKey('productlines.productline'))
+
