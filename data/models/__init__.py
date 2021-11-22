@@ -122,3 +122,10 @@ class StaffHasCpsOrder(Base):
     __tablename__ = "staffs_has_cpsorders"
     staffs_id_staff = Column(Integer, ForeignKey('staffs.id_staff'))
     cps_orders_internal_order_no = Column(Integer, ForeignKey('cps_orders.internal_order_no'))
+
+
+class StaffHasCustomer(Base):
+    __tablename__ = "staffs_has_customers"
+    staffs_id_staff = Column(Integer, ForeignKey('staffs.id_staff'))
+    customers_id_customers = Column(Integer, ForeignKey('customers.id_customers'))
+
