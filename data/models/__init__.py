@@ -63,3 +63,11 @@ class CpsOrder(Base):
     order_no_comments = Column(Text)
 
 
+class CustomerCar(Base):
+    __tablename__ = "customers_cars"
+    reg_no = Column(String(20), primary_key=True, nullable=False)
+    manufacturer = Column(String(100), nullable=False)
+    color = Column(String(45), nullable=False)
+    model = Column(String(45), nullable=False)
+    year_model = Column(String(45), nullable=False)
+
