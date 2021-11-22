@@ -135,3 +135,11 @@ class StaffHasStaff(Base):
     staffs_id_staff = Column(Integer, ForeignKey('staffs.id_staff'))
     staffs_id_staff1 = Column(Integer, ForeignKey('staffs.id_staffs'))
 
+
+class Storage(Base):
+    __tablename__ = "storage"
+    storage_id = Column(Integer, primary_key=True, autoincrement=True)
+    storage_name = Column(String(150), nullable=False)
+    storage_quantity = Column(Integer, nullable=False)
+    storage_city = Column(String(100), nullable=False)
+
