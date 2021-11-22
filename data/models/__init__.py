@@ -116,3 +116,9 @@ class Staff(Base):
     phone = Column(String(45), nullable=False)
     reports_to = Column(String(45))
     store = Column(String(45))
+
+
+class StaffHasCpsOrder(Base):
+    __tablename__ = "staffs_has_cpsorders"
+    staffs_id_staff = Column(Integer, ForeignKey('staffs.id_staff'))
+    cps_orders_internal_order_no = Column(Integer, ForeignKey('cps_orders.internal_order_no'))
