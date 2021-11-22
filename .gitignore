@@ -3,4 +3,3 @@ venv/
 pycache/
 db_config.py
 docker-compose.yml
-
