@@ -129,3 +129,9 @@ class StaffHasCustomer(Base):
     staffs_id_staff = Column(Integer, ForeignKey('staffs.id_staff'))
     customers_id_customers = Column(Integer, ForeignKey('customers.id_customers'))
 
+
+class StaffHasStaff(Base):
+    __tablename__ = "staffs_has_staffs"
+    staffs_id_staff = Column(Integer, ForeignKey('staffs.id_staff'))
+    staffs_id_staff1 = Column(Integer, ForeignKey('staffs.id_staffs'))
+
