@@ -145,6 +145,21 @@ class Storage(Base):
 
 
 class StorageHasProducts(Base):
+    __tablename__ = "storage_has_products"
     storage_storage_id = Column(Integer, ForeignKey('storage.storage_id'))
     products_product_id = Column(Integer, ForeignKey('products.product_id'))
+
+
+class Supplier(Base):
+    __tablename__ = "suppliers"
+    supplier_id = Column(Integer, primary_key=True, autoincrement=True)
+    supplier_name = Column(String(45), nullable=False)
+    supplier_address1 = Column(String(45), nullable=False)
+    supplier_address2 = Column(String(45))
+    city = Column(String(100), nullable=False)
+    zip_code = Column(String(45), nullable=False)
+    country = Column(String(45), nullable=False)
+    contact_person = Column(String(100))
+    phone_number = Column(String(45), nullable=False)
+    email = Column(String(45), nullable=False)
 
