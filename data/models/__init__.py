@@ -143,3 +143,8 @@ class Storage(Base):
     storage_quantity = Column(Integer, nullable=False)
     storage_city = Column(String(100), nullable=False)
 
+
+class StorageHasProducts(Base):
+    storage_storage_id = Column(Integer, ForeignKey('storage.storage_id'))
+    products_product_id = Column(Integer, ForeignKey('products.product_id'))
+
