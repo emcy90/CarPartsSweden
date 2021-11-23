@@ -45,6 +45,7 @@ class ManufacturerHasCpsOrder(Base):
 
 class Order(Base):
     __tablename__ = "orders"
+
     order_no = Column(Integer, primary_key=True, autoincrement=True)
     order_date = Column(Date,  nullable=False)
     required_date = Column(Date, nullable=False)
@@ -55,6 +56,7 @@ class Order(Base):
 
 class CpsOrder(Base):
     __tablename__ = "cps_orders"
+
     internal_order_no = Column(Integer, primary_key=True, autoincrement=True)
     order_date = Column(Date, nullable=False)
     required_date = Column(Date)
@@ -66,6 +68,7 @@ class CpsOrder(Base):
 
 class CustomerCar(Base):
     __tablename__ = "customers_cars"
+
     reg_no = Column(String(20), primary_key=True, nullable=False)
     manufacturer = Column(String(100), nullable=False)
     color = Column(String(45), nullable=False)
@@ -75,6 +78,7 @@ class CustomerCar(Base):
 
 class OrderDetail(Base):
     __tablename__ = "ordersdetails"
+
     orders_order_no = Column(Integer, ForeignKey('orders.order_no'))
     products_product_id = Column(Integer, ForeignKey('products.product_id'))
     quantity = Column(Integer, nullable=False)
@@ -83,14 +87,16 @@ class OrderDetail(Base):
 
 class Payment(Base):
     __tablename__ = "payments"
+
     payments_no = Column(Integer, primary_key=True, autoincrement=True)
-    # payment_date = Column(String(45), nullable=False)
+    payment_date = Column(Date, nullable=False)
     payment_amount = Column(DECIMAL(10, 2), nullable=False)
     customers_id_customers = Column(Integer, ForeignKey('customers.id_customers'))
 
 
 class Productline(Base):
     __tablename__ = "productlines"
+
     productline = Column(String(50), primary_key=True, nullable=False)
     text_description = Column(String(5000))
     html_description = Column(MEDIUMTEXT)
@@ -99,6 +105,7 @@ class Productline(Base):
 
 class Product(Base):
     __tablename__ = "products"
+
     product_id = Column(Integer, primary_key=True, autoincrement=True)
     product_name = Column(String(45), nullable=False)
     product_description = Column(Text, nullable=False)
@@ -109,6 +116,7 @@ class Product(Base):
 
 class Staff(Base):
     __tablename__ = "staffs"
+
     id_staff = Column(Integer, primary_key=True, autoincrement=False)
     first_name = Column(String(45), nullable=False)
     last_name = Column(String(45), nullable=False)
@@ -120,24 +128,28 @@ class Staff(Base):
 
 class StaffHasCpsOrder(Base):
     __tablename__ = "staffs_has_cpsorders"
+
     staffs_id_staff = Column(Integer, ForeignKey('staffs.id_staff'))
     cps_orders_internal_order_no = Column(Integer, ForeignKey('cps_orders.internal_order_no'))
 
 
 class StaffHasCustomer(Base):
     __tablename__ = "staffs_has_customers"
+
     staffs_id_staff = Column(Integer, ForeignKey('staffs.id_staff'))
     customers_id_customers = Column(Integer, ForeignKey('customers.id_customers'))
 
 
 class StaffHasStaff(Base):
     __tablename__ = "staffs_has_staffs"
+
     staffs_id_staff = Column(Integer, ForeignKey('staffs.id_staff'))
     staffs_id_staff1 = Column(Integer, ForeignKey('staffs.id_staffs'))
 
 
 class Storage(Base):
     __tablename__ = "storage"
+
     storage_id = Column(Integer, primary_key=True, autoincrement=True)
     storage_name = Column(String(150), nullable=False)
     storage_quantity = Column(Integer, nullable=False)
@@ -146,12 +158,14 @@ class Storage(Base):
 
 class StorageHasProducts(Base):
     __tablename__ = "storage_has_products"
+
     storage_storage_id = Column(Integer, ForeignKey('storage.storage_id'))
     products_product_id = Column(Integer, ForeignKey('products.product_id'))
 
 
 class Supplier(Base):
     __tablename__ = "suppliers"
+
     supplier_id = Column(Integer, primary_key=True, autoincrement=True)
     supplier_name = Column(String(45), nullable=False)
     supplier_address1 = Column(String(45), nullable=False)
@@ -166,5 +180,6 @@ class Supplier(Base):
 
 class SupplierHasCpsOrder(Base):
     __tablename__ = "suppliers_has_cps_orders"
+
     suppliers_supplier_id = Column(Integer, ForeignKey('suppliers.supplier_id'))
     cps_orders_internal_order_no = Column(Integer, ForeignKey('cps_orders.internal_order_no'))
