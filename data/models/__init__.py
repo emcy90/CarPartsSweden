@@ -37,15 +37,15 @@ class Manufacture(Base):
     contact_person_name = Column(String(200), nullable=False)
     contact_person_phone = Column(String(45), nullable=False)
     contact_person_email = Column(String(45), nullable=False)
-
+    cps_orders = relationship('CpsOrders')
 
 class ManufacturerHasCpsOrder(Base):
     __tablename__ = "manufactures_has_cps_orders"
 
-    manufacturers_manufacturer_id = Column(Integer, ForeignKey('manufacturers.manufacturer_id'))
-    cps_orders_internal_order_no = Column(Integer, ForeignKey('cps_orders.internal_order_no'))
-    Manufacture = relationship('manufacturers')
-    CpsOrder = relationship('cps_orders')
+    manufacturers_manufacturer_id = Column(Integer, ForeignKey('manufacturers.manufacturer_id', autoincrement=True))
+    cps_orders_internal_order_no = Column(Integer, ForeignKey('cps_orders.internal_order_no')
+    # Manufacture = relationship('manufacturers')
+    # CpsOrder = relationship('cps_orders')
 
 
 class Order(Base):
@@ -62,7 +62,7 @@ class Order(Base):
 class CpsOrder(Base):
     __tablename__ = "cps_orders"
 
-    internal_order_no = Column(Integer, primary_key=True, autoincrement=True)
+    internal_order_no = Column(Integer, primary_key=True)
     order_date = Column(Date, nullable=False)
     required_date = Column(Date)
     shipping_date = Column(Date)
