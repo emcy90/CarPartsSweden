@@ -27,7 +27,7 @@ class Customer(Base):
 
 
 class Manufacture(Base):
-    __tablename__ = "manufactures"
+    __tablename__ = "manufacturers"
 
     manufacturer_id = Column(Integer, primary_key=True, autoincrement=True)
     name_manufacturer = Column(String(45), nullable=False)
