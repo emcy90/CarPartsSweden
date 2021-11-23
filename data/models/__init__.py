@@ -1,5 +1,6 @@
 from sqlalchemy import Integer, Column, String, ForeignKey, Date, Text, DECIMAL
 from sqlalchemy.dialects.mysql import MEDIUMTEXT, MEDIUMBLOB
+from sqlalchemy.orm import relationship
 
 from data.db import Base
 
@@ -21,6 +22,8 @@ class Customer(Base):
     states = Column(String(100))
     customer_cars_reg_no = Column(String(20), ForeignKey('customer_cars.reg_no'))
     orders_order_no = Column(Integer, ForeignKey('orders.order_no'))
+    CustomerCar = relationship('customer_car')
+    Order = relationship('orders')
 
 
 class Manufacture(Base):
@@ -41,6 +44,8 @@ class ManufacturerHasCpsOrder(Base):
 
     manufacturers_manufacturer_id = Column(Integer, ForeignKey('manufacturers.manufacturer_id'))
     cps_orders_internal_order_no = Column(Integer, ForeignKey('cps_orders.internal_order_no'))
+    Manufacture = relationship('manufacturers')
+    CpsOrder = relationship('cps_orders')
 
 
 class Order(Base):
@@ -83,6 +88,8 @@ class OrderDetail(Base):
     products_product_id = Column(Integer, ForeignKey('products.product_id'))
     quantity = Column(Integer, nullable=False)
     price_each = Column(DECIMAL(10, 2), nullable=False)
+    Order = relationship('orders')
+    Product = relationship('products')
 
 
 class Payment(Base):
@@ -92,6 +99,7 @@ class Payment(Base):
     payment_date = Column(Date, nullable=False)
     payment_amount = Column(DECIMAL(10, 2), nullable=False)
     customers_id_customers = Column(Integer, ForeignKey('customers.id_customers'))
+    Customer = relationship('customers')
 
 
 class Productline(Base):
@@ -112,6 +120,7 @@ class Product(Base):
     inprice = Column(DECIMAL(10, 2), nullable=False)
     outprice = Column(DECIMAL(10, 2), nullable=False)
     productlines = Column(String(50), ForeignKey('productlines.productline'))
+    Productline = relationship('productlines')
 
 
 class Staff(Base):
@@ -131,6 +140,8 @@ class StaffHasCpsOrder(Base):
 
     staffs_id_staff = Column(Integer, ForeignKey('staffs.id_staff'))
     cps_orders_internal_order_no = Column(Integer, ForeignKey('cps_orders.internal_order_no'))
+    Staff = relationship('staffs')
+    CpsOrder = relationship('cps_orders')
 
 
 class StaffHasCustomer(Base):
@@ -138,6 +149,8 @@ class StaffHasCustomer(Base):
 
     staffs_id_staff = Column(Integer, ForeignKey('staffs.id_staff'))
     customers_id_customers = Column(Integer, ForeignKey('customers.id_customers'))
+    Staff = relationship('staffs')
+    Customer = relationship('customers')
 
 
 class StaffHasStaff(Base):
@@ -145,6 +158,7 @@ class StaffHasStaff(Base):
 
     staffs_id_staff = Column(Integer, ForeignKey('staffs.id_staff'))
     staffs_id_staff1 = Column(Integer, ForeignKey('staffs.id_staffs'))
+    Staff = relationship('staffs')
 
 
 class Storage(Base):
@@ -161,6 +175,8 @@ class StorageHasProducts(Base):
 
     storage_storage_id = Column(Integer, ForeignKey('storage.storage_id'))
     products_product_id = Column(Integer, ForeignKey('products.product_id'))
+    Storage = relationship('storage')
+    Product = relationship('products')
 
 
 class Supplier(Base):
@@ -183,3 +199,5 @@ class SupplierHasCpsOrder(Base):
 
     suppliers_supplier_id = Column(Integer, ForeignKey('suppliers.supplier_id'))
     cps_orders_internal_order_no = Column(Integer, ForeignKey('cps_orders.internal_order_no'))
+    Supplier = relationship('suppliers')
+    CpsOrder = relationship('cps_orders')
