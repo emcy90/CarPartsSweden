@@ -1,8 +1,9 @@
-from controllers.customer_controller import create_customer
+# from controllers.customer_controller import create_customer
 
 
 def main():
-    # customer = {
+    pass
+    #  customer = {
     #     'first_name': 'Kalle',
     #     'last_name': 'Andersson',
     #     'company_name': '',

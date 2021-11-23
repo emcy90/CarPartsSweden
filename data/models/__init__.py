@@ -1,4 +1,4 @@
-from sqlalchemy import Integer, Column, String, ForeignKey, Date, Text, DECIMAL
+from sqlalchemy import Integer, Column, String, ForeignKey, Date, Text, DECIMAL, PrimaryKeyConstraint
 from sqlalchemy.dialects.mysql import MEDIUMTEXT, MEDIUMBLOB
 from sqlalchemy.orm import relationship
 
@@ -37,13 +37,17 @@ class Manufacture(Base):
     contact_person_name = Column(String(200), nullable=False)
     contact_person_phone = Column(String(45), nullable=False)
     contact_person_email = Column(String(45), nullable=False)
-    cps_orders = relationship('CpsOrders')
+    # cps_orders = relationship('CpsOrders')
+
 
 class ManufacturerHasCpsOrder(Base):
-    __tablename__ = "manufactures_has_cps_orders"
+    __tablename__ = "manufacturers_has_cps_orders"
+    __table_args__ = (
+        PrimaryKeyConstraint('manufacturers_manufacturer_id', 'cps_orders_internal_order_no'),
+    )
+    manufacturers_manufacturer_id = Column(Integer, ForeignKey('manufacturers_manufacturer_id'))
+    cps_orders_internal_order_no = Column(Integer, ForeignKey('cps_orders.internal_order_no'))
 
-    manufacturers_manufacturer_id = Column(Integer, ForeignKey('manufacturers.manufacturer_id', autoincrement=True))
-    cps_orders_internal_order_no = Column(Integer, ForeignKey('cps_orders.internal_order_no')
     # Manufacture = relationship('manufacturers')
     # CpsOrder = relationship('cps_orders')
 
@@ -52,7 +56,7 @@ class Order(Base):
     __tablename__ = "orders"
 
     order_no = Column(Integer, primary_key=True, autoincrement=True)
-    order_date = Column(Date,  nullable=False)
+    order_date = Column(Date, nullable=False)
     required_date = Column(Date, nullable=False)
     shipping_date = Column(Date)
     status = Column(String(45), nullable=False)
@@ -83,6 +87,9 @@ class CustomerCar(Base):
 
 class OrderDetail(Base):
     __tablename__ = "ordersdetails"
+    __table_args__ = (
+        PrimaryKeyConstraint('orders.order_no', 'products.product_id'),
+    )
 
     orders_order_no = Column(Integer, ForeignKey('orders.order_no'))
     products_product_id = Column(Integer, ForeignKey('products.product_id'))

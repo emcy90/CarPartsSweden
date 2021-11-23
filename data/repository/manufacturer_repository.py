@@ -8,5 +8,5 @@ def get_manufacturer_by_id(_id):
 
 def create_manufacture(manufacturers):
     manufacture = Manufacture(**manufacturers)
-    session.add(manufacturers)
+    session.add(manufacture)
     session.commit()
