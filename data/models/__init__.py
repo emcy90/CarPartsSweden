@@ -20,10 +20,11 @@ class Customer(Base):
     country = Column(String(45), nullable=False)
     sales_representant = Column(String(150), nullable=False)
     states = Column(String(100))
-    customer_cars_reg_no = Column(String(20), ForeignKey('customer_cars.reg_no'))
-    orders_order_no = Column(Integer, ForeignKey('orders.order_no'))
-    CustomerCar = relationship('customer_car')
-    Order = relationship('orders')
+    customer_cars_reg_no = Column(String(20), ForeignKey('customer_cars_reg_no'))
+    orders_order_no = Column(Integer, ForeignKey('orders_order_no'))
+
+    # CustomerCar = relationship("customer_cars", back_populates="customer")
+    # orders = relationship('Order')
 
 
 class Manufacture(Base):
@@ -37,7 +38,7 @@ class Manufacture(Base):
     contact_person_name = Column(String(200), nullable=False)
     contact_person_phone = Column(String(45), nullable=False)
     contact_person_email = Column(String(45), nullable=False)
-    # cps_orders = relationship('CpsOrders')
+   # cps_orders = relationship('CpsOrder')
 
 
 class ManufacturerHasCpsOrder(Base):
@@ -46,10 +47,10 @@ class ManufacturerHasCpsOrder(Base):
         PrimaryKeyConstraint('manufacturers_manufacturer_id', 'cps_orders_internal_order_no'),
     )
     manufacturers_manufacturer_id = Column(Integer, ForeignKey('manufacturers_manufacturer_id'))
-    cps_orders_internal_order_no = Column(Integer, ForeignKey('cps_orders.internal_order_no'))
+    cps_orders_internal_order_no = Column(Integer, ForeignKey('cps_orders_internal_order_no'))
 
-    # Manufacture = relationship('manufacturers')
-    # CpsOrder = relationship('cps_orders')
+    Manufacture = relationship('manufacturers')
+    CpsOrder = relationship('cps_orders')
 
 
 class Order(Base):
@@ -76,23 +77,25 @@ class CpsOrder(Base):
 
 
 class CustomerCar(Base):
-    __tablename__ = "customers_cars"
+    __tablename__ = "customer_cars"
 
     reg_no = Column(String(20), primary_key=True, nullable=False)
     manufacturer = Column(String(100), nullable=False)
     color = Column(String(45), nullable=False)
     model = Column(String(45), nullable=False)
     year_model = Column(String(45), nullable=False)
+    customer_cars = relationship('CustomerCar')
+    # customer_cars = relationship("Customer", back_populates="customer_cars")
 
 
 class OrderDetail(Base):
     __tablename__ = "ordersdetails"
     __table_args__ = (
-        PrimaryKeyConstraint('orders.order_no', 'products.product_id'),
+        PrimaryKeyConstraint('orders_order_no', 'products_product_id'),
     )
 
-    orders_order_no = Column(Integer, ForeignKey('orders.order_no'))
-    products_product_id = Column(Integer, ForeignKey('products.product_id'))
+    orders_order_no = Column(Integer, ForeignKey('orders_order_no'))
+    products_product_id = Column(Integer, ForeignKey('products_product_id'))
     quantity = Column(Integer, nullable=False)
     price_each = Column(DECIMAL(10, 2), nullable=False)
     Order = relationship('orders')
@@ -144,27 +147,33 @@ class Staff(Base):
 
 class StaffHasCpsOrder(Base):
     __tablename__ = "staffs_has_cpsorders"
-
-    staffs_id_staff = Column(Integer, ForeignKey('staffs.id_staff'))
-    cps_orders_internal_order_no = Column(Integer, ForeignKey('cps_orders.internal_order_no'))
+    __table_args__ = (
+        PrimaryKeyConstraint('staffs_id_staff', 'cps_orders_internal_order_no'),
+    )
+    staffs_id_staff = Column(Integer, ForeignKey('staffs_id_staff'))
+    cps_orders_internal_order_no = Column(Integer, ForeignKey('cps_orders_internal_order_no'))
     Staff = relationship('staffs')
     CpsOrder = relationship('cps_orders')
 
 
 class StaffHasCustomer(Base):
     __tablename__ = "staffs_has_customers"
-
-    staffs_id_staff = Column(Integer, ForeignKey('staffs.id_staff'))
-    customers_id_customers = Column(Integer, ForeignKey('customers.id_customers'))
+    __table_args__ = (
+        PrimaryKeyConstraint('staffs_id_staff', 'customers_id_customers'),
+    )
+    staffs_id_staff = Column(Integer, ForeignKey('staffs_id_staff'))
+    customers_id_customers = Column(Integer, ForeignKey('customers_id_customers'))
     Staff = relationship('staffs')
     Customer = relationship('customers')
 
 
 class StaffHasStaff(Base):
     __tablename__ = "staffs_has_staffs"
-
-    staffs_id_staff = Column(Integer, ForeignKey('staffs.id_staff'))
-    staffs_id_staff1 = Column(Integer, ForeignKey('staffs.id_staffs'))
+    __table_args__ = (
+        PrimaryKeyConstraint('staffs_id_staff', 'staffs_id_staff1'),
+    )
+    staffs_id_staff = Column(Integer, ForeignKey('staffs_id_staff'))
+    staffs_id_staff1 = Column(Integer, ForeignKey('staffs_id_staff1'))
     Staff = relationship('staffs')
 
 
@@ -179,9 +188,11 @@ class Storage(Base):
 
 class StorageHasProducts(Base):
     __tablename__ = "storage_has_products"
-
-    storage_storage_id = Column(Integer, ForeignKey('storage.storage_id'))
-    products_product_id = Column(Integer, ForeignKey('products.product_id'))
+    __table_args__ = (
+        PrimaryKeyConstraint('storage_storage_id', 'products_product_id'),
+    )
+    storage_storage_id = Column(Integer, ForeignKey('storage_storage_id'))
+    products_product_id = Column(Integer, ForeignKey('products_product_id'))
     Storage = relationship('storage')
     Product = relationship('products')
 
@@ -203,8 +214,10 @@ class Supplier(Base):
 
 class SupplierHasCpsOrder(Base):
     __tablename__ = "suppliers_has_cps_orders"
-
-    suppliers_supplier_id = Column(Integer, ForeignKey('suppliers.supplier_id'))
-    cps_orders_internal_order_no = Column(Integer, ForeignKey('cps_orders.internal_order_no'))
+    __table_args__ = (
+        PrimaryKeyConstraint('suppliers_supplier_id', 'cps_orders_internal_order_no'),
+    )
+    suppliers_supplier_id = Column(Integer, ForeignKey('suppliers_supplier_id'))
+    cps_orders_internal_order_no = Column(Integer, ForeignKey('cps_orders_internal_order_no'))
     Supplier = relationship('suppliers')
     CpsOrder = relationship('cps_orders')
