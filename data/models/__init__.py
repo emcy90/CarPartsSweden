@@ -20,7 +20,7 @@ class Customer(Base):
     country = Column(String(45), nullable=False)
     sales_representant = Column(String(150), nullable=False)
     states = Column(String(100))
-    orders_order_no = Column(Integer, ForeignKey('orders.order_no'))
+
     customer_cars = relationship('CustomerCar', back_populates="owner")
     payments = relationship('Payment', back_populates="customer_paid_bill")
 
@@ -66,7 +66,7 @@ class Order(Base):
     shipping_date = Column(Date)
     status = Column(String(45), nullable=False)
     comments = Column(Text)
-
+    customers_id_customers = Column(Integer, ForeignKey('customers.id_customers'))
 
 # class CpsOrder(Base):
 #     __tablename__ = "cps_orders"
@@ -114,9 +114,8 @@ class Payment(Base):
     payment_date = Column(Date, nullable=False)
     payment_amount = Column(DECIMAL(10, 2), nullable=False)
     customer_paid_bill_id = Column(Integer, ForeignKey('customers.id_customers'))
-    customer_paid_bill = relationship('Customer', back_populates="payments")
-
     # customers_id_customers = Column(Integer, ForeignKey('customers.id_customers'))
+    customer_paid_bill = relationship('Customer', back_populates="payments")
     # customers = relationship('Customer')
 
 
