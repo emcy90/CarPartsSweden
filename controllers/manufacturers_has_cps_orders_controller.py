@@ -1,0 +1,11 @@
+from data.repository import manufacturers_has_cps_orders_repository
+
+
+def get_manufacturer_has_cps_order_by_id(_id):
+    return manufacturers_has_cps_orders_repository.get_manufacturer_has_cps_order_by_id(_id)
+
+
+def create_get_manufacturer_has_cps_order_by_id(manufacturer_has_cps_order):
+    manufacturers_has_cps_orders_repository.create_manufacturer_has_cps_order(manufacturer_has_cps_order)
+
+
