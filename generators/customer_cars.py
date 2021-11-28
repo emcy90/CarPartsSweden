@@ -1,4 +1,5 @@
-from data.repository.customer_car_repository import create_car
+# from data.repository.customer_car_repository import create_car
+from controllers.customer_car_controller import create_car
 
 
 def main():
