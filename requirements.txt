@@ -1,0 +1,2 @@
+mysql-connector-python==8.0.27
+SQLAlchemy==1.4.27
