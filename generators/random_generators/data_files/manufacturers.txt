@@ -1,3 +1,42 @@
 ALFA ROMEO,Stellantis
 Aston Martin,Lagonda Global Holdings plc
 Audi,Volkswagen
+BMW,BMW Group
+Chevrolet,General Motors
+Dodge,Chrysler Cooperation
+Ferrari,Fiat S.p.A
+Honda,Honda Motor company
+Jaguar,Tata Motors
+Lamborghini,Volkswagen AG
+Mazda,The Mazda Motor Corporation
+McLaren,McLaren Automotive
+Mercedes-Benz,Mercedes-Benz
+Pagani,Pagani Automobili S.p.A.
+FIAT,Fiat Chrysler Automobiles
+SCION,Toyota Motor Corporation
+Mini Cooper,British Motor Corporation
+Toyota,Toyota Motor Corporation
+Subaru,Fuji Heavy Industries
+Bentley,Volkswagen AG
+Buick,General Motors (GM)
+Ford,Ford Motor Company
+Hyundai,Hyundai Motor Group
+Lexus,Toyota Motor Corporation
+Maserati,Fiat Chrysler Automobiles
+Roush,Enhanced Ford Vehicles
+Nissan,Groupe Renault
+Volkswagen,Volkswagen AG
+Acura,The Honda Motor Company Ltd.
+Cadillac,General Motors Company (GM)
+INFINITI,Renault–Nissan–Mitsubishi Alliance
+Kia,KIA MOTORS CORPORATION
+Mitsubishi,Renault–Nissan–Mitsubishi Alliance
+Rolls,Royce Motor Cars Limited
+Toyota,Toyota Motor Corporation
+Volvo,Volvo Cars
+Chrysler,Fiat Chrysler Automobiles Stellantis
+Lincoln,Ford Motor Company
+GMC,General Motors
+RAM,Fiat Chrysler Automobiles
+Jeep,Fiat Chrysler Automobiles
+Land Rover,Tata Motors

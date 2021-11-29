@@ -16,12 +16,20 @@ class GeneratorSetup:
         big_company_list = []
         big_phone_list = []
         reg_no_list = []
+        cars_list = []
+        manufacturers_list = []
+        color_list = []
+        car_model_list = []
+        year_model_list = []
+
         random_numbers = ['1', '2', '3', '4', '5', '6', '7', '8', '9', '0']
         random_numbers2 = ['1', '2', '3', '4', '5', '6', '7', '8', '9']
         alpha_list = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K',
                       'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V',
                       'W', 'X', 'Y', 'Z']
         customer = {}
+        customer_car = {}
+
 
         # All variables goes here
         the_first_name = ""
@@ -49,14 +57,23 @@ class GeneratorSetup:
         self.big_company_list = big_company_list
         self.big_phone_list = big_phone_list
         self.reg_no_list = reg_no_list
+        self.cars_list = cars_list
+        self.manufacturers_list = manufacturers_list
+        self.color_list = color_list
+        self.car_model_list = car_model_list
+
         self.customer = customer
+        self.customer_car = customer_car
 
         self.random_numbers = random_numbers
         self.random_numbers2 = random_numbers2
         self.alpha_list = alpha_list
+        self.year_model_list = year_model_list
+        self.reg_no_list = reg_no_list
 
     def load_first_name(self):
-        self.f = open('C:/skolan/CarPartsSweden/generators/random_generators/data_files/firstname.txt', 'r', encoding="utf-8")
+        self.f = open('C:/skolan/CarPartsSweden/generators/random_generators/data_files/firstname.txt', 'r',
+                      encoding="utf-8")
         self.line_row = self.f.readlines()
         self.f.close()
 
@@ -68,7 +85,8 @@ class GeneratorSetup:
         return self.big_first_name_list
 
     def load_last_name(self):
-        self.f = open('C:/skolan/CarPartsSweden/generators/random_generators/data_files/lastname.txt', 'r', encoding="utf-8")
+        self.f = open('C:/skolan/CarPartsSweden/generators/random_generators/data_files/lastname.txt', 'r',
+                      encoding="utf-8")
         self.line_row = self.f.readlines()
         self.f.close()
 
@@ -79,8 +97,9 @@ class GeneratorSetup:
             self.big_last_name_list.append(last_names)
         return self.big_last_name_list
 
-    def load_gatuadress(self):
-        self.f = open('C:/skolan/CarPartsSweden/generators/random_generators/data_files/gatuadress.txt', 'r', encoding="utf-8")
+    def load_street_adress(self):
+        self.f = open('C:/skolan/CarPartsSweden/generators/random_generators/data_files/gatuadress.txt', 'r',
+                      encoding="utf-8")
         self.line_row = self.f.readlines()
         self.f.close()
 
@@ -92,7 +111,8 @@ class GeneratorSetup:
         return self.big_gatuadress_list
 
     def load_house_numbers(self):
-        self.f = open('C:/skolan/CarPartsSweden/generators/random_generators/data_files/house_numbers.txt', 'r', encoding="utf-8")
+        self.f = open('C:/skolan/CarPartsSweden/generators/random_generators/data_files/house_numbers.txt', 'r',
+                      encoding="utf-8")
         self.line_row = self.f.readlines()
         self.f.close()
 
@@ -104,7 +124,8 @@ class GeneratorSetup:
         return self.big_house_number_list
 
     def load_zip_codes(self):
-        self.f = open('C:/skolan/CarPartsSweden/generators/random_generators/data_files/zip_codes.txt', 'r', encoding="utf-8")
+        self.f = open('C:/skolan/CarPartsSweden/generators/random_generators/data_files/zip_codes.txt', 'r',
+                      encoding="utf-8")
         self.line_row = self.f.readlines()
         self.f.close()
 
@@ -116,7 +137,8 @@ class GeneratorSetup:
         return self.big_zip_code_list
 
     def load_citys(self):
-        self.f = open('C:/skolan/CarPartsSweden/generators/random_generators/data_files/city.txt', 'r', encoding="utf-8")
+        self.f = open('C:/skolan/CarPartsSweden/generators/random_generators/data_files/city.txt', 'r',
+                      encoding="utf-8")
         self.line_row = self.f.readlines()
         self.f.close()
 
@@ -128,7 +150,8 @@ class GeneratorSetup:
         return self.big_city_list
 
     def load_country(self):
-        self.f = open('C:/skolan/CarPartsSweden/generators/random_generators/data_files/country.txt', 'r', encoding="utf-8")
+        self.f = open('C:/skolan/CarPartsSweden/generators/random_generators/data_files/country.txt', 'r',
+                      encoding="utf-8")
         self.line_row = self.f.readlines()
         self.f.close()
 
@@ -140,7 +163,8 @@ class GeneratorSetup:
         return self.big_country_list
 
     def load_states(self):
-        self.f = open('C:/skolan/CarPartsSweden/generators/random_generators/data_files/states.txt', 'r', encoding="utf-8")
+        self.f = open('C:/skolan/CarPartsSweden/generators/random_generators/data_files/states.txt', 'r',
+                      encoding="utf-8")
         self.line_row = self.f.readlines()
         self.f.close()
 
@@ -152,7 +176,8 @@ class GeneratorSetup:
         return self.big_states_list
 
     def load_company(self):
-        self.f = open('C:/skolan/CarPartsSweden/generators/random_generators/data_files/company.txt', 'r', encoding="utf-8")
+        self.f = open('C:/skolan/CarPartsSweden/generators/random_generators/data_files/company.txt', 'r',
+                      encoding="utf-8")
         self.line_row = self.f.readlines()
         self.f.close()
 
@@ -164,7 +189,8 @@ class GeneratorSetup:
         return self.big_company_list
 
     def load_phone(self):
-        self.f = open('C:/skolan/CarPartsSweden/generators/random_generators/data_files/phone_numbers.txt', 'r', encoding="utf-8")
+        self.f = open('C:/skolan/CarPartsSweden/generators/random_generators/data_files/phone_numbers.txt', 'r',
+                      encoding="utf-8")
         self.line_row = self.f.readlines()
         self.f.close()
 
@@ -267,6 +293,10 @@ class GeneratorSetup:
         self.customer = dict(zip(customer_key_list, customer_list))
         return self.customer
 
+    def create_customer_car_dict(self, customer_car_key_list, customer_car_list):
+        self.customer_car = dict(zip(customer_car_key_list, customer_car_list))
+        return self.customer_car
+
     def reg_no_generator(self):
         self.reg_no_list = []
         for i in range(0, 99):
@@ -290,3 +320,90 @@ class GeneratorSetup:
             self.complete_numbers = ""
         return self.reg_no_list
 
+    def cars_and_their_manufacturers(self, car_list_split, car_manufacturer_list):
+        self.cars_list = car_list_split
+        self.manufacturers_list = car_manufacturer_list
+        self.f = open('C:/skolan/CarPartsSweden/generators/random_generators/data_files/manufacturers.txt', 'r',
+                      encoding="utf-8")
+        self.line_row = self.f.readlines()
+        self.f.close()
+
+        for items in self.line_row:
+            items = items.strip()
+            car_item, maunfacturer_item = items.split(',')
+            self.cars_list.append(car_item)
+            self.manufacturers_list.append(maunfacturer_item)
+        return self.cars_list, self.manufacturers_list
+        #  car_item, manufacturer_item = items.strip().split(',')
+
+    def random_manufacturer(self):
+        manufacturer = random.choice(self.manufacturers_list)
+        return manufacturer
+
+    def load_color(self):
+        self.f = open('C:/skolan/CarPartsSweden/generators/random_generators/data_files/colors.txt', 'r',
+                      encoding="utf-8")
+        self.line_row = self.f.readlines()
+        self.f.close()
+
+        self.color_list = []
+
+        for color in self.line_row:
+            color = color.strip()
+            self.color_list.append(color)
+        return self.color_list
+
+    def random_color(self):
+        color = random.choice(self.color_list)
+        return color
+
+    def load_car_model(self):
+        self.f = open('C:/skolan/CarPartsSweden/generators/random_generators/data_files/car_model.txt', 'r',
+                      encoding="utf-8")
+        self.line_row = self.f.readlines()
+        self.f.close()
+
+        self.car_model_list = []
+
+        for model in self.line_row:
+            model = model.strip()
+            self.car_model_list.append(model)
+        return self.car_model_list
+
+    def random_car_model(self):
+        car_model = random.choice(self.car_model_list)
+        return car_model
+
+    def load_year_model(self):
+        self.f = open('C:/skolan/CarPartsSweden/generators/random_generators/data_files/year_model.txt', 'r',
+                      encoding="utf-8")
+        self.line_row = self.f.readlines()
+        self.f.close()
+
+        self.year_model_list = []
+
+        for year in self.line_row:
+            year = year.strip()
+            self.year_model_list.append(year)
+        return self.year_model_list
+
+    def random_year_model(self):
+        year_model = random.choice(self.year_model_list)
+        return year_model
+
+    def load_reg_no(self):
+        self.f = open('C:/skolan/CarPartsSweden/generators/random_generators/data_files/reg_no.txt', 'r',
+                      encoding="utf-8")
+        self.line_row = self.f.readlines()
+        self.f.close()
+
+        self.reg_no_list = []
+
+        for reg in self.line_row:
+            reg = reg.strip()
+            self.reg_no_list.append(reg)
+        return self.reg_no_list
+
+    def random_reg_no(self):
+        reg_no = random.choice(self.reg_no_list)
+        return reg_no

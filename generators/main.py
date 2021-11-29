@@ -1,13 +1,18 @@
 from generator_setup import GeneratorSetup
 
-
 # Creating the Generator Object
 generator = GeneratorSetup()
 
 # Load all the lists we need to generate fake data.
+car_list_split = []
+car_manufacturer_list = []
+manufacturer = ""
+color = ""
+year_model = ""
+owner_id = ""
 my_first_names = generator.load_first_name()
 my_last_names = generator.load_last_name()
-my_gatuadress = generator.load_gatuadress()
+my_street_adress = generator.load_street_adress()
 my_house_number = generator.load_house_numbers()
 my_zip_codes = generator.load_zip_codes()
 my_citys = generator.load_citys()
@@ -16,6 +21,11 @@ my_company = generator.load_company()
 my_phone = generator.load_phone()
 my_states = generator.load_states()
 reg_no = generator.reg_no_generator()
+colors = generator.load_color()
+model = generator.load_car_model()
+year = generator.load_year_model()
+reg = generator.load_reg_no()
+car_list_split, car_manufacturer_list = generator.cars_and_their_manufacturers(car_list_split, car_manufacturer_list)
 
 # Create the strings we need to create a customer.
 house_number = generator.create_house_number()
@@ -38,6 +48,23 @@ customer_key_list = ['first_name', 'last_name', 'company_name', 'phone', 'adress
 customer_list = [first_name, last_name, company, phone, street_adress + " " + house_number, '', city, zip_code,
                  country, my_sales_representant, state]
 
+# customer = generator.create_customer_dict(customer_key_list, customer_list)
+# print(customer)
 
-customer = generator.create_customer_dict(customer_key_list, customer_list)
-print(customer)
+# print(car_list_split, car_manufacturer_list)
+
+# Creating a car object
+
+
+reg_no = generator.random_reg_no()
+manufacturer = generator.random_manufacturer()
+color = generator.random_color()
+model = generator.random_car_model()
+year_model = generator.random_year_model()
+owner_id = ''
+
+customer_car_key_list = ['reg_no', 'manufacturer', 'color', 'model', 'year_model', 'owner_id']
+customer_car_list = [reg_no, manufacturer, color, model, year_model, owner_id]
+
+customer_car = generator.create_customer_dict(customer_car_key_list, customer_car_list)
+print(customer_car)
