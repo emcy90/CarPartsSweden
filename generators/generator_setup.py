@@ -23,6 +23,7 @@ class GeneratorSetup:
         year_model_list = []
         amount_list = []
         date_list = []
+        status_list = []
 
         random_numbers = ['1', '2', '3', '4', '5', '6', '7', '8', '9', '0']
         random_numbers2 = ['1', '2', '3', '4', '5', '6', '7', '8', '9']
@@ -74,6 +75,7 @@ class GeneratorSetup:
         self.alpha_list = alpha_list
         self.year_model_list = year_model_list
         self.reg_no_list = reg_no_list
+        self.status_list = status_list
 
         self.date_list = date_list
 
@@ -444,3 +446,51 @@ class GeneratorSetup:
             self.amount_list.append(x)
             self.pay = random.choice(self.amount_list)
         return self.pay
+
+    def load_date(self):
+        self.f = open('C:/skolan/CarPartsSweden/generators/random_generators/data_files/date.txt', 'r',
+                      encoding="utf-8")
+        self.line_row = self.f.readlines()
+        self.f.close()
+
+        self.date_list = []
+
+        for date in self.line_row:
+            date = date.strip()
+            self.date_list.append(date)
+        return self.date_list
+
+    def random_date(self):
+        date = random.choice(self.date_list)
+        return date
+
+    def random_amount(self):
+        self.amount_list = []
+
+        for i in range(200):
+            x = round(random.uniform(1.00, 30000.00), 2)
+            self.amount_list.append(x)
+            self.pay = random.choice(self.amount_list)
+        return self.pay
+
+    def load_status(self):
+        self.f = open('C:/skolan/CarPartsSweden/generators/random_generators/data_files/status.txt', 'r',
+                      encoding="utf-8")
+        self.line_row = self.f.readlines()
+        self.f.close()
+
+        self.status_list = []
+
+        for status in self.line_row:
+            status = status.strip()
+            self.status_list.append(status)
+        return self.status_list
+
+    def random_status(self):
+        status = random.choice(self.status_list)
+        return status
+
+    def random_customer_order_id(self): 
+        x = random.randrange(1, 100)
+        return x
+

@@ -55,7 +55,8 @@ customer_list = [first_name, last_name, company, phone, street_adress + " " + ho
                  country, my_sales_representant, state]
 
 customer = generator.create_customer_dict(customer_key_list, customer_list)
-print(customer)
+
+#print(customer)
 
 # print(car_list_split, car_manufacturer_list)
 
@@ -71,7 +72,7 @@ owner_id = ''
 customer_car_key_list = ['reg_no', 'manufacturer', 'color', 'model', 'year_model', 'owner_id']
 customer_car_list = [reg_no, manufacturer, color, model, year_model, owner_id]
 customer_car = generator.create_customer_car_dict(customer_car_key_list, customer_car_list)
-print(customer_car)
+#print(customer_car)
 
 
 # Creating a payment object
@@ -82,4 +83,14 @@ customer_paid_bill_id = ''
 payment_key_list = ['payment_date', 'payment_amount', 'customer_paid_bill_id']
 payment_list = [payment_date, payment_amount, customer_paid_bill_id]
 payment = generator.create_payment_dict(payment_key_list, payment_list)
-print(payment)
+# print(payment)
+
+# Creating a order object  -----> How to have customer id less than numbers of customers when creating an order id
+# order_date = generator
+# required_date = generator
+# shipping_date = generator
+# status = generator
+# comments = generator
+# customers_id_customers = rnd_number 
+rnd_number = generator.random_customer_order_id() 
+print(rnd_number)
