@@ -29,7 +29,8 @@ class GeneratorSetup:
                       'W', 'X', 'Y', 'Z']
         customer = {}
         customer_car = {}
-
+        payment = {}
+        pay = "0.00"
 
         # All variables goes here
         the_first_name = ""
@@ -61,10 +62,11 @@ class GeneratorSetup:
         self.manufacturers_list = manufacturers_list
         self.color_list = color_list
         self.car_model_list = car_model_list
-
+        self.amount_list = amount_list
         self.customer = customer
         self.customer_car = customer_car
-
+        self.payment = payment
+        self.pay = pay
         self.random_numbers = random_numbers
         self.random_numbers2 = random_numbers2
         self.alpha_list = alpha_list
@@ -289,6 +291,7 @@ class GeneratorSetup:
         house_number = random.choice(self.big_house_number_list)
         return house_number
 
+    # Here goes Dicts
     def create_customer_dict(self, customer_key_list, customer_list):
         self.customer = dict(zip(customer_key_list, customer_list))
         return self.customer
@@ -296,6 +299,10 @@ class GeneratorSetup:
     def create_customer_car_dict(self, customer_car_key_list, customer_car_list):
         self.customer_car = dict(zip(customer_car_key_list, customer_car_list))
         return self.customer_car
+
+    def create_payment_dict(self, payment_key_list, payment_list):
+        self.payment = dict(zip(payment_key_list, payment_list))
+        return self.payment
 
     def reg_no_generator(self):
         self.reg_no_list = []

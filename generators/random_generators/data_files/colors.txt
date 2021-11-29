@@ -1,0 +1,19 @@
+black
+white
+gold
+silver
+grey
+pink
+brown
+purple
+blue
+dark green
+red
+rainbow
+zink
+hazel
+orange
+rost red
+yellow
+light green
+green

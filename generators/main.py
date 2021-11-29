@@ -10,6 +10,11 @@ manufacturer = ""
 color = ""
 year_model = ""
 owner_id = ""
+payment_date = ""
+payments_no = ""
+payment_amount = ""
+customer_paid_bill_id = ""
+
 my_first_names = generator.load_first_name()
 my_last_names = generator.load_last_name()
 my_street_adress = generator.load_street_adress()
@@ -26,6 +31,7 @@ model = generator.load_car_model()
 year = generator.load_year_model()
 reg = generator.load_reg_no()
 car_list_split, car_manufacturer_list = generator.cars_and_their_manufacturers(car_list_split, car_manufacturer_list)
+date = generator.load_date()
 
 # Create the strings we need to create a customer.
 house_number = generator.create_house_number()
@@ -48,14 +54,13 @@ customer_key_list = ['first_name', 'last_name', 'company_name', 'phone', 'adress
 customer_list = [first_name, last_name, company, phone, street_adress + " " + house_number, '', city, zip_code,
                  country, my_sales_representant, state]
 
-# customer = generator.create_customer_dict(customer_key_list, customer_list)
-# print(customer)
+customer = generator.create_customer_dict(customer_key_list, customer_list)
+print(customer)
 
 # print(car_list_split, car_manufacturer_list)
 
+
 # Creating a car object
-
-
 reg_no = generator.random_reg_no()
 manufacturer = generator.random_manufacturer()
 color = generator.random_color()
@@ -65,6 +70,16 @@ owner_id = ''
 
 customer_car_key_list = ['reg_no', 'manufacturer', 'color', 'model', 'year_model', 'owner_id']
 customer_car_list = [reg_no, manufacturer, color, model, year_model, owner_id]
-
-customer_car = generator.create_customer_dict(customer_car_key_list, customer_car_list)
+customer_car = generator.create_customer_car_dict(customer_car_key_list, customer_car_list)
 print(customer_car)
+
+
+# Creating a payment object
+payment_amount = generator.random_amount()
+payment_date = generator.random_date()
+customer_paid_bill_id = ''
+
+payment_key_list = ['payment_date', 'payment_amount', 'customer_paid_bill_id']
+payment_list = [payment_date, payment_amount, customer_paid_bill_id]
+payment = generator.create_payment_dict(payment_key_list, payment_list)
+print(payment)
