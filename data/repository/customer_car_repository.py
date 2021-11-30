@@ -10,3 +10,5 @@ def create_car(car):
     car = CustomerCar(**car)
     session.add(car)
     session.commit()
+    print()
+    print('Added customer car successfully!')

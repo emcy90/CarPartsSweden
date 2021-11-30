@@ -28,7 +28,13 @@ class GeneratorSetup:
         text_description_list = []
         html_description_list = []
         image_list = []
+        product_list = []
+        inprice_list = []
+        outprice_list = []
+        product_description_list = []
         rnd_x = 0
+        owner_id = 0
+        customer_paid_bill_id = 0
 
         random_numbers = ['1', '2', '3', '4', '5', '6', '7', '8', '9', '0']
         random_numbers2 = ['1', '2', '3', '4', '5', '6', '7', '8', '9']
@@ -43,6 +49,7 @@ class GeneratorSetup:
         # All variables goes here
         the_first_name = ""
         the_last_name = ""
+        productdesc = ""
         complete_alpha = ""
         complete_numbers = ""
         f = ""
@@ -81,6 +88,8 @@ class GeneratorSetup:
         self.payment = payment
         self.pay = pay
         self.random_numbers = random_numbers
+        self.owner_id = owner_id
+        self.customer_paid_bill_id = customer_paid_bill_id
 
         self.random_numbers2 = random_numbers2
         self.alpha_list = alpha_list
@@ -93,7 +102,12 @@ class GeneratorSetup:
         self.text_description_list = text_description_list
         self.html_description_list = html_description_list
         self.image_list = image_list
-
+        self.product_list = product_list
+        self.product_description_list = product_description_list
+        self.inprice_list = inprice_list
+        self.outprice_list = outprice_list
+        message = "saab.jpg"
+        self.image = bytes(message, 'utf-8')
         self.rnd_x = rnd_x
 
         # **************************************************#
@@ -491,7 +505,7 @@ class GeneratorSetup:
         return status
 
     def random_customer_order_id(self):
-        self.rnd_x = random.randrange(1, 100)
+        self.rnd_x = random.randrange(1, 20)
         return self.rnd_x
 
     def load_productline(self):
@@ -544,7 +558,34 @@ class GeneratorSetup:
         for image in self.line_row:
             image = image.strip()
             self.image_list.append(image)
-        return self.image_list
+
+        return self.image  # _list
+
+    def load_product_name(self):
+        self.f = open('C:/skolan/CarPartsSweden/generators/random_generators/data_files/products.txt', 'r',
+                      encoding="utf-8")
+        self.line_row = self.f.readlines()
+        self.f.close()
+
+        self.product_list = []
+
+        for product in self.line_row:
+            product = product.strip()
+            self.product_list.append(product)
+        return self.product_list
+
+    def load_product_description(self):
+        self.f = open('C:/skolan/CarPartsSweden/generators/random_generators/data_files/product_description.txt', 'r',
+                      encoding="utf-8")
+        self.line_row = self.f.readlines()
+        self.f.close()
+
+        self.product_description_list = []
+
+        for productdesc in self.line_row:
+            productdesc = productdesc.strip()
+            self.product_description_list.append(productdesc)
+        return self.product_description_list
 
     def random_productline(self):
         productline = random.choice(self.productline_list)

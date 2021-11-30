@@ -56,9 +56,16 @@ class CpsCreator(GeneratorSetup):
         productline = ""
         text_description = ""
         html_description = ""
-        image = ""
+        message = "saab.jpg"
+        image = bytes(message, 'utf-8')
         products_copy_of_productlines_productline = ""
-
+        product_name = ""
+        product_description = ""
+        inprice = ""
+        outprice = ""
+        productlines = ""
+        product = ""
+        order_no = 0
         # class selfs:
 
         # ORDER VARIABLES
@@ -69,6 +76,7 @@ class CpsCreator(GeneratorSetup):
         self.status = status
         self.comments = comments
         self.customers_id_customers = customers_id_customers
+        self.order_no = order_no
 
         # PRODUCTLINES VARIABLES
         self.productline = productline
@@ -115,6 +123,12 @@ class CpsCreator(GeneratorSetup):
         self.state = state
         self.rnd_number = rnd_number
         self.products_copy_of_productlines_productline = products_copy_of_productlines_productline
+        self.product_name = product_name
+        self.product_description = product_description
+        self.inprice = inprice
+        self.outprice = outprice
+        self.productlines = productlines
+        self.product = product
 
         # KEY LISTS GOES HERE
 
@@ -185,14 +199,15 @@ class CpsCreator(GeneratorSetup):
         self.color = self.generator.random_color()
         self.model = self.generator.random_car_model()
         self.year_model = self.generator.random_year_model()
-        self.owner_id = ''
+        self.owner_id = self.generator.random_owner_id()
 
     def assemble_payment_object(self):
         self.payment_amount = self.generator.random_amount()
         self.payment_date = self.generator.random_date()
-        self.customer_paid_bill_id = ''
+        self.customer_paid_bill_id = self.generator.random_payment_bill_id()
 
     def assemble_order_object(self):
+        # self.order_no = cpsab.orders
         self.order_date = self.generator.random_date()
         self.required_date = self.generator.random_date()
         self.shipping_date = self.generator.random_date()
@@ -204,11 +219,19 @@ class CpsCreator(GeneratorSetup):
         self.productline = self.generator.random_productline()
         self.text_description = self.generator.random_text_description()
         self.html_description = self.generator.random_html_description()
-        self.image = self.generator.random_productline_image()
+        self.image = self.generator.load_image()
 
+        # self.generator.random_productline_image()
         # THIS ONE IS SPECIAL, HAS TO BE EXACT THE SAME IN THE PRODUCTS TABLE
         # OTHERWISE ITS GOING TO CRASH
         self.products_copy_of_productlines_productline = self.productline
+
+    def assemble_products_object(self):
+        self.product_name = self.generator.random_product_name()
+        self.product_description = self.generator.random_product_descriptions()
+        self.inprice = self.generator.random_inprice()
+        self.outprice = self.generator.random_outprice()
+        self.productlines = self.products_copy_of_productlines_productline
 
     # HERE GOES ALL DICT CREATING FUNCTIONS
 
