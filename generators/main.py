@@ -1,96 +1,85 @@
-from generator_setup import GeneratorSetup
+from generators.cps_object import CpsCreator
 
-# Creating the Generator Object
-generator = GeneratorSetup()
+# CREATING THE CREATOR OBJECT THAT HOLDS ALL INFO WE NEED TO CREATE OUR FAKE DATA.
+creator = CpsCreator()
+creator.load_all_data()
 
-# Load all the lists we need to generate fake data.
-car_list_split = []
-car_manufacturer_list = []
-manufacturer = ""
-color = ""
-year_model = ""
-owner_id = ""
-payment_date = ""
-payments_no = ""
-payment_amount = ""
-customer_paid_bill_id = ""
+# CREATING A CUSTOMER OBJECT
+creator.assemble_customer_object()
+creator.customer_list = [creator.first_name, creator.last_name, creator.company, creator.phone,
+                         creator.street_adress + " " + creator.house_number, '', creator.city, creator.zip_code,
+                         creator.country, creator.my_sales_representant, creator.state]
+creator.create_customer_dict(creator.customer_key_list, creator.customer_list)
+print(creator.customer)
 
-my_first_names = generator.load_first_name()
-my_last_names = generator.load_last_name()
-my_street_adress = generator.load_street_adress()
-my_house_number = generator.load_house_numbers()
-my_zip_code = generator.load_zip_codes()
-my_city = generator.load_citys()
-my_country = generator.load_country()
-my_company = generator.load_company()
-my_phone = generator.load_phone()
-my_states = generator.load_states()
-reg_no = generator.reg_no_generator()
-colors = generator.load_color()
-model = generator.load_car_model()
-year = generator.load_year_model()
-reg = generator.load_reg_no()
-car_list_split, car_manufacturer_list = generator.cars_and_their_manufacturers(car_list_split, car_manufacturer_list)
-date = generator.load_date()
+# CREATING A CAR OBJECT
+creator.assemble_car_object()
+customer_car_list = [creator.reg_no, creator.manufacturer, creator.color, creator.model,
+                     creator.year_model, creator.owner_id]
+creator.create_customer_car_dict(creator.customer_car_key_list, customer_car_list)
+print(creator.customer_car)
 
-# Create the strings we need to create a customer.
-house_number = generator.create_house_number()
-first_name = generator.create_first_name()
-last_name = generator.create_last_name()
-company = generator.create_company()
-phone = generator.create_phone()
-street_adress = generator.create_street_adress()
-city = generator.create_city()
-zip_code = generator.create_zip_code()
-country = generator.create_country()
-my_sales_representant = generator.create_sales_representant()
-state = generator.create_states()
+# CREATING A PAYMENT OBJECT
+creator.assemble_payment_object()
+creator.payment_list = [creator.payment_date, creator.payment_amount, creator.customer_paid_bill_id]
+creator.create_payment_dict(creator.payment_key_list, creator.payment_list)
+print(creator.payment)
 
-# Create 2 lists so we can combine them to make a customer dict, like
-# that one customer generator needs to create a customer.
-customer_key_list = ['first_name', 'last_name', 'company_name', 'phone', 'adress1', 'adress2',
-                     'city', 'zip_code', 'country', 'sales_representant', 'states']
-
-customer_list = [first_name, last_name, company, phone, street_adress + " " + house_number, '', city, zip_code,
-                 country, my_sales_representant, state]
-
-customer = generator.create_customer_dict(customer_key_list, customer_list)
-
-#print(customer)
-
-# print(car_list_split, car_manufacturer_list)
-
-
-# Creating a car object
-reg_no = generator.random_reg_no()
-manufacturer = generator.random_manufacturer()
-color = generator.random_color()
-model = generator.random_car_model()
-year_model = generator.random_year_model()
-owner_id = ''
-
-customer_car_key_list = ['reg_no', 'manufacturer', 'color', 'model', 'year_model', 'owner_id']
-customer_car_list = [reg_no, manufacturer, color, model, year_model, owner_id]
-customer_car = generator.create_customer_car_dict(customer_car_key_list, customer_car_list)
-#print(customer_car)
-
-
-# Creating a payment object
-payment_amount = generator.random_amount()
-payment_date = generator.random_date()
-customer_paid_bill_id = ''
-
-payment_key_list = ['payment_date', 'payment_amount', 'customer_paid_bill_id']
-payment_list = [payment_date, payment_amount, customer_paid_bill_id]
-payment = generator.create_payment_dict(payment_key_list, payment_list)
-# print(payment)
+# GET RANDOM CUSTOMER.CUSTOMER_ID
+creator.rnd_number_function()
+# print(creator.rnd_number)
 
 # Creating a order object  -----> How to have customer id less than numbers of customers when creating an order id
-# order_date = generator
-# required_date = generator
-# shipping_date = generator
-# status = generator
-# comments = generator
-# customers_id_customers = rnd_number 
-rnd_number = generator.random_customer_order_id() 
-print(rnd_number)
+# CREATING ORDER OBJECT
+creator.assemble_order_object()
+creator.order_list = [creator.order_date, creator.required_date, creator.shipping_date,
+                      creator.status, creator.comments, creator.customers_id_customers]
+creator.create_order_dict(creator.order_key_list, creator.order_list)
+print(creator.order)
+
+# CREATING PRODUCTLINES OBJECT
+# This needs a productline.txt file, text_description.txt and html_description.txt
+# and image.txt to work, haven't got those files yet.
+creator.assemble_productline_object()
+creator.productline_list = [creator.productline, creator.text_description, creator.html_description,
+                            creator.image]
+creator.create_productline_dict(creator.productline_key_list, creator.productline_list)
+print(creator.productline)
+
+# CREATING PRODUCTS OBJECT
+
+
+# CREATING ORDERDETAILS OBJECT
+
+
+# CREATING STORAGE OBJECT
+
+
+# CREATING STORAGE HAS PRODUCTS OBJECT
+
+
+# CREATING SUPPLIERS OBJECT
+
+
+# CREATING CPS ORDERS OBJECT
+
+
+# CREATING SUPPLIERS HAS CPS ORDERS OBJECT
+
+
+# CREATING MANUFACTURERS OBJECT
+
+
+# CREATING MANUFACTURERS HAS CPS ORDERS OBJECT
+
+
+# CREATING STAFFS OBJECT
+
+
+# CREATING STAFFS HAS CPS ORDERS OBJECT
+
+
+# CREATING STAFFS HAS STAFFS
+
+
+# CREATING STAFFS HAS CUSTOMERS OBJECT

@@ -24,6 +24,11 @@ class GeneratorSetup:
         amount_list = []
         date_list = []
         status_list = []
+        productline_list = []
+        text_description_list = []
+        html_description_list = []
+        image_list = []
+        rnd_x = 0
 
         random_numbers = ['1', '2', '3', '4', '5', '6', '7', '8', '9', '0']
         random_numbers2 = ['1', '2', '3', '4', '5', '6', '7', '8', '9']
@@ -50,34 +55,50 @@ class GeneratorSetup:
         self.first_name = self.load_first_name()
         self.last_name = self.load_last_name()
 
+        # Here are the self lists this class uses
         self.big_first_name_list = big_first_name_list
         self.big_last_name_list = big_last_name_list
         self.big_gatuadress_list = big_gatuadress_list
         self.big_house_number_list = big_house_number_list
         self.big_zip_code_list = big_zip_code_list
+
         self.big_city_list = big_city_list
         self.big_country_list = big_country_list
         self.big_states_list = big_states_list
         self.big_company_list = big_company_list
+
         self.big_phone_list = big_phone_list
         self.reg_no_list = reg_no_list
         self.cars_list = cars_list
         self.manufacturers_list = manufacturers_list
+
         self.color_list = color_list
         self.car_model_list = car_model_list
         self.amount_list = amount_list
         self.customer = customer
+
         self.customer_car = customer_car
         self.payment = payment
         self.pay = pay
         self.random_numbers = random_numbers
+
         self.random_numbers2 = random_numbers2
         self.alpha_list = alpha_list
         self.year_model_list = year_model_list
         self.reg_no_list = reg_no_list
-        self.status_list = status_list
 
+        self.status_list = status_list
         self.date_list = date_list
+        self.productline_list = productline_list
+        self.text_description_list = text_description_list
+        self.html_description_list = html_description_list
+        self.image_list = image_list
+
+        self.rnd_x = rnd_x
+
+        # **************************************************#
+        # Here goes all loading functions this class uses. #
+        # *************************************************#
 
     def load_first_name(self):
         self.f = open('C:/skolan/CarPartsSweden/generators/random_generators/data_files/firstname.txt', 'r',
@@ -209,6 +230,10 @@ class GeneratorSetup:
             self.big_phone_list.append(phone)
         return self.big_phone_list
 
+    # ********************************************
+    # ****** Here goes the create functions ******
+    # ********************************************
+
     def zip_code_creator(self):
         zip_code = ""
         self.random_numbers = ['1', '2', '3', '4', '5', '6', '7', '8', '9', '0']
@@ -297,7 +322,7 @@ class GeneratorSetup:
         house_number = random.choice(self.big_house_number_list)
         return house_number
 
-    # Here goes Dicts
+    # Here goes Dicts this class use
     def create_customer_dict(self, customer_key_list, customer_list):
         self.customer = dict(zip(customer_key_list, customer_list))
         return self.customer
@@ -333,6 +358,7 @@ class GeneratorSetup:
             self.complete_numbers = ""
         return self.reg_no_list
 
+    # Function to extract booth cars and manufacturers at the same time.
     def cars_and_their_manufacturers(self, car_list_split, car_manufacturer_list):
         self.cars_list = car_list_split
         self.manufacturers_list = car_manufacturer_list
@@ -447,32 +473,6 @@ class GeneratorSetup:
             self.pay = random.choice(self.amount_list)
         return self.pay
 
-    def load_date(self):
-        self.f = open('C:/skolan/CarPartsSweden/generators/random_generators/data_files/date.txt', 'r',
-                      encoding="utf-8")
-        self.line_row = self.f.readlines()
-        self.f.close()
-
-        self.date_list = []
-
-        for date in self.line_row:
-            date = date.strip()
-            self.date_list.append(date)
-        return self.date_list
-
-    def random_date(self):
-        date = random.choice(self.date_list)
-        return date
-
-    def random_amount(self):
-        self.amount_list = []
-
-        for i in range(200):
-            x = round(random.uniform(1.00, 30000.00), 2)
-            self.amount_list.append(x)
-            self.pay = random.choice(self.amount_list)
-        return self.pay
-
     def load_status(self):
         self.f = open('C:/skolan/CarPartsSweden/generators/random_generators/data_files/status.txt', 'r',
                       encoding="utf-8")
@@ -490,7 +490,75 @@ class GeneratorSetup:
         status = random.choice(self.status_list)
         return status
 
-    def random_customer_order_id(self): 
-        x = random.randrange(1, 100)
-        return x
+    def random_customer_order_id(self):
+        self.rnd_x = random.randrange(1, 100)
+        return self.rnd_x
+
+    def load_productline(self):
+        self.f = open('C:/skolan/CarPartsSweden/generators/random_generators/data_files/productline.txt', 'r',
+                      encoding="utf-8")
+        self.line_row = self.f.readlines()
+        self.f.close()
+
+        self.productline_list = []
+
+        for productline in self.line_row:
+            productline = productline.strip()
+            self.productline_list.append(productline)
+        return self.productline_list
+
+    def load_text_description(self):
+        self.f = open('C:/skolan/CarPartsSweden/generators/random_generators/data_files/text_description.txt', 'r',
+                      encoding="utf-8")
+        self.line_row = self.f.readlines()
+        self.f.close()
+
+        self.text_description_list = []
+
+        for text in self.line_row:
+            text = text.strip()
+            self.text_description_list.append(text)
+        return self.text_description_list
+
+    def load_html_description(self):
+        self.f = open('C:/skolan/CarPartsSweden/generators/random_generators/data_files/html_description.txt', 'r',
+                      encoding="utf-8")
+        self.line_row = self.f.readlines()
+        self.f.close()
+
+        self.html_description_list = []
+
+        for html_description in self.line_row:
+            html_description = html_description.strip()
+            self.html_description_list.append(html_description)
+        return self.html_description_list
+
+    def load_image(self):
+        self.f = open('C:/skolan/CarPartsSweden/generators/random_generators/data_files/image.txt', 'r',
+                      encoding="utf-8")
+        self.line_row = self.f.readlines()
+        self.f.close()
+
+        self.image_list = []
+
+        for image in self.line_row:
+            image = image.strip()
+            self.image_list.append(image)
+        return self.image_list
+
+    def random_productline(self):
+        productline = random.choice(self.productline_list)
+        return productline
+
+    def random_text_description(self):
+        text_description = random.choice(self.text_description_list)
+        return text_description
+
+    def random_html_description(self):
+        html_description = random.choice(self.html_description_list)
+        return html_description
+
+    def random_productline_image(self):
+        image = random.choice(self.image_list)
+        return image
 
