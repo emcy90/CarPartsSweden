@@ -10,7 +10,8 @@ class CpsCreator(GeneratorSetup):
 
         car_list_split = []
         car_manufacturer_list = []
-
+        orders_order_no = 0
+        products_product_id = 0
         manufacturer = ""
         color = ""
         year_model = ""
@@ -66,6 +67,10 @@ class CpsCreator(GeneratorSetup):
         productlines = ""
         product = ""
         order_no = 0
+        quantity = 0
+        price_each = 1.00
+        orderdetails = ""
+
         # class selfs:
 
         # ORDER VARIABLES
@@ -129,6 +134,11 @@ class CpsCreator(GeneratorSetup):
         self.outprice = outprice
         self.productlines = productlines
         self.product = product
+        self.orders_order_no = orders_order_no
+        self.products_product_id = products_product_id
+        self.quantity = quantity
+        self.price_each = price_each
+        self.orderdetails = orderdetails
 
         # KEY LISTS GOES HERE
 
@@ -239,6 +249,13 @@ class CpsCreator(GeneratorSetup):
         self.inprice = self.generator.random_inprice()
         self.outprice = self.generator.random_outprice()
         self.productlines = self.products_copy_of_productlines_productline
+
+    def assemble_orderdetails_object(self):
+        self.orders_order_no = self.orders_order_no = 3 #  generator.random_orders_order_no()
+        self.products_product_id = self.products_product_id = 1  # generator.random_products_product_id()
+        self.quantity = self.generator.random_quantity()
+        self.price_each = self.generator.random_price()
+
 
     # HERE GOES ALL DICT CREATING FUNCTIONS
 

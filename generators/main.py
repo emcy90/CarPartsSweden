@@ -1,9 +1,12 @@
-from controllers.customer_car_controller import create_car
+from controllers.customer_car_controller import create_car, get_customer_cars_by_reg_no
 from controllers.customer_controller import create_customer
 from controllers.order_controller import create_order
+from controllers.orderdetails_controller import create_order_details
 from controllers.payment_controller import create_payment
+from controllers.product_controller import get_product_by_id
 from controllers.productline_controller import create_productline
 from data.repository.customer_repositroy import get_customer_by_id
+from data.repository.order_repository import get_order_by_id
 
 from generators.cps_object import CpsCreator
 
@@ -11,16 +14,27 @@ from generators.cps_object import CpsCreator
 creator = CpsCreator()
 creator.load_all_data()
 
-# CALLING FUNCTIONS ----> CONTROLLER ----> REPOSITORY ----> DB
-# def calling_multicreate():
-# create_customer(creator.customer)
-# create_car(creator.customer_car)
-# create_payment(creator.payment)
-# create_order(creator.order)
-# create_productline(creator.productline)
 
+# CALLING FUNCTIONS ----> CONTROLLER ----> REPOSITORY ----> DB
+def calling_multicreate():
+    # create_customer(creator.customer)
+    # create_car(creator.customer_car)
+    # create_payment(creator.payment)
+    # create_order(creator.order)
+    # create_productline(creator.productline)
+    create_order_details(creator.orderdetails)
+
+
+all_cars_ids = get_customer_cars_by_reg_no()
 all_customers_ids = get_customer_by_id()
-print(all_customers_ids)
+all_order_no = get_order_by_id()
+all_product_ids = get_product_by_id()
+
+print(f'All customers id: {all_customers_ids}')
+print(f'All cars ids: {all_cars_ids}')
+print(f'All order ids: {all_order_no}')
+print(f'All product ids: {all_product_ids}')
+print()
 
 # CREATING A CUSTOMER OBJECT
 creator.assemble_customer_object()
@@ -28,21 +42,21 @@ creator.customer_list = [creator.first_name, creator.last_name, creator.company,
                          creator.street_adress + " " + creator.house_number, '', creator.city, creator.zip_code,
                          creator.country, creator.my_sales_representant, creator.state]
 creator.create_customer_dict(creator.customer_key_list, creator.customer_list)
-# print(creator.customer)
+print(creator.customer)
 
 # CREATING A CAR OBJECT
 creator.assemble_car_object()
 customer_car_list = [creator.reg_no, creator.manufacturer, creator.color, creator.model,
                      creator.year_model, creator.owner_id]
 creator.create_customer_car_dict(creator.customer_car_key_list, customer_car_list)
-# print(creator.customer_car)
+print(creator.customer_car)
 # calling_multicreate()
 
 # CREATING A PAYMENT OBJECT
 creator.assemble_payment_object()
 creator.payment_list = [creator.payment_date, creator.payment_amount, creator.customer_paid_bill_id]
 creator.create_payment_dict(creator.payment_key_list, creator.payment_list)
-# print(creator.payment)
+print(creator.payment)
 # calling_multicreate()
 
 # GET RANDOM CUSTOMER.CUSTOMER_ID
@@ -55,7 +69,7 @@ creator.assemble_order_object()
 creator.order_list = [creator.order_date, creator.required_date, creator.shipping_date,
                       creator.status, creator.comments, creator.customers_id_customers]
 creator.create_order_dict(creator.order_key_list, creator.order_list)
-# print(creator.order)
+print(creator.order)
 # calling_multicreate()
 
 # CREATING PRODUCTLINES OBJECT
@@ -65,7 +79,7 @@ creator.assemble_productline_object()
 creator.productline_list = [creator.productline, creator.text_description, creator.html_description,
                             creator.image]
 creator.create_productline_dict(creator.productline_key_list, creator.productline_list)
-# print(creator.productline)
+print(creator.productline)
 # calling_multicreate()
 
 # CREATING PRODUCTS OBJECT
