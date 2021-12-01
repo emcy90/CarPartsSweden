@@ -90,7 +90,12 @@ creator.create_product_dict(creator.product_key_list, creator.products_list)
 print(creator.product)
 
 # CREATING ORDERDETAILS OBJECT
-
+creator.assemble_orderdetails_object()
+creator.orderdetails_list = [creator.orders_order_no, creator.products_product_id, creator.quantity,
+                             creator.price_each]
+creator.create_orderdetails_dict(creator.orderdetails_key_list, creator.orderdetails_list)
+print(creator.orderdetails)
+# calling_multicreate()
 
 # CREATING STORAGE OBJECT
 

@@ -2,8 +2,8 @@ from data.db import session
 from data.models import Order
 
 
-def get_order_by_id(_id):
-    return session.query(Order).filter(Order.order_no == _id).first()
+def get_order_by_id():
+    return session.query(Order.order_no).all()
 
 
 def create_order(order):

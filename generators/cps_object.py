@@ -285,3 +285,9 @@ class CpsCreator(GeneratorSetup):
     def create_product_dict(self, product_key_list, product_list):
         self.product = dict(zip(self.product_key_list, product_list))
         return self.product
+
+    def create_orderdetails_dict(self, orderdetails_key_list, orderdetails_list):
+        self.orderdetails = dict(zip(self.orderdetails_key_list, orderdetails_list))
+        return self.orderdetails
+    def hej(self):
+        pass

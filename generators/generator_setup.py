@@ -32,6 +32,9 @@ class GeneratorSetup:
         inprice_list = []
         outprice_list = []
         product_description_list = []
+        quantity_list = []
+        price_list = []
+
         rnd_x = 0
         owner_id = 0
         customer_paid_bill_id = 0
@@ -109,6 +112,9 @@ class GeneratorSetup:
         message = "saab.jpg"
         self.image = bytes(message, 'utf-8')
         self.rnd_x = rnd_x
+
+        self.quantity_list = quantity_list
+        self.price_list = price_list
 
         # **************************************************#
         # Here goes all loading functions this class uses. #
@@ -637,3 +643,30 @@ class GeneratorSetup:
     def random_payment_bill_id(self):
         self.customer_paid_bill_id = random.randrange(1, 20)
         return self.customer_paid_bill_id
+
+    def random_orders_order_no(self): # -----> FOREIGN KEY (NN)
+        self.orders_order_no = random.randrange(1, 3)
+        return self.orders_order_no
+
+    def random_products_product_id(self): # -----> FOREIGN KEY (NN)
+        # self.products_product_id = random.randrange(1, ?)
+        # return self.products_product_id
+        pass
+
+    def random_quantity(self):
+        self.quantity_list = []
+
+        for i in range(1):
+            x = random.randint(1, 100)
+            self.quantity_list.append(x)
+            self.pay = random.choice(self.quantity_list)
+        return self.pay
+
+    def random_price(self):
+        self.price_list = []
+
+        for i in range(1):
+            x = round(random.uniform(1.00, 30000.00), 2)
+            self.price_list.append(x)
+            self.pay = random.choice(self.price_list)
+        return self.pay

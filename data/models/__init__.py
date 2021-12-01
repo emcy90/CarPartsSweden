@@ -29,20 +29,20 @@ class Customer(Base):
     # orders = relationship('Order')
 
 
-class Manufacture(Base):
-    __tablename__ = "manufacturers"
-
-    manufacturer_id = Column(Integer, primary_key=True, autoincrement=True)
-    name_manufacturer = Column(String(45), nullable=False)
-    main_office_adress1 = Column(String(100), nullable=False)
-    main_office_adress2 = Column(String(100))
-    main_office_name = Column(String(100), nullable=False)
-    contact_person_name = Column(String(200), nullable=False)
-    contact_person_phone = Column(String(45), nullable=False)
-    contact_person_email = Column(String(45), nullable=False)
-    manufacturers_has_cps_orders = Column(Integer, ForeignKey('manufacturers.manufacturers_has_cps_orders'))
-    cps_orders = relationship('CpsOrder')
-
+# class Manufacture(Base):
+#     __tablename__ = "manufacturers"
+#
+#     manufacturer_id = Column(Integer, primary_key=True, autoincrement=True)
+#     name_manufacturer = Column(String(45), nullable=False)
+#     main_office_adress1 = Column(String(100), nullable=False)
+#     main_office_adress2 = Column(String(100))
+#     main_office_name = Column(String(100), nullable=False)
+#     contact_person_name = Column(String(200), nullable=False)
+#     contact_person_phone = Column(String(45), nullable=False)
+#     contact_person_email = Column(String(45), nullable=False)
+#     manufacturers_has_cps_orders = Column(Integer, ForeignKey('manufacturers.manufacturers_manufacturer_id'))
+#     cps_orders = relationship('CpsOrder')
+#     # manufacturers = relationship('Manufacture')
 
 
 # class ManufacturerHasCpsOrder(Base):
@@ -69,17 +69,18 @@ class Order(Base):
     order_to_product = relationship('OrderDetail', back_populates="order")
 
 
-class CpsOrder(Base):
-    __tablename__ = "cps_orders"
-
-    internal_order_no = Column(Integer, primary_key=True)
-    order_date = Column(Date, nullable=False)
-    required_date = Column(Date)
-    shipping_date = Column(Date)
-    status = Column(String(45), nullable=False)
-    comments = Column(Text)
-    order_no_comments = Column(Text)
-
+# class CpsOrder(Base):
+#     __tablename__ = "cps_orders"
+#
+#     internal_order_no = Column(Integer, primary_key=True)
+#     order_date = Column(Date, nullable=False)
+#     required_date = Column(Date)
+#     shipping_date = Column(Date)
+#     status = Column(String(45), nullable=False)
+#     comments = Column(Text)
+#     order_no_comments = Column(Text)
+#     cps_has_cps_orders = Column(Integer, ForeignKey('cps_orders.cps_orders_internal_order_no'))
+#     manufacturers = relationship('Manufacture')
 
 
 class CustomerCar(Base):

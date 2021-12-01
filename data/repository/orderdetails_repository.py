@@ -10,3 +10,5 @@ def create_order_details(orderdetails):
     order_details = OrderDetail(**orderdetails)
     session.add(order_details)
     session.commit()
+    print()
+    print('Added orderdetails successfully!!')

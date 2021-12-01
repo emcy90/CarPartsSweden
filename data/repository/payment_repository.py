@@ -12,3 +12,5 @@ def create_payment(payment):
     session.commit()
     print()
     print('Added payment successfully!')
+    print()
+    print('Added payment successfully!')
