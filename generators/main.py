@@ -87,7 +87,7 @@ creator.assemble_products_object()
 creator.products_list = [creator.product_name, creator.product_description, creator.inprice,
                          creator.outprice, creator.productlines]
 creator.create_product_dict(creator.product_key_list, creator.products_list)
-# print(creator.product)
+print(creator.product)
 
 # CREATING ORDERDETAILS OBJECT
 
