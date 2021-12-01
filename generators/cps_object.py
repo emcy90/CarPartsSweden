@@ -254,11 +254,10 @@ class CpsCreator(GeneratorSetup):
         self.productlines = self.products_copy_of_productlines_productline
 
     def assemble_orderdetails_object(self):
-        self.orders_order_no = self.orders_order_no = 3 #  generator.random_orders_order_no()
+        self.orders_order_no = self.orders_order_no = 3  # generator.random_orders_order_no()
         self.products_product_id = self.products_product_id = 1  # generator.random_products_product_id()
         self.quantity = self.generator.random_quantity()
         self.price_each = self.generator.random_price()
-
 
     # HERE GOES ALL DICT CREATING FUNCTIONS
 
