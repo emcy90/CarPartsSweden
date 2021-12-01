@@ -10,3 +10,5 @@ def create_productline(productline):
     productline = Productline(**productline)
     session.add(productline)
     session.commit()
+    print()
+    print('Added productline successfully!!!')

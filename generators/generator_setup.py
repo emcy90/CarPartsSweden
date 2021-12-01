@@ -603,3 +603,37 @@ class GeneratorSetup:
         image = random.choice(self.image_list)
         return image
 
+    def random_product_name(self):
+        product = random.choice(self.product_list)
+        return product
+
+    def random_product_descriptions(self):
+        description = random.choice(self.product_list)
+        return description
+
+    def random_inprice(self):
+        self.inprice_list = []
+
+        for i in range(200):
+            x = round(random.uniform(1.00, 30000.00), 2)
+            self.inprice_list.append(x)
+            self.pay = random.choice(self.inprice_list)
+        return self.pay
+
+    def random_outprice(self):
+        self.outprice_list = []
+
+        for i in range(200):
+            x = round(random.uniform(1.00, 30000.00), 2)
+            self.outprice_list.append(x)
+            self.pay = random.choice(self.outprice_list)
+        return self.pay
+
+    # added random owner_id because sqlalchemy is a little bitch not wanting to add things without a fucking owner_id
+    def random_owner_id(self):
+        self.owner_id = random.randrange(12, 20)
+        return self.owner_id
+
+    def random_payment_bill_id(self):
+        self.customer_paid_bill_id = random.randrange(1, 20)
+        return self.customer_paid_bill_id

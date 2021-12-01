@@ -1,3 +1,10 @@
+from controllers.customer_car_controller import create_car
+from controllers.customer_controller import create_customer
+from controllers.order_controller import create_order
+from controllers.payment_controller import create_payment
+from controllers.productline_controller import create_productline
+from data.repository.customer_repositroy import get_customer_by_id
+
 from generators.cps_object import CpsCreator
 
 # CREATING THE CREATOR OBJECT THAT HOLDS ALL INFO WE NEED TO CREATE OUR FAKE DATA.

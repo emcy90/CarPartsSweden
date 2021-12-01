@@ -144,11 +144,14 @@ class CpsCreator(GeneratorSetup):
 
         productline_key_list = ['productline', 'text_description', 'html_description', 'image']
 
+        product_key_list = ['product_name', 'product_description', 'inprice', 'outprice', 'productlines']
+
         self.customer_key_list = customer_key_list
         self.customer_car_key_list = customer_car_key_list
         self.payment_key_list = payment_key_list
         self.order_key_list = order_key_list
         self.productline_key_list = productline_key_list
+        self.product_key_list = product_key_list
 
     def load_all_data(self):
         self.first_name = self.generator.load_first_name()
@@ -174,6 +177,10 @@ class CpsCreator(GeneratorSetup):
         self.text_description = self.generator.load_text_description()
         self.html_description = self.generator.load_html_description()
         self.image = self.generator.load_image()
+        self.product_name = self.generator.load_product_name()
+        self.product_description = self.generator.load_product_description()
+        # self.inprice = self.generator.load_inprice()
+        # self.outprice = self.generator.load_outprice()
 
     def assemble_customer_object(self):
         self.house_number = self.generator.create_house_number()
@@ -254,3 +261,7 @@ class CpsCreator(GeneratorSetup):
     def create_productline_dict(self, productline_key_list, productline_list):
         self.productline = dict(zip(self.productline_key_list, productline_list))
         return self.productline
+
+    def create_product_dict(self, product_key_list, product_list):
+        self.product = dict(zip(self.product_key_list, product_list))
+        return self.product
