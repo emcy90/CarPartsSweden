@@ -209,10 +209,18 @@ print(creator.cps_orders)
 # # calling_multicreate()
 
 # CREATING STAFFS HAS CPS ORDERS OBJECT
-
+# creator.assemble_staffs_has_cps_orders_object()
+# creator.staffs_has_cps_orders_list = [creator.staffs_id_staff, creator.cps_orders_internal_order_no]
+# creator.create_staffs_has_cps_orders_dict(creator.staffs_has_cps_orders_key_list, creator.staffs_has_cps_orders_list)
+# print(creator.staffs_has_cps_orders)
+# calling_multicreate()
 
 # CREATING STAFFS HAS STAFFS
-
+# creator.assemble_staff_has_staff_object()
+# creator.staff_has_staff_list = [creator.staffs_id_staff, creator.staffs_id_staff1]
+# creator.create_staff_has_staff_dict(creator.staff_has_staff_key_list, creator.staff_has_staff_list)
+# print(creator.staff_has_staff)
+# # calling_multicreate()
 
 # # CREATING STAFFS HAS CUSTOMERS OBJECT
 # creator.assemble_staffs_has_customers_object()
