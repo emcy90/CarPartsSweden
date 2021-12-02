@@ -29,20 +29,21 @@ class Customer(Base):
     # orders = relationship('Order')
 
 
-# class Manufacture(Base):
-#     __tablename__ = "manufacturers"
-#
-#     manufacturer_id = Column(Integer, primary_key=True, autoincrement=True)
-#     name_manufacturer = Column(String(45), nullable=False)
-#     main_office_adress1 = Column(String(100), nullable=False)
-#     main_office_adress2 = Column(String(100))
-#     main_office_name = Column(String(100), nullable=False)
-#     contact_person_name = Column(String(200), nullable=False)
-#     contact_person_phone = Column(String(45), nullable=False)
-#     contact_person_email = Column(String(45), nullable=False)
-#     manufacturers_has_cps_orders = Column(Integer, ForeignKey('manufacturers.manufacturers_manufacturer_id'))
-#     cps_orders = relationship('CpsOrder')
-#     # manufacturers = relationship('Manufacture')
+class Manufacture(Base):
+    __tablename__ = "manufacturers"
+
+    manufacturer_id = Column(Integer, primary_key=True, autoincrement=True)
+    name_manufacturer = Column(String(45), nullable=False)
+    main_office_adress1 = Column(String(100), nullable=False)
+    main_office_adress2 = Column(String(100))
+    main_office_name = Column(String(100), nullable=False)
+    contact_person_name = Column(String(200), nullable=False)
+    contact_person_phone = Column(String(45), nullable=False)
+    contact_person_email = Column(String(45), nullable=False)
+    # manufacturers_has_cps_orders = Column(Integer, ForeignKey('manufacturers_has_cps_orders.manufacturers_manufacturer_id'))
+    children = Column(Integer, ForeignKey('ManufacturerHasCpsOrder', back_populates='parent'))
+    # cps_orders = relationship('CpsOrder')
+    # manufacturers = relationship('Manufacture')
 
 
 # class ManufacturerHasCpsOrder(Base):
@@ -69,18 +70,18 @@ class Order(Base):
     order_to_product = relationship('OrderDetail', back_populates="order")
 
 
-# class CpsOrder(Base):
-#     __tablename__ = "cps_orders"
-#
-#     internal_order_no = Column(Integer, primary_key=True)
-#     order_date = Column(Date, nullable=False)
-#     required_date = Column(Date)
-#     shipping_date = Column(Date)
-#     status = Column(String(45), nullable=False)
-#     comments = Column(Text)
-#     order_no_comments = Column(Text)
-#     cps_has_cps_orders = Column(Integer, ForeignKey('cps_orders.cps_orders_internal_order_no'))
-#     manufacturers = relationship('Manufacture')
+class CpsOrder(Base):
+    __tablename__ = "cps_orders"
+
+    internal_order_no = Column(Integer, primary_key=True)
+    order_date = Column(Date, nullable=False)
+    required_date = Column(Date)
+    shipping_date = Column(Date)
+    status = Column(String(45), nullable=False)
+    comments = Column(Text)
+    order_no_comments = Column(Text)
+    parents = Column(Integer, ForeignKey('ManufacturerHasCpsOrder', back_populates='child'))
+    # manufacturers = relationship('Manufacture')
 
 
 class CustomerCar(Base):
@@ -148,7 +149,8 @@ class Product(Base):
 #     phone = Column(String(45), nullable=False)
 #     reports_to = Column(String(45))
 #     store = Column(String(45))
-#
+
+
 #
 # class StaffHasCpsOrder(Base):
 #     __tablename__ = "staffs_has_cpsorders"
@@ -171,6 +173,7 @@ class Product(Base):
 #     staffs = relationship('Staff')
 #     Customer = relationship('customers')
 #
+
 #
 # class StaffHasStaff(Base):
 #     __tablename__ = "staffs_has_staffs"
@@ -180,43 +183,42 @@ class Product(Base):
 #     staffs_id_staff = Column(Integer, ForeignKey('staffs.id_staff'), primary_key=True)
 #     staffs_id_staff1 = Column(Integer, ForeignKey('staffs.id_staff1'), primary_key=True)
 #     staffs = relationship('Staff')
-#
-#
-# class Storage(Base):
-#     __tablename__ = "storage"
-#
-#     storage_id = Column(Integer, primary_key=True, autoincrement=True)
-#     storage_name = Column(String(150), nullable=False)
-#     storage_quantity = Column(Integer, nullable=False)
-#     storage_city = Column(String(100), nullable=False)
-#
-#
-# class StorageHasProducts(Base):
-#     __tablename__ = "storage_has_products"
-#     # __table_args__ = (
-#     #     PrimaryKeyConstraint('storage_storage_id', 'products_product_id'),
-#     # )
-#     storage_storage_id = Column(Integer, ForeignKey('storage.storage_id'), primary_key=True)
-#     products_product_id = Column(Integer, ForeignKey('products.product_id'), primary_key=True)
-#     storage = relationship('Storage')
-#     products = relationship('Product')
-#
-#
-# class Supplier(Base):
-#     __tablename__ = "suppliers"
-#
-#     supplier_id = Column(Integer, primary_key=True, autoincrement=True)
-#     supplier_name = Column(String(45), nullable=False)
-#     supplier_address1 = Column(String(45), nullable=False)
-#     supplier_address2 = Column(String(45))
-#     city = Column(String(100), nullable=False)
-#     zip_code = Column(String(45), nullable=False)
-#     country = Column(String(45), nullable=False)
-#     contact_person = Column(String(100))
-#     phone_number = Column(String(45), nullable=False)
-#     email = Column(String(45), nullable=False)
-#
-#
+
+
+class Storage(Base):
+    __tablename__ = "storage"
+
+    storage_id = Column(Integer, primary_key=True, autoincrement=True)
+    storage_name = Column(String(150), nullable=False)
+    storage_quantity = Column(Integer, nullable=False)
+    storage_city = Column(String(100), nullable=False)
+
+
+class StorageHasProducts(Base):
+    __tablename__ = "storage_has_products"
+    # __table_args__ = (
+    #     PrimaryKeyConstraint('storage_storage_id', 'products_product_id'),
+    # )
+    storage_storage_id = Column(Integer, ForeignKey('storage.storage_id'), primary_key=True)
+    products_product_id = Column(Integer, ForeignKey('products.product_id'), primary_key=True)
+    storage = relationship('Storage')
+    products = relationship('Product')
+
+
+class Supplier(Base):
+    __tablename__ = "suppliers"
+
+    supplier_id = Column(Integer, primary_key=True, autoincrement=True)
+    supplier_name = Column(String(45), nullable=False)
+    supplier_address1 = Column(String(45), nullable=False)
+    supplier_address2 = Column(String(45))
+    city = Column(String(100), nullable=False)
+    zip_code = Column(String(45), nullable=False)
+    country = Column(String(45), nullable=False)
+    contact_person = Column(String(100))
+    phone_number = Column(String(45), nullable=False)
+    email = Column(String(45), nullable=False)
+
 # class SupplierHasCpsOrder(Base):
 #     __tablename__ = "suppliers_has_cps_orders"
 #     # __table_args__ = (

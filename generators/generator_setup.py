@@ -355,7 +355,7 @@ class GeneratorSetup:
         self.payment = dict(zip(payment_key_list, payment_list))
         return self.payment
 
-    def reg_no_generator(self): # -----> COMPARE WITH length OF car_reg_no_clean_list??
+    def reg_no_generator(self):  # -----> COMPARE WITH length OF car_reg_no_clean_list??
         self.reg_no_list = []
         for i in range(0, 99):
 
@@ -644,11 +644,11 @@ class GeneratorSetup:
         self.customer_paid_bill_id = random.randrange(1, 20)
         return self.customer_paid_bill_id
 
-    def random_orders_order_no(self): # -----> FOREIGN KEY (NN)
+    def random_orders_order_no(self):  # -----> FOREIGN KEY (NN)
         self.orders_order_no = random.randrange(1, 3)
         return self.orders_order_no
 
-    def random_products_product_id(self): # -----> FOREIGN KEY (NN)
+    def random_products_product_id(self):  # -----> FOREIGN KEY (NN)
         # self.products_product_id = random.randrange(1, ?)
         # return self.products_product_id
         pass

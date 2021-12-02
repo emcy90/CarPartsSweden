@@ -17,6 +17,7 @@ def get_customer_cars_by_reg_no():
     # car_reg_no_clean_list = [no[0] for no in reg_no]
     # return car_reg_no_clean_list
 
+
 def create_car(car):
     car = CustomerCar(**car)
     session.add(car)

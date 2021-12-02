@@ -26,6 +26,8 @@ def calling_multicreate():
     # create_storage(creator.storage)
     pass
 
+
+# all_cps_order_ids = get_cps_orders_by_id()
 all_cars_ids = get_customer_cars_by_reg_no()
 all_customers_ids = get_customer_by_id()
 all_order_no = get_order_by_id()
@@ -96,6 +98,7 @@ creator.orderdetails_list = [creator.orders_order_no, creator.products_product_i
                              creator.price_each]
 creator.create_orderdetails_dict(creator.orderdetails_key_list, creator.orderdetails_list)
 print(creator.orderdetails)
+
 # calling_multicreate()
 
 # CREATING STORAGE OBJECT

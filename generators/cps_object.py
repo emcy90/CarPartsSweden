@@ -1,3 +1,5 @@
+import random
+
 from generators.generator_setup import GeneratorSetup
 
 
@@ -7,7 +9,57 @@ class CpsCreator(GeneratorSetup):
 
         # class variables:
         generator = GeneratorSetup()
+        storage = ""
+        storage_name = ""
+        storage_quantity = ""
+        storage_city = ""
+        storage_key_list = []
+        staffs_key_list = []
+        staffs = ""
+        first_name = ""
+        last_name = ""
+        job_title = ""
+        phone = ""
+        reports_to = ""
+        store = ""
+        cps_orders_key_list = []
+        cps_orders = ""
+        order_date = ""
+        required_date = ""
+        shipping_date = ""
+        status = ""
+        comments = ""
+        order_no_comments = ""
+        suppliers_key_list = []
+        suppliers = ""
+        supplier_name = ""
+        supplier_adress1 = ""
+        supplier_adress2 = ""
+        city = ""
+        zip_code = ""
+        country = ""
+        contact_person = ""
+        phone_number = ""
+        email = ""
+        storage_has_products_list = []
+        manufacturers_key_list = []
+        manufacturers = ""
+        name_manufacturer = ""
+        main_office_adress1 = ""
+        main_office_adress2 = ""
+        main_office_name = ""
+        contact_person_name = ""
+        contact_person_phone = ""
+        contact_person_email = ""
+        manufacturers_has_cps_orders_key_list = []
+        manufacturers_has_cps_orders_list = []
+        manufacturers_manufacturer_id = ""
+        storage_has_products_key_list = []
 
+        suppliers_has_cps_orders_key_list = []
+        suppliers_has_cps_orders = ""
+        suppliers_supplier_id = ""
+        cps_orders_internal_order_no = ""
         car_list_split = []
         car_manufacturer_list = []
         orders_order_no = 0
@@ -70,6 +122,27 @@ class CpsCreator(GeneratorSetup):
         quantity = 0
         price_each = 1.00
         orderdetails = ""
+        staffs_has_cpsorders_key_list = []
+        staffs_has_cpsorders = ""
+        staffs_id_staff = ""
+        cps_orders_internal_order_no = ""
+        storage_has_products = ""
+        storage_storage_id = 1
+        products_product_id = 1
+        staffs_has_staffs_key_list = []
+        staffs_has_staffs = ""
+        staffs_id_staff = ""
+        staffs_id_staff1 = ""
+        staffs_has_customers_key_list = []
+        staffs_has_customers = ""
+        staffs_id_staff = ""
+        customers_id_customers = ""
+        manufactureres_has_cps_orders_dict = ""
+        manufactureres_has_cps_orders = ""
+        storage_key_list = []
+        staffs_has_cps_orders_key_list = []
+        suppliers_contact_person = ""
+        manufacturer_contact_person = ""
 
         # class selfs:
 
@@ -82,6 +155,64 @@ class CpsCreator(GeneratorSetup):
         self.comments = comments
         self.customers_id_customers = customers_id_customers
         self.order_no = order_no
+        self.suppliers_supplier_id = suppliers_supplier_id
+        self.cps_orders_internal_order_no = cps_orders_internal_order_no
+
+        self.suppliers_has_cps_orders = suppliers_has_cps_orders
+        self.name_manufacturer = name_manufacturer
+        self.main_office_adress1 = main_office_adress1
+        self.main_office_adress2 = main_office_adress2
+        self.main_office_name = main_office_name
+        self.contact_person_name = contact_person_name
+        self.contact_person_phone = contact_person_phone
+        self.contact_person_email = contact_person_email
+        self.manufactureres_has_cps_orders = manufactureres_has_cps_orders
+
+        self.manufacturers_manufacturer_id = manufacturers_manufacturer_id
+        self.cps_orders_internal_order_no = cps_orders_internal_order_no
+
+        self.manufacturers_has_cps_orders_list = manufacturers_has_cps_orders_list
+        self.order_date = order_date
+        self.required_date = required_date
+        self.shipping_date = shipping_date
+        self.status = status
+        self.comments = comments
+        self.order_no_comments = order_no_comments
+
+        self.cps_orders = cps_orders
+
+        self.staffs_id_staff = staffs_id_staff
+        self.staffs_id_staff1 = staffs_id_staff1
+        self.staffs_has_staffs_key_list = staffs_has_staffs_key_list
+        self.staffs_has_staffs = staffs_has_staffs
+
+        self.staffs_id_staff = staffs_id_staff
+        self.cps_orders_internal_order_no = cps_orders_internal_order_no
+        self.staffs_has_cpsorders_key_list = staffs_has_cpsorders_key_list
+        self.staffs_has_cpsorders = staffs_has_cpsorders
+
+        self.supplier_name = supplier_name
+        self.supplier_adress1 = supplier_adress1
+        self.supplier_adress2 = supplier_adress2
+        self.city = city
+        self.zip_code = zip_code
+        self.country = country
+        self.contact_person = contact_person
+        self.phone_number = phone_number
+        self.email = email
+
+        self.suppliers = suppliers
+
+        self.storage = storage
+        self.storage_name = storage_name
+        self.storage_quantity = storage_quantity
+        self.storage_city = storage_city
+
+        self.storage_storage_id = storage_storage_id
+        self.products_product_id = products_product_id
+        self.storage_has_products = storage_has_products
+
+        self.manufactureres_has_cps_orders_dict = manufactureres_has_cps_orders_dict
 
         # PRODUCTLINES VARIABLES
         self.productline = productline
@@ -139,6 +270,26 @@ class CpsCreator(GeneratorSetup):
         self.quantity = quantity
         self.price_each = price_each
         self.orderdetails = orderdetails
+        self.first_name = first_name
+        self.last_name = last_name
+        self.job_title = job_title
+        self.phone = phone
+        self.reports_to = reports_to
+        self.store = store
+        self.staffs_key_list = staffs_key_list
+        self.staffs = staffs
+        self.storage_has_products_list = storage_has_products_list
+        self.staffs_id_staff = staffs_id_staff
+        self.customers_id_customers = customers_id_customers
+        self.staffs_has_customers_key_list = staffs_has_customers_key_list
+        self.staffs_has_customers = staffs_has_customers
+        self.suppliers_contact_person = suppliers_contact_person
+        self.manufacturer_contact_person = manufacturer_contact_person
+
+        self.manufacturers = manufacturers
+
+        self.supplier_name = supplier_name
+
 
         # KEY LISTS GOES HERE
 
@@ -158,6 +309,31 @@ class CpsCreator(GeneratorSetup):
 
         orderdetails_key_list = ['orders_order_no', 'products_product_id', 'quantity', 'price_each']
 
+        suppliers_has_cps_orders_key_list = ['suppliers_supplier_id', 'cps_orders_internal_order_no']
+
+        manufacturers_key_list = ['name_manufacturer', 'main_office_adress1', 'main_office_adress2', 'main_office_name',
+                                  'contact_person_name', 'contact_person_phone', 'contact_person_email']
+
+        manufacturers_has_cps_orders_key_list = ['manufacturers_manufacturer_id', 'cps_orders_internal_order_no']
+
+        staffs_key_list = ['first_name', 'last_name', 'job_title', 'phone', 'reports_to', 'store']
+
+        cps_orders_key_list = ['order_date', 'required_date', 'shipping_date', 'status', 'comments',
+                               'order_no_comments']
+
+        staffs_has_cps_orders_key_list = ['staffs_id_staff', 'cps_orders_internal_order_no']
+
+        suppliers_key_list = ['supplier_name', 'supplier_adress1', 'supplier_adress2', 'city', 'zip_code', 'country',
+                              'contact_person', 'phone_number', 'email']
+
+        storage_key_list = ['storage_name', 'storage_quantity', 'storage_city']
+
+        storage_has_products_key_list = ['storage_storage_id', 'products_product_id']
+
+        staffs_has_staffs_key_list = ['staffs_id_staff', 'staffs_id_staff1']
+
+        staffs_has_customers_key_list = ['staffs_id_staff', 'customers_id_customers']
+
         self.customer_key_list = customer_key_list
         self.customer_car_key_list = customer_car_key_list
         self.payment_key_list = payment_key_list
@@ -165,6 +341,18 @@ class CpsCreator(GeneratorSetup):
         self.productline_key_list = productline_key_list
         self.product_key_list = product_key_list
         self.orderdetails_key_list = orderdetails_key_list
+        self.storage_key_list = storage_key_list
+        self.suppliers_has_cps_orders_key_list = suppliers_has_cps_orders_key_list
+        self.manufacturers_key_list = manufacturers_key_list
+        self.manufacturers_has_cps_orders_key_list = manufacturers_has_cps_orders_key_list
+        self.cps_orders_key_list = cps_orders_key_list
+        self.staffs_key_list = staffs_key_list
+        self.staffs_has_cps_orders_key_list = staffs_has_cps_orders_key_list
+        self.suppliers_key_list = suppliers_key_list
+        self.staffs_has_staffs_key_list = staffs_has_staffs_key_list
+        self.storage_has_products_key_list = storage_has_products_key_list
+
+        self.staffs_has_customers_key_list = staffs_has_customers_key_list
 
     def load_all_data(self):
         self.first_name = self.generator.load_first_name()
@@ -254,6 +442,7 @@ class CpsCreator(GeneratorSetup):
         self.productlines = self.products_copy_of_productlines_productline
 
     def assemble_orderdetails_object(self):
+        # här behöver vi hämta värden från dom snygga listorna, som Anna fixade.
         self.orders_order_no = self.orders_order_no = 3  # generator.random_orders_order_no()
         self.products_product_id = self.products_product_id = 1  # generator.random_products_product_id()
         self.quantity = self.generator.random_quantity()
@@ -289,5 +478,48 @@ class CpsCreator(GeneratorSetup):
         self.orderdetails = dict(zip(self.orderdetails_key_list, orderdetails_list))
         return self.orderdetails
 
-    def hej(self):
-        pass
+    def create_suppliers_has_cps_orders_dict(self, suppliers_has_cps_orders_key_list, suppliers_has_cps_orders_list):
+        self.suppliers_has_cps_orders = dict(zip(self.suppliers_has_cps_orders_key_list, suppliers_has_cps_orders_list))
+        return self.suppliers_has_cps_orders
+
+    def create_manufacturers_dict(self, manufacturers_id_key_list, manufacturers_list):
+        self.manufacturers = dict(zip(self.manufacturers_key_list, manufacturers_list))
+        return self.manufacturers
+
+    def create_manufactureres_has_cps_orders_dict(self, manufactureres_has_cps_orders,
+                                                  manufacturers_has_cps_orders_list):
+        self.manufactureres_has_cps_orders = dict(
+            zip(self.manufacturers_has_cps_orders_key_list, manufacturers_has_cps_orders_list))
+        return self.manufactureres_has_cps_orders
+
+    def create_staffs_dict(self, staffs_key_list, staffs_list):
+        self.staffs = dict(zip(self.staffs_key_list, staffs_list))
+        return self.staffs
+
+    def create_cps_orders_dict(self, cps_orders_key_list, cps_orders_list):
+        self.cps_orders = dict(zip(self.cps_orders_key_list, cps_orders_list))
+        return self.cps_orders
+
+    def create_staffs_has_cpsorders_dict(self, staffs_has_cpsorders_key_list, staffs_has_cpsorders_list):
+        self.staffs_has_cpsorders = dict(zip(self.staffs_has_cpsorders_key_list, staffs_has_cpsorders_list))
+        return self.staffs_has_cpsorders
+
+    def create_suppliers_dict(self, suppliers_key_list, suppliers_list):
+        self.suppliers = dict(zip(self.suppliers_key_list, suppliers_list))
+        return self.suppliers
+
+    def create_storage_dict(self, storage_key_list, storage_list):
+        self.storage = dict(zip(self.storage_key_list, storage_list))
+        return self.storage
+
+    def create_storage_has_products_dict(self, storage_has_products_key_list, storage_has_products_list):
+        self.storage_has_products = dict(zip(self.storage_has_products_key_list, storage_has_products_list))
+        return self.storage_has_products
+
+    def create_staffs_has_staffs_dict(self, staffs_has_staffs_key_list, staffs_has_staffs_list):
+        self.staffs_has_staffs = dict(zip(self.staffs_has_staffs_key_list, staffs_has_staffs_list))
+        return self.staffs_has_staffs
+
+    def create_staffs_has_customers_dict(self, staffs_has_customers_key_list, staffs_has_customers_list):
+        self.staffs_has_customers = dict(zip(self.staffs_has_customers_key_list, staffs_has_customers_list))
+        return self.staffs_has_customers
