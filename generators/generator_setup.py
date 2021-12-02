@@ -355,7 +355,7 @@ class GeneratorSetup:
         self.payment = dict(zip(payment_key_list, payment_list))
         return self.payment
 
-    def reg_no_generator(self):
+    def reg_no_generator(self): # -----> COMPARE WITH length OF car_reg_no_clean_list??
         self.reg_no_list = []
         for i in range(0, 99):
 

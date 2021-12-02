@@ -22,8 +22,9 @@ def calling_multicreate():
     # create_payment(creator.payment)
     # create_order(creator.order)
     # create_productline(creator.productline)
-    create_order_details(creator.orderdetails)
-
+    # create_order_details(creator.orderdetails)
+    # create_storage(creator.storage)
+    pass
 
 all_cars_ids = get_customer_cars_by_reg_no()
 all_customers_ids = get_customer_by_id()
@@ -98,7 +99,11 @@ print(creator.orderdetails)
 # calling_multicreate()
 
 # CREATING STORAGE OBJECT
-
+# creator.assemble_storage_object()
+# creator.storage_list = [creator.storage_name, creator.storage_quantity, creator.storage_city]
+# creator.create_storage_dict(creator.storage_key_list, creator.storage_list)
+# print(creator.storage)
+# calling_multicreate()
 
 # CREATING STORAGE HAS PRODUCTS OBJECT
 
