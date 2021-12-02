@@ -670,3 +670,21 @@ class GeneratorSetup:
             self.price_list.append(x)
             self.pay = random.choice(self.price_list)
         return self.pay
+
+    def random_first_and_last_name(self):
+        first_name = self.create_first_name()
+        last_name = self.create_last_name()
+        contact_person = first_name + "_" + last_name
+        return f'{contact_person}'
+
+    @staticmethod
+    def generate_random_email(contact_person):  # INTE KLAR
+        email_hosts = ['gmail.com', 'hotmail.com', 'outlook.com', 'live.se', 'yahoo.com']
+        contact_person_email = contact_person + "@" + random.choice(email_hosts)
+        return contact_person_email  # f'{contact_person}@{random.choice(email_hosts)}'
+
+    print()
+    # def random_storage_name(self):
+    # self.products_product_id = random.randrange(1, ?)
+    # return self.products_product_id
+    # pass

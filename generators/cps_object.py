@@ -448,6 +448,82 @@ class CpsCreator(GeneratorSetup):
         self.quantity = self.generator.random_quantity()
         self.price_each = self.generator.random_price()
 
+    def assemble_storage_object(self):
+        # Behövs byggas 2 st random functioner en till storage name , quantity
+        storage_name_list = ['lager göteborg', 'lager stockholm', 'lager malmö']
+        quantity_list = [12, 43, 64, 2, 5]
+        self.storage_name = random.choice(storage_name_list)
+        self.storage_quantity = random.choice(quantity_list)
+        self.storage_city = self.generator.create_city()
+
+    def assemble_storage_has_products_object(self):
+        self.storage_storage_id = 1  # hämta en storage id från Annas snygga rena lista.
+        self.products_product_id = 1  # Hämta en products_products_id från Annas lista.
+
+    def assemble_supplier_object(self):
+        suppliers = ['johans verkstad', 'biltema', 'jula']
+        self.supplier_name = random.choice(suppliers)
+        self.supplier_adress1 = self.generator.create_street_adress()
+        self.supplier_adress2 = ""
+        self.city = self.generator.create_city()
+        self.zip_code = self.generator.create_zip_code()
+        self.country = self.generator.create_country()
+
+        # Bygg en random function som slumpar fram förnamn och efternamn
+        self.suppliers_contact_person = self.generator.random_first_and_last_name()
+        self.phone_number = self.generator.create_phone()
+        self.email = self.generator.generate_random_email(self.suppliers_contact_person)
+
+    def assemble_cps_orders_object(self):
+        self.order_date = self.random_date()
+        self.required_date = self.random_date()
+        self.shipping_date = self.random_date()
+        self.status = self.generator.random_status()
+        self.comments = ""
+        self.order_no_comments = ""
+
+    def assemble_suppliers_has_cps_orders_object(self):
+        self.suppliers_supplier_id = 1  # hämta från annas lista
+        self.cps_orders_internal_order_no = 1  # hämta från annas lista
+
+    def assemble_manufacturers_object(self):
+        self.name_manufacturer = self.generator.random_manufacturer()
+        self.main_office_adress1 = self.generator.create_street_adress()
+        self.main_office_adress2 = ""
+        main_office_name_rnd = ['Göteborgs kontoret', 'Falkenberg kontoret', 'Stockholms kontoret', 'Varbers kontoret']
+        self.main_office_name = random.choice(main_office_name_rnd)
+        self.manufacturer_contact_person = self.random_first_and_last_name()
+        self.contact_person_phone = self.create_phone()
+        self.contact_person_email = self.generate_random_email(self.manufacturer_contact_person)
+
+    def assemble_manufacturers_has_cps_orders_object(self):
+        self.manufacturers_manufacture_id = self.manufacturers_manufacturer_id = 1  # Annas lista
+        self.cps_orders_internal_order_no = self.cps_orders_internal_order_no = 1  # Annas lista
+
+    def assemble_staffs_object(self):
+        self.first_name = self.create_first_name()
+        self.last_name = self.create_last_name()
+        job_title_list = ['salesperson', 'orderhandler', 'ceo', 'customer manager relations', 'sales manager',
+                          'account manager']
+        self.job_title = random.choice(job_title_list)
+        self.phone = self.create_phone()
+        self.reports_to = ""
+        store_list = ['CPS Stockholm', 'CPS Göteborg', 'CPS Malmö', 'CPS Norrköping', 'CPS Linköping', 'CPS Örebro',
+                      'CPS Skövde']
+        self.store = random.choice(store_list)
+
+    def assemble_staffs_has_cps_orders_object(self):
+        self.staffs_id_staff = 1  # Annas lista
+        self.cps_orders_internal_order_no = 1  # Annas lista
+
+    def assemble_staff_has_staff_object(self):
+        self.staffs_id_staff = 1  # Annas lista
+        self.staffs_id_staff1 = 1  # Annas lista
+
+    def assemble_staffs_has_customers_object(self):
+        self.staffs_id_staff = 1  # Annas lista
+        self.customers_id_customers = 1  # Annas lista
+
     # HERE GOES ALL DICT CREATING FUNCTIONS
 
     def create_customer_dict(self, customer_key_list, customer_list):
