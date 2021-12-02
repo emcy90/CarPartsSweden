@@ -46,15 +46,13 @@ class Manufacture(Base):
     # manufacturers = relationship('Manufacture')
 
 
-# class ManufacturerHasCpsOrder(Base):
-#     __tablename__ = "manufacturers_has_cps_orders"
-#     # __table_args__ = (
-#     #      PrimaryKeyConstraint('manufacturers.manufacturer_id', 'cps_orders.internal_order_no'),
-#     #  )
-#     manufacturers_manufacturer_id = Column(Integer, ForeignKey('manufacturers.manufacturer_id'), primary_key=True)
-#     cps_orders_internal_order_no = Column(Integer, ForeignKey('cps_orders.internal_order_no'), primary_key=True)
-#     manufacturers = relationship('Manufacture')
-#     cps_orders = relationship('CpsOrder')
+class ManufacturerHasCpsOrder(Base):
+    __tablename__ = "manufacturers_has_cps_orders"
+
+    manufacturers_manufacturer_id = Column(ForeignKey('manufacturers.manufacturer_id'), primary_key=True)
+    cps_orders_internal_order_no = Column(ForeignKey('cps_orders.internal_order_no'), primary_key=True)
+    parent = relationship('Manufacture', back_populates='children')
+    child = relationship('CpsOrder', back_populates='parents')
 
 
 class Order(Base):
