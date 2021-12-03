@@ -144,6 +144,8 @@ class CpsCreator(GeneratorSetup):
         staffs_has_cps_orders_key_list = []
         suppliers_contact_person = ""
         manufacturer_contact_person = ""
+        manufacturers_manufacturer_id = ""
+        staffs_has_cps_orders = ""
 
         # class selfs:
 
