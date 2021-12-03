@@ -1,0 +1,107 @@
+use cpsab;
+
+SELECT * From customers;
+SELECT * From customer_cars;
+SELECT * FROM payments;
+SELECT * FROM orders;
+SELECT * FROM productlines;
+SELECT * FROM products;
+SELECT * FROM ordersdetails;
+SELECT * FROM storage;
+SELECT * FROM storage_has_products;
+SELECT * FROM suppliers;
+SELECT * FROM cps_orders;
+SELECT * FROM suppliers_has_cps_orders;
+SELECT * FROM manufacturers;
+SELECT * FROM manufacturers_has_cps_orders;
+SELECT * FROM staffs;
+SELECT * FROM staffs_has_cpsorders;
+SELECT * FROM staffs_has_staffs;
+SELECT * FROM staffs_has_customers;
+
+
+
+# Här kan man generera en kund
+INSERT INTO customers (first_name, last_name, company_name, phone, adress1, adress2, city, zip_code, country, sales_representant, states)
+values ('Bertil', 'Karlsson', '', '+4676048484848', 'Snövägen 5A', '', 'Göteborg', '44979', 'Sweden', 'Gustaf Andersson', 'Västra Götaland');
+
+# Här kan man generera en bil som kund äger
+INSERT INTO customer_cars (reg_no, manufacturer, color, model, year_model, owner_id)
+values ('ABC 123', 'Saab','Blå','V70','1997','1');
+
+# Här kan man generera en payment
+INSERT INTO payments (payment_date, payment_amount, customer_paid_bill_id)
+values ('2021-10-12', '1300','1');
+
+# Här kan man generera en order
+INSERT INTO orders (order_date, required_date, shipping_date, status, comments, customers_id_customers)
+VALUES ('2021-10-10','2021-10-15','2021-10-12','Ok','Denna kommer gå i tid.','1');
+
+# Här kan man generera en productline
+INSERT INTO productlines (productline, text_description, html_description, image)
+VALUES ('Saab Trollhättan', 'Saab vi flyger fram.','<h1>Saab</h1>', 'saab.png');
+
+# Här kan man generera en product, OBS Tänk på fältet productlines måste vara exakt
+# samma som fältet productlines där man genererar en productline.
+# DVS Fältet productlines
+# från tabellen productlines måste vara samma som fältet productlines i tabellen products.
+INSERT INTO products (product_name, product_description, inprice, outprice, productlines)
+VALUES ('Sportratt till Saab 9000', 'En sportig ratt till Saab 9000', '2700.99', '3700.99', 'Saab Trollhättan');
+
+# Här kan generera en orderdetails
+# OBS products_product_id måste ha samma som det product_id som finns i tabellen products
+# annars går det inte att lägga in.
+INSERT INTO ordersdetails (orders_order_no, products_product_id, quantity, price_each)
+VALUES ('1', '1', '12', '200.00');
+
+# Här kan man generera en storage
+INSERT INTO storage (storage_name, storage_quantity, storage_city)
+VALUES ('CPS Main Storage', '2000', 'Göteborg');
+
+# Här kan man generera en storage_has_products
+# Tänk på att här måste både storage_storage_id och products_product_id
+# matcha det id som finns i tabellerna storage och products.
+INSERT INTO storage_has_products (storage_storage_id, products_product_id)
+VALUES ('1', '1');
+
+# Här kan man generera en suppliers
+INSERT INTO suppliers (supplier_name, supplier_adress1, supplier_adress2, city, zip_code, country, contact_person, phone_number, email)
+VALUES ('Egons Bilfirma AB', 'Bergsvägen 17A', '', 'Ubbhult', '18380','Sweden', 'Egon Johnsson', '+4607528125', 'egon.gmail.com');
+
+# Här kan man generera en cps_orders
+INSERT INTO cps_orders (order_date, required_date, shipping_date, status, comments, order_no_comments)
+VALUES ('2021-12-12', '2021-12-15', '2021-12-13', 'Ok, blev postad som den skulle.', 'Detta var den sista jag hade på mitt lager.', 'Inget att rapportera.');
+
+# Här kan man generera supplier_has_cps_orders
+# Tänk på att suppliers_supplier_id måste vara samma som du har på tabellen
+# suppliers suppliers_id och cps_orders_internal_order_no måste vara samma som i tabellen
+# cps_orders internal_order_no för att det skall gå att lägga in.
+INSERT INTO suppliers_has_cps_orders (suppliers_supplier_id, cps_orders_internal_order_no)
+VALUES ('1', '1');
+
+# Här kan man generera en manufacturers
+INSERT INTO manufacturers (name_manufacturer, main_office_adress1, main_office_adress2, main_office_name, contact_person_name, contact_person_phone, contact_person_email)
+VALUES ('Saab', 'Snårskogen 11', '', 'Saab Trollhättan AB', 'Ove Jansson', '+46758785841', 'ove.jansson123@saab.se');
+
+# Här kan man generera en manufacturers_has_cps_orders
+# Samma som tidigare, dessa måste matcha id från tabellerna manufacturers och cps_orders
+INSERT INTO manufacturers_has_cps_orders (manufacturers_manufacturer_id, cps_orders_internal_order_no)
+VALUES ('1', '1');
+
+# Här kan man lägga in staffs
+INSERT INTO staffs (first_name, last_name, job_title, phone, reports_to, store)
+VALUES ('Kalle', 'Viberg', 'Motor Salesman', '+4676885210', '1', 'Göteborg');
+
+# Här kan man generera staffs_has_cps_orders
+# Samma som ovan, måste matcha id från tabellerna staffs och cps_orders
+INSERT INTO staffs_has_cpsorders (staffs_id_staff, cps_orders_internal_order_no)
+VALUES ('1', '1');
+
+# Här kan man generera staffs_has_staffs
+#INSERT INTO staffs_has_staffs (staffs_id_staff, staffs_id_staff1)
+#VALUES ('1', '1');
+
+# Här kan man generera staffs_has_customers
+# måste matcha staffs id och customer id
+INSERT INTO staffs_has_customers (staffs_id_staff, customers_id_customers)
+VALUES ('1', '1');
