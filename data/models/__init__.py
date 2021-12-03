@@ -102,7 +102,6 @@ class Customer(Base):
     # orders = relationship('Order')
 
 
-
 class Manufacture(Base):
     __tablename__ = "manufacturers"
 
@@ -158,17 +157,6 @@ class CustomerCar(Base):
     owner_id = Column(Integer, ForeignKey('customers.id_customers'))
     owner = relationship('Customer', back_populates="customer_cars")
     # customer_cars = relationship("Customer", back_populates="customer_cars")
-
-
-class OrderDetail(Base):
-    __tablename__ = "ordersdetails"
-
-    orders_order_no = Column(Integer, ForeignKey('orders.order_no'), primary_key=True)
-    products_product_id = Column(Integer, ForeignKey('products.product_id'), primary_key=True)
-    quantity = Column(Integer, nullable=False)
-    price_each = Column(DECIMAL(10, 2), nullable=False)
-    product = relationship('Product', back_populates="product_to_order")
-    order = relationship('Order', back_populates="order_to_product")
 
 
 class Payment(Base):
@@ -227,17 +215,6 @@ class Storage(Base):
     storage_city = Column(String(100), nullable=False)
 
 
-class StorageHasProducts(Base):
-    __tablename__ = "storage_has_products"
-    # __table_args__ = (
-    #     PrimaryKeyConstraint('storage_storage_id', 'products_product_id'),
-    # )
-    storage_storage_id = Column(Integer, ForeignKey('storage.storage_id'), primary_key=True)
-    products_product_id = Column(Integer, ForeignKey('products.product_id'), primary_key=True)
-    storage = relationship('Storage')
-    products = relationship('Product')
-
-
 class Supplier(Base):
     __tablename__ = "suppliers"
 
@@ -251,13 +228,3 @@ class Supplier(Base):
     contact_person = Column(String(100))
     phone_number = Column(String(45), nullable=False)
     email = Column(String(45), nullable=False)
-
-# class SupplierHasCpsOrder(Base):
-#     __tablename__ = "suppliers_has_cps_orders"
-#     # __table_args__ = (
-#     #     PrimaryKeyConstraint('suppliers_supplier_id', 'cps_orders_internal_order_no'),
-#     # )
-#     suppliers_supplier_id = Column(Integer, ForeignKey('suppliers.supplier_id'), primary_key=True)
-#     cps_orders_internal_order_no = Column(Integer, ForeignKey('cps_orders.internal_order_no'), primary_key=True)
-#     suppliers = relationship('Supplier')
-#     cps_orders = relationship('cps_orders')

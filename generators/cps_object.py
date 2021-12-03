@@ -213,8 +213,7 @@ class CpsCreator(GeneratorSetup):
         self.storage_storage_id = storage_storage_id
         self.products_product_id = products_product_id
         self.storage_has_products = storage_has_products
-
-        self.manufactureres_has_cps_orders_dict = manufactureres_has_cps_orders_dict
+        self.staffs_has_cps_orders = staffs_has_cps_orders
 
         # PRODUCTLINES VARIABLES
         self.productline = productline
