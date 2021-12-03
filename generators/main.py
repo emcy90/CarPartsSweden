@@ -169,50 +169,51 @@ creator.cps_orders_list = [creator.order_date, creator.required_date, creator.sh
                            creator.status, creator.comments, creator.order_no_comments]
 creator.create_cps_orders_dict(creator.cps_orders_key_list, creator.cps_orders_list)
 print(creator.cps_orders)
-# # calling_multicreate()
+calling_multicreate()
 #
 # # CREATING SUPPLIERS HAS CPS ORDERS OBJECT
-# creator.assemble_suppliers_has_cps_orders_object()
-# creator.suppliers_has_cps_orders_list = [creator.suppliers_supplier_id, creator.cps_orders_internal_order_no]
-# creator.create_suppliers_has_cps_orders_dict(creator.suppliers_has_cps_orders_key_list,
-#                                              creator.suppliers_has_cps_orders_list)
-# print(creator.suppliers_has_cps_orders)
-# # calling_multicreate()
-#
-# # CREATING MANUFACTURERS OBJECT
-# creator.assemble_manufacturers_object()
-# creator.manufacturers_list = [creator.name_manufacturer, creator.main_office_adress1,
-#                               creator.main_office_adress2, creator.main_office_name,
-#                               creator.manufacturer_contact_person, creator.contact_person_phone,
-#                               creator.contact_person_email]
-# creator.create_manufacturers_dict(creator.manufacturers_key_list, creator.manufacturers_list)
-# print(creator.manufacturers)
-# # calling_multicreate()
-#
-# # CREATING MANUFACTURERS HAS CPS ORDERS OBJECT
-# creator.assemble_manufacturers_has_cps_orders_object()
-# creator.manufacturers_has_cps_orders_list = [creator.manufacturers_manufacturer_id,
-#                                              creator.cps_orders_internal_order_no]
-#
-# creator.manufactureres_has_cps_orders_dict(creator.manufacturers_has_cps_orders_key_list
-#                                            , creator.manufacturers_has_cps_orders_list)
-# print(creator.manufactureres_has_cps_orders_dict)
-
+creator.assemble_suppliers_has_cps_orders_object()
+creator.suppliers_has_cps_orders_list = [creator.suppliers_supplier_id, creator.cps_orders_internal_order_no]
+creator.create_suppliers_has_cps_orders_dict(creator.suppliers_has_cps_orders_key_list,
+                                             creator.suppliers_has_cps_orders_list)
+print(creator.suppliers_has_cps_orders)
 # calling_multicreate()
 
+# CREATING MANUFACTURERS OBJECT
+creator.assemble_manufacturers_object()
+creator.manufacturers_list = [creator.name_manufacturer, creator.main_office_adress1,
+                              creator.main_office_adress2, creator.main_office_name,
+                              creator.manufacturer_contact_person, creator.contact_person_phone,
+                              creator.contact_person_email]
+creator.create_manufacturers_dict(creator.manufacturers_key_list, creator.manufacturers_list)
+print(creator.manufacturers)
+calling_multicreate()
+
+#
+# CREATING MANUFACTURERS HAS CPS ORDERS OBJECT
+creator.assemble_manufacturers_has_cps_orders_object()
+creator.manufacturers_has_cps_orders_list = [creator.manufacturers_manufacturer_id,
+                                             creator.cps_orders_internal_order_no]
+
+creator.create_manufactureres_has_cps_orders_dict(creator.manufacturers_has_cps_orders_key_list,
+                                                  creator.manufacturers_has_cps_orders_list)
+print(creator.manufactureres_has_cps_orders)
+
+calling_multicreate()
+
 # # CREATING STAFFS OBJECT
-# creator.assemble_staffs_object()
-# creator.staffs_list = [creator.first_name, creator.last_name, creator.job_title,
-#                        creator.phone, creator.reports_to, creator.store]
-# creator.create_staffs_dict(creator.staffs_key_list, creator.staffs_list)
-# print(creator.staffs)
-# # calling_multicreate()
+creator.assemble_staffs_object()
+creator.staffs_list = [creator.first_name, creator.last_name, creator.job_title,
+                       creator.phone, creator.reports_to, creator.store]
+creator.create_staffs_dict(creator.staffs_key_list, creator.staffs_list)
+print(creator.staffs)
+# calling_multicreate()
 
 # CREATING STAFFS HAS CPS ORDERS OBJECT
-# creator.assemble_staffs_has_cps_orders_object()
-# creator.staffs_has_cps_orders_list = [creator.staffs_id_staff, creator.cps_orders_internal_order_no]
-# creator.create_staffs_has_cps_orders_dict(creator.staffs_has_cps_orders_key_list, creator.staffs_has_cps_orders_list)
-# print(creator.staffs_has_cps_orders)
+creator.assemble_staffs_has_cps_orders_object()
+creator.staffs_has_cps_orders_list = [creator.staffs_id_staff, creator.cps_orders_internal_order_no]
+creator.create_staffs_has_cpsorders_dict(creator.staffs_has_cps_orders_key_list, creator.staffs_has_cps_orders_list)
+print(creator.staffs_has_cps_orders)
 # calling_multicreate()
 
 # CREATING STAFFS HAS STAFFS

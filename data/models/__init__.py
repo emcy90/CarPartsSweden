@@ -29,6 +29,7 @@ class Customer(Base):
     # orders = relationship('Order')
 
 
+
 class Manufacture(Base):
     __tablename__ = "manufacturers"
 
@@ -41,18 +42,9 @@ class Manufacture(Base):
     contact_person_phone = Column(String(45), nullable=False)
     contact_person_email = Column(String(45), nullable=False)
     # manufacturers_has_cps_orders = Column(Integer, ForeignKey('manufacturers_has_cps_orders.manufacturers_manufacturer_id'))
-    children = Column(Integer, ForeignKey('ManufacturerHasCpsOrder', back_populates='parent'))
+    children = relationship('ManufacturerHasCpsOrder', back_populates='parent')
     # cps_orders = relationship('CpsOrder')
     # manufacturers = relationship('Manufacture')
-
-
-class ManufacturerHasCpsOrder(Base):
-    __tablename__ = "manufacturers_has_cps_orders"
-
-    manufacturers_manufacturer_id = Column(ForeignKey('manufacturers.manufacturer_id'), primary_key=True)
-    cps_orders_internal_order_no = Column(ForeignKey('cps_orders.internal_order_no'), primary_key=True)
-    parent = relationship('Manufacture', back_populates='children')
-    child = relationship('CpsOrder', back_populates='parents')
 
 
 class Order(Base):
@@ -78,7 +70,7 @@ class CpsOrder(Base):
     status = Column(String(45), nullable=False)
     comments = Column(Text)
     order_no_comments = Column(Text)
-    parents = Column(Integer, ForeignKey('ManufacturerHasCpsOrder', back_populates='child'))
+    parents = relationship('ManufacturerHasCpsOrder', back_populates='child')
     # manufacturers = relationship('Manufacture')
 
 
@@ -137,50 +129,20 @@ class Product(Base):
     product_to_order = relationship('OrderDetail', back_populates="product")
 
 
-# class Staff(Base):
-#     __tablename__ = "staffs"
-#
-#     id_staff = Column(Integer, primary_key=True, autoincrement=False)
-#     first_name = Column(String(45), nullable=False)
-#     last_name = Column(String(45), nullable=False)
-#     job_title = Column(String(45), nullable=False)
-#     phone = Column(String(45), nullable=False)
-#     reports_to = Column(String(45))
-#     store = Column(String(45))
+class Staff(Base):
+    __tablename__ = "staffs"
 
-
-#
-# class StaffHasCpsOrder(Base):
-#     __tablename__ = "staffs_has_cpsorders"
-#     # __table_args__ = (
-#     #     PrimaryKeyConstraint('staffs_id_staff', 'cps_orders_internal_order_no'),
-#     # )
-#     staffs_id_staff = Column(Integer, ForeignKey('staffs.id_staff'), primary_key=True)
-#     cps_orders_internal_order_no = Column(Integer, ForeignKey('cps_orders.internal_order_no'), primary_key=True)
-#     staffs = relationship('Staff')
-#     cps_orders = relationship('CpsOrder')
-
-
-# class StaffHasCustomer(Base):
-#     __tablename__ = "staffs_has_customers"
-#     # __table_args__ = (
-#     #     PrimaryKeyConstraint('staffs_id_staff', 'customers_id_customers'),
-#     # )
-#     staffs_id_staff = Column(Integer, ForeignKey('staffs.id_staff'), primary_key=True)
-#     customers_id_customers = Column(Integer, ForeignKey('customers.id_customers'), primary_key=True)
-#     staffs = relationship('Staff')
-#     Customer = relationship('customers')
-#
-
-#
-# class StaffHasStaff(Base):
-#     __tablename__ = "staffs_has_staffs"
-#     # __table_args__ = (
-#     #     PrimaryKeyConstraint('staffs_id_staff', 'staffs_id_staff1'),
-#     # )
-#     staffs_id_staff = Column(Integer, ForeignKey('staffs.id_staff'), primary_key=True)
-#     staffs_id_staff1 = Column(Integer, ForeignKey('staffs.id_staff1'), primary_key=True)
-#     staffs = relationship('Staff')
+    id_staff = Column(Integer, primary_key=True, autoincrement=False)
+    first_name = Column(String(45), nullable=False)
+    last_name = Column(String(45), nullable=False)
+    job_title = Column(String(45), nullable=False)
+    phone = Column(String(45), nullable=False)
+    reports_to = Column(String(45))
+    store = Column(String(45))
+    parents = relationship('StaffHasCustomer', back_populates='children')
+    mamma = relationship('StaffHasStaff', back_populates='barn')
+    mamma1 = relationship('StaffHasStaff', back_populates='barn1')
+    # children = relationship('StaffHasCustomer', back_populates='parent')
 
 
 class Storage(Base):

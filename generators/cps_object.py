@@ -9,6 +9,7 @@ class CpsCreator(GeneratorSetup):
 
         # class variables:
         generator = GeneratorSetup()
+        date = ""
         storage = ""
         storage_name = ""
         storage_quantity = ""
@@ -24,7 +25,7 @@ class CpsCreator(GeneratorSetup):
         store = ""
         cps_orders_key_list = []
         cps_orders = ""
-        order_date = ""
+
         required_date = ""
         shipping_date = ""
         status = ""
@@ -137,7 +138,7 @@ class CpsCreator(GeneratorSetup):
         staffs_has_customers = ""
         staffs_id_staff = ""
         customers_id_customers = ""
-        manufactureres_has_cps_orders_dict = ""
+        # manufactureres_has_cps_orders_dict =
         manufactureres_has_cps_orders = ""
         storage_key_list = []
         staffs_has_cps_orders_key_list = []
@@ -168,8 +169,7 @@ class CpsCreator(GeneratorSetup):
         self.contact_person_email = contact_person_email
         self.manufactureres_has_cps_orders = manufactureres_has_cps_orders
 
-        self.manufacturers_manufacturer_id = manufacturers_manufacturer_id
-        self.cps_orders_internal_order_no = cps_orders_internal_order_no
+
 
         self.manufacturers_has_cps_orders_list = manufacturers_has_cps_orders_list
         self.order_date = order_date
@@ -289,6 +289,8 @@ class CpsCreator(GeneratorSetup):
         self.manufacturers = manufacturers
 
         self.supplier_name = supplier_name
+        self.date = date
+        self.order_date = order_date
 
 
         # KEY LISTS GOES HERE
@@ -353,6 +355,8 @@ class CpsCreator(GeneratorSetup):
         self.storage_has_products_key_list = storage_has_products_key_list
 
         self.staffs_has_customers_key_list = staffs_has_customers_key_list
+        self.manufacturers_manufacturer_id = manufacturers_manufacturer_id
+        self.cps_orders_internal_order_no = cps_orders_internal_order_no
 
     def load_all_data(self):
         self.first_name = self.generator.load_first_name()
@@ -475,9 +479,9 @@ class CpsCreator(GeneratorSetup):
         self.email = self.generator.generate_random_email(self.suppliers_contact_person)
 
     def assemble_cps_orders_object(self):
-        self.order_date = self.random_date()
-        self.required_date = self.random_date()
-        self.shipping_date = self.random_date()
+        self.order_date = self.generator.random_date()
+        self.required_date = self.generator.random_date()
+        self.shipping_date = self.generator.random_date()
         self.status = self.generator.random_status()
         self.comments = ""
         self.order_no_comments = ""
@@ -492,9 +496,9 @@ class CpsCreator(GeneratorSetup):
         self.main_office_adress2 = ""
         main_office_name_rnd = ['Göteborgs kontoret', 'Falkenberg kontoret', 'Stockholms kontoret', 'Varbers kontoret']
         self.main_office_name = random.choice(main_office_name_rnd)
-        self.manufacturer_contact_person = self.random_first_and_last_name()
-        self.contact_person_phone = self.create_phone()
-        self.contact_person_email = self.generate_random_email(self.manufacturer_contact_person)
+        self.manufacturer_contact_person = self.generator.random_first_and_last_name()
+        self.contact_person_phone = self.generator.create_phone()
+        self.contact_person_email = self.generator.generate_random_email(self.manufacturer_contact_person)
 
     def assemble_manufacturers_has_cps_orders_object(self):
         self.manufacturers_manufacture_id = self.manufacturers_manufacturer_id = 1  # Annas lista
