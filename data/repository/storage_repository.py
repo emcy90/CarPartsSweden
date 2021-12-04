@@ -2,7 +2,7 @@ from data.db import session
 from data.models import Storage
 
 
-def get_storage_by_id(_id):
+def get_storage_by_id():
     storage_id = session.query(Storage.storage_id).all()
     storage_id_clean_list = []
     for id in storage_id:

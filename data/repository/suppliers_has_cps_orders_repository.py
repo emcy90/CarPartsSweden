@@ -2,9 +2,22 @@ from data.db import session
 from data.models import SupplierHasCpsOrder
 
 
-def get_suppliers_has_cps_order_by_id(_id):
-    return session.query(SupplierHasCpsOrder).filter(SupplierHasCpsOrder.suppliers_supplier_id == _id).first()
+def get_suppliers_has_cps_order_by_id():
+    supplier_cps = session.query(SupplierHasCpsOrder.suppliers_supplier_id).all()
+    suppliers_has_cps_order_id_clean_list = []
+    for id in supplier_cps:
+        suppliers_has_cps_order_id_clean_list.append(id[0])
 
+    return suppliers_has_cps_order_id_clean_list
+
+
+def cps_orders_internal_order_no():
+    supplier_cps = session.query(SupplierHasCpsOrder.cps_orders_internal_order_no).all()
+    cps_orders_internal_order_no_clean_list = []
+    for no in supplier_cps:
+        cps_orders_internal_order_no_clean_list.append(no[0])
+
+    return cps_orders_internal_order_no_clean_list
 
 
 def create_suppliers_has_cps_order(supplier_has_cps_order):

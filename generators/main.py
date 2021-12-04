@@ -50,7 +50,7 @@ all_cps_order_internal_nos = get_cps_orders_by_id()
 
 print(f'All customers id: {all_customers_ids}')
 print(f'All cars ids: {all_cars_ids}')
-# print(f'All payment ids: {all_payments_ids}')
+print(f'All payment ids: {all_payments_ids}')
 print(f'All order ids: {all_order_no}')
 print(f'All product ids: {all_product_ids}')
 print(f'All cps order ids: {all_cps_order_ids}')
@@ -189,10 +189,9 @@ creator.manufacturers_has_cps_orders_list = [creator.manufacturers_manufacturer_
 creator.create_manufactureres_has_cps_orders_dict(creator.manufacturers_has_cps_orders_key_list,
                                                   creator.manufacturers_has_cps_orders_list)
 print(creator.manufactureres_has_cps_orders)
+create_manufacturer_has_cps_order(creator.manufactureres_has_cps_orders)  # manufacturers_has_cps_orders)
 
-calling_multicreate()
-
-# # CREATING STAFFS OBJECT
+# CREATING STAFFS OBJECT
 creator.assemble_staffs_object()
 creator.staffs_list = [creator.first_name, creator.last_name, creator.job_title,
                        creator.phone, creator.reports_to, creator.store]
@@ -207,9 +206,9 @@ creator.create_staffs_has_cps_orders_dict(creator.staffs_has_cps_orders_key_list
 print(creator.staffs_has_cpsorders)
 create_staff_has_cps_order(creator.staffs_has_cps_orders)
 
-# # CREATING STAFFS HAS CUSTOMERS OBJECT
-# creator.assemble_staffs_has_customers_object()
-# creator.staffs_has_customers_list = [creator.staffs_id_staff, creator.customers_id_customers]
-# creator.create_staffs_has_customers_dict(creator.staffs_has_customers_key_list, creator.staffs_has_customers_list)
-# print(creator.staffs_has_customers)
-# # calling_multicreate()
+# CREATING STAFFS HAS CUSTOMERS OBJECT
+creator.assemble_staffs_has_customers_object()
+creator.staffs_has_customers_list = [creator.staffs_id_staff, creator.customers_id_customers]
+creator.create_staffs_has_customers_dict(creator.staffs_has_customers_key_list, creator.staffs_has_customers_list)
+print(creator.staffs_has_customers)
+create_staff_has_customer(creator.staffs_has_customers)

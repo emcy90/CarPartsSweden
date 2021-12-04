@@ -2,12 +2,15 @@ from data.db import session
 from data.models import Supplier
 
 
-def get_supplier_by_id(_id):
-    return session.query(Supplier).filter(Supplier.supplier_id == _id).first()
+def get_supplier_by_id():
+    supplier_id = session.query(Supplier.supplier_id).all()
+    supplier_id_clean_list = []
+    for id in supplier_id:
+        supplier_id_clean_list.append(id[0])
+    return supplier_id_clean_list
 
 
 def create_supplier(supplier):
     supplier = Supplier(**supplier)
     session.add(supplier)
     session.commit()
-

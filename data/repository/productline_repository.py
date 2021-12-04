@@ -2,8 +2,12 @@ from data.db import session
 from data.models import Productline
 
 
-def get_productline_by_id(_id):
-    return session.query(Productline).filter(Productline.productline == _id).first()
+def get_productline_by_id():
+    productline = session.query(Productline.productline).all()
+    productline_id_clean_list = []
+    for id in productline:
+        productline_id_clean_list.append(id[0])
+    return productline_id_clean_list
 
 
 def create_productline(productline):
