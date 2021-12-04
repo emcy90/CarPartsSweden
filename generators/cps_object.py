@@ -379,9 +379,9 @@ class CpsCreator(GeneratorSetup):
 
         storage_has_products_key_list = ['storage_storage_id', 'products_product_id']
 
-        staffs_has_staffs_key_list = ['staffs_id_staff', 'staffs_id_staff1']
-
         staffs_has_customers_key_list = ['staffs_id_staff', 'customers_id_customers']
+
+        staffs_key_list = ['first_name', 'last_name', 'job_title', 'phone', 'store', 'reports_to']
 
         self.customer_key_list = customer_key_list
         self.customer_car_key_list = customer_car_key_list
@@ -398,7 +398,6 @@ class CpsCreator(GeneratorSetup):
         self.staffs_key_list = staffs_key_list
         self.staffs_has_cps_orders_key_list = staffs_has_cps_orders_key_list
         self.suppliers_key_list = suppliers_key_list
-        self.staffs_has_staffs_key_list = staffs_has_staffs_key_list
         self.storage_has_products_key_list = storage_has_products_key_list
 
         self.staffs_has_customers_key_list = staffs_has_customers_key_list
@@ -587,8 +586,8 @@ class CpsCreator(GeneratorSetup):
         self.cps_orders_internal_order_no = random.choice(self.all_cps_order_internal_nos)
 
     def assemble_staffs_object(self):
-        self.first_name = self.create_first_name()
-        self.last_name = self.create_last_name()
+        self.first_name = self.generator.create_first_name()
+        self.last_name = self.generator.create_last_name()
         job_title_list = ['salesperson', 'orderhandler', 'ceo', 'customer manager relations', 'sales manager',
                           'account manager']
         self.job_title = random.choice(job_title_list)
@@ -596,6 +595,7 @@ class CpsCreator(GeneratorSetup):
         store_list = ['CPS Stockholm', 'CPS Göteborg', 'CPS Malmö', 'CPS Norrköping', 'CPS Linköping', 'CPS Örebro',
                       'CPS Skövde']
         self.store = random.choice(store_list)
+        self.reports_to = random.choice(self.all_staff_ids)
 
     def assemble_staffs_has_cps_orders_object(self):
         self.staffs_id_staff = random.choice(self.all_staff_ids)
@@ -672,10 +672,6 @@ class CpsCreator(GeneratorSetup):
     def create_storage_has_products_dict(self, storage_has_products_key_list, storage_has_products_list):
         self.storage_has_products = dict(zip(self.storage_has_products_key_list, storage_has_products_list))
         return self.storage_has_products
-
-    def create_staffs_has_staffs_dict(self, staffs_has_staffs_key_list, staffs_has_staffs_list):
-        self.staffs_has_staffs = dict(zip(self.staffs_has_staffs_key_list, staffs_has_staffs_list))
-        return self.staffs_has_staffs
 
     def create_staffs_has_customers_dict(self, staffs_has_customers_key_list, staffs_has_customers_list):
         self.staffs_has_customers = dict(zip(self.staffs_has_customers_key_list, staffs_has_customers_list))

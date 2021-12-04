@@ -1,4 +1,4 @@
-from sqlalchemy import Integer, Column, String, ForeignKey, Date, Text, DECIMAL, PrimaryKeyConstraint
+from sqlalchemy import Integer, Column, String, ForeignKey, Date, Text, DECIMAL
 from sqlalchemy.dialects.mysql import MEDIUMTEXT, MEDIUMBLOB
 from sqlalchemy.orm import relationship
 
@@ -25,24 +25,11 @@ class ManufacturerHasCpsOrder(Base):
 
 class StaffHasCpsOrder(Base):
     __tablename__ = "staffs_has_cpsorders"
-    # __table_args__ = (
-    #     PrimaryKeyConstraint('staffs_id_staff', 'cps_orders_internal_order_no'),
-    # )
+
     staffs_id_staff = Column(Integer, ForeignKey('staffs.id_staff'), primary_key=True)
     cps_orders_internal_order_no = Column(Integer, ForeignKey('cps_orders.internal_order_no'), primary_key=True)
-    staffs = relationship('Staff')
-    cps_orders = relationship('CpsOrder')
-
-
-class StaffHasStaff(Base):
-    __tablename__ = "staffs_has_staffs"
-
-    staffs_id_staff = Column(Integer, ForeignKey('staffs.id_staff'), primary_key=True)
-    staffs_id_staff1 = Column(Integer, ForeignKey('staffs.id_staff'), primary_key=True)
-    barn1 = relationship('Staff', back_populates='mamma1', foreign_keys=[staffs_id_staff1])
-    barn = relationship('Staff', back_populates='mamma', foreign_keys=[staffs_id_staff])
-    # staffs = relationship('Staff', back_populates='staffs')
-    # children = relationship('Staff')
+    staffs = relationship('Staff', back_populates='child')
+    parent = relationship('CpsOrder', back_populates='child')
 
 
 class OrderDetail(Base):
@@ -58,24 +45,21 @@ class OrderDetail(Base):
 
 class StorageHasProducts(Base):
     __tablename__ = "storage_has_products"
-    # __table_args__ = (
-    #     PrimaryKeyConstraint('storage_storage_id', 'products_product_id'),
-    # )
+
     storage_storage_id = Column(Integer, ForeignKey('storage.storage_id'), primary_key=True)
     products_product_id = Column(Integer, ForeignKey('products.product_id'), primary_key=True)
-    storage = relationship('Storage')
-    products = relationship('Product')
+    storages = relationship('Storage', back_populates='storage_to_product')
+    products = relationship('Product', back_populates='product_to_storage')
 
 
-# class SupplierHasCpsOrder(Base):
-#     __tablename__ = "suppliers_has_cps_orders"
-#     # __table_args__ = (
-#     #     PrimaryKeyConstraint('suppliers_supplier_id', 'cps_orders_internal_order_no'),
-#     # )
-#     suppliers_supplier_id = Column(Integer, ForeignKey('suppliers.supplier_id'), primary_key=True)
-#     cps_orders_internal_order_no = Column(Integer, ForeignKey('cps_orders.internal_order_no'), primary_key=True)
-#     suppliers = relationship('Supplier')
-#     cps_orders = relationship('cps_orders')
+class SupplierHasCpsOrder(Base):
+    __tablename__ = "suppliers_has_cps_orders"
+
+    suppliers_supplier_id = Column(Integer, ForeignKey('suppliers.supplier_id'), primary_key=True)
+    cps_orders_internal_order_no = Column(Integer, ForeignKey('cps_orders.internal_order_no'), primary_key=True)
+    suppliers = relationship('Supplier', back_populates='parent')
+    cps_orders = relationship('CpsOrder', back_populates='parent')
+
 
 class Customer(Base):
     __tablename__ = "customers"
@@ -95,6 +79,7 @@ class Customer(Base):
     customer_cars = relationship('CustomerCar', back_populates="owner")
     payments = relationship('Payment', back_populates="customer_paid_bill")
     parents = relationship('StaffHasCustomer', back_populates='child')
+    order_customer = relationship('Order', back_populates='customer_order')
 
     # customers_id_customers = Column(Integer, ForeignKey('customers.id_customers'))
     # customer_cars_reg_no = Column(String(20), ForeignKey('customer.cars_reg_no'))
@@ -130,6 +115,7 @@ class Order(Base):
     comments = Column(Text)
     customers_id_customers = Column(Integer, ForeignKey('customers.id_customers'))
     order_to_product = relationship('OrderDetail', back_populates="order")
+    customer_order = relationship('Customer', back_populates='order_customer')
 
 
 class CpsOrder(Base):
@@ -143,6 +129,9 @@ class CpsOrder(Base):
     comments = Column(Text)
     order_no_comments = Column(Text)
     parents = relationship('ManufacturerHasCpsOrder', back_populates='child')
+    child = relationship('StaffHasCpsOrder', back_populates='parent')
+    parent = relationship('SupplierHasCpsOrder', back_populates='cps_orders')
+
     # manufacturers = relationship('Manufacture')
 
 
@@ -203,9 +192,8 @@ class Staff(Base):
     store = Column(String(45))
     reports_to = Column(Integer, ForeignKey('staffs.id_staff'))
     parents = relationship('StaffHasCustomer', back_populates='children')
-    mamma = relationship('StaffHasStaff', back_populates='barn')
-    mamma1 = relationship('StaffHasStaff', back_populates='barn1')
-    # children = relationship('StaffHasCustomer', back_populates='parent')
+    child = relationship('StaffHasCpsOrder', back_populates='staffs')
+    # staffstaff = relationship('Staff', back_populates='staffstaff')
 
 
 class Storage(Base):
@@ -215,6 +203,7 @@ class Storage(Base):
     storage_name = Column(String(150), nullable=False)
     storage_quantity = Column(Integer, nullable=False)
     storage_city = Column(String(100), nullable=False)
+    storage_to_product = relationship('StorageHasProducts', back_populates='storages')
 
 
 class Supplier(Base):
@@ -230,3 +219,4 @@ class Supplier(Base):
     contact_person = Column(String(100))
     phone_number = Column(String(45), nullable=False)
     email = Column(String(45), nullable=False)
+    parent = relationship('SupplierHasCpsOrder', back_populates='suppliers')

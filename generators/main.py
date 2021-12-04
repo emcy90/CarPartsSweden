@@ -29,7 +29,7 @@ from generators.cps_object import CpsCreator
 creator = CpsCreator()
 creator.load_all_data()
 
-# all_cps_order_ids = get_cps_orders_by_id()
+all_cps_order_ids = get_cps_orders_by_id()
 all_cars_ids = get_customer_cars_by_reg_no()
 all_customers_ids = get_customer_by_id()
 all_order_no = get_order_by_id()
@@ -82,14 +82,14 @@ customer_car_list = [creator.reg_no, creator.manufacturer, creator.color, creato
                      creator.year_model, creator.owner_id]
 creator.create_customer_car_dict(creator.customer_car_key_list, customer_car_list)
 print(creator.customer_car)
-# calling_multicreate()
+create_car(creator.customer_car)
 
 # CREATING A PAYMENT OBJECT
 creator.assemble_payment_object()
 creator.payment_list = [creator.payment_date, creator.payment_amount, creator.customer_paid_bill_id]
 creator.create_payment_dict(creator.payment_key_list, creator.payment_list)
 print(creator.payment)
-# calling_multicreate()
+create_payment(creator.payment)
 
 # GET RANDOM CUSTOMER.CUSTOMER_ID
 # creator.rnd_number_function()
@@ -102,7 +102,15 @@ creator.order_list = [creator.order_date, creator.required_date, creator.shippin
                       creator.status, creator.comments, creator.customers_id_customers]
 creator.create_order_dict(creator.order_key_list, creator.order_list)
 print(creator.order)
-# calling_multicreate()
+create_order(creator.order)
+
+# CREATING PRODUCTS OBJECT
+creator.assemble_products_object()
+creator.products_list = [creator.product_name, creator.product_description, creator.inprice,
+                         creator.outprice, creator.productlines]
+creator.create_product_dict(creator.product_key_list, creator.products_list)
+print(creator.product)
+create_product(creator.product)
 
 # CREATING PRODUCTLINES OBJECT
 # This needs a productline.txt file, text_description.txt and html_description.txt
@@ -112,15 +120,7 @@ creator.productline_list = [creator.productline, creator.text_description, creat
                             creator.image]
 creator.create_productline_dict(creator.productline_key_list, creator.productline_list)
 print(creator.productline)
-# calling_multicreate()
-
-# CREATING PRODUCTS OBJECT
-creator.assemble_products_object()
-creator.products_list = [creator.product_name, creator.product_description, creator.inprice,
-                         creator.outprice, creator.productlines]
-creator.create_product_dict(creator.product_key_list, creator.products_list)
-print(creator.product)
-# calling_multicreate()
+create_productline(creator.productline)
 
 # CREATING ORDERDETAILS OBJECT
 creator.assemble_orderdetails_object()
@@ -128,23 +128,22 @@ creator.orderdetails_list = [creator.orders_order_no, creator.products_product_i
                              creator.price_each]
 creator.create_orderdetails_dict(creator.orderdetails_key_list, creator.orderdetails_list)
 print(creator.orderdetails)
+create_order_details(creator.orderdetails)
 
-# calling_multicreate()
-#
 # CREATING STORAGE OBJECT
 creator.assemble_storage_object()
 creator.storage_list = [creator.storage_name, creator.storage_quantity, creator.storage_city]
 creator.create_storage_dict(creator.storage_key_list, creator.storage_list)
 print(creator.storage)
-# # calling_multicreate()
-#
+create_storage(creator.storage)
+
 # CREATING STORAGE HAS PRODUCTS OBJECT
 creator.assemble_storage_has_products_object()
 creator.storage_has_products_list = [creator.storage_storage_id, creator.products_product_id]
 creator.create_storage_has_products_dict(creator.storage_has_products_key_list, creator.storage_has_products_list)
 print(creator.storage_has_products)
-# # calling_multicreate()
-#
+create_storage_has_product(creator.storage_has_products)
+
 # CREATING SUPPLIERS OBJECT
 creator.assemble_supplier_object()
 creator.supplier_list = [creator.supplier_name, creator.supplier_adress1, creator.supplier_adress2, creator.city,
@@ -152,10 +151,9 @@ creator.supplier_list = [creator.supplier_name, creator.supplier_adress1, creato
                          creator.email]
 creator.create_suppliers_dict(creator.suppliers_key_list, creator.supplier_list)
 print(creator.suppliers)
+create_supplier(creator.suppliers)
 
-# # calling_multicreate()
-#
-# # CREATING CPS ORDERS OBJECT
+# CREATING CPS ORDERS OBJECT
 creator.assemble_cps_orders_object()
 creator.cps_orders_list = [creator.order_date, creator.required_date, creator.shipping_date,
                            creator.status, creator.comments, creator.order_no_comments]
@@ -169,7 +167,7 @@ creator.suppliers_has_cps_orders_list = [creator.suppliers_supplier_id, creator.
 creator.create_suppliers_has_cps_orders_dict(creator.suppliers_has_cps_orders_key_list,
                                              creator.suppliers_has_cps_orders_list)
 print(creator.suppliers_has_cps_orders)
-# calling_multicreate()
+create_suppliers_has_cps_order(creator.suppliers_has_cps_orders)
 
 # CREATING MANUFACTURERS OBJECT
 creator.assemble_manufacturers_object()
@@ -194,10 +192,10 @@ create_manufacturer_has_cps_order(creator.manufactureres_has_cps_orders)  # manu
 # CREATING STAFFS OBJECT
 creator.assemble_staffs_object()
 creator.staffs_list = [creator.first_name, creator.last_name, creator.job_title,
-                       creator.phone, creator.reports_to, creator.store]
+                       creator.phone, creator.store, creator.reports_to]
 creator.create_staffs_dict(creator.staffs_key_list, creator.staffs_list)
 print(creator.staffs)
-# calling_multicreate()
+create_staff(creator.staffs)
 
 # CREATING STAFFS HAS CPS ORDERS OBJECT
 creator.assemble_staffs_has_cps_orders_object()
