@@ -1,5 +1,23 @@
 import random
 
+from controllers.cps_orders_controller import get_cps_orders_by_id
+from controllers.customer_car_controller import get_customer_cars_by_reg_no
+from controllers.customer_controller import get_customer_by_id
+from controllers.manufacturer_controller import get_manufacturer_by_id
+from controllers.manufacturers_has_cps_orders_controller import get_manufacturer_has_cps_order_by_id
+from controllers.orderdetails_controller import get_order_details_by_id
+from controllers.payment_controller import get_payment_by_no
+from controllers.product_controller import get_product_by_id
+from controllers.productline_controller import get_productline_by_id
+from controllers.staff_has_customers_controller import get_staff_has_customer_by_id
+from controllers.staffs_has_cps_orders_controller import get_staff_has_cps_order_by_id
+from controllers.storage_controller import get_storage_by_id
+from controllers.storage_has_products_controller import get_storage_has_products_by_id
+from controllers.supplier_controller import get_supplier_by_id
+from data.repository.order_repository import get_order_by_id
+from data.repository.staff_repository import get_staff_by_id
+from data.repository.suppliers_has_cps_orders_repository import get_suppliers_has_cps_order_by_id
+# from data.repository.suppliers_has_cps_orders_repository import get_suppliers_has_cps_orders_by_id
 from generators.generator_setup import GeneratorSetup
 
 
@@ -9,6 +27,36 @@ class CpsCreator(GeneratorSetup):
 
         # class variables:
         generator = GeneratorSetup()
+        staffs_id_staff = ""
+        all_cars_ids = []
+        all_customers_ids = []
+        all_supplier_ids = []
+        all_cps_order_internal_nos = []
+        all_storage_ids = []
+        all_product_ids = []
+        all_manufacturer_cps_order_ids = []
+        all_staff_ids = []
+        all_order_no = []
+
+        self.all_cps_order_ids = get_cps_orders_by_id()
+        self.all_cars_ids = get_customer_cars_by_reg_no()
+        self.all_customers_ids = get_customer_by_id()
+        self.all_order_no = get_order_by_id()
+        self.all_product_ids = get_product_by_id()
+        self.all_payments_ids = get_payment_by_no()
+        self.all_manufacturer_ids = get_manufacturer_by_id()
+        self.all_manufacturer_cps_order_ids = get_manufacturer_has_cps_order_by_id()
+        self.all_orderdetail_ids = get_order_details_by_id()
+        self.all_productline_ids = get_productline_by_id()
+        self.all_staff_ids = get_staff_by_id()
+        self.all_staffs_cps_order_ids = get_staff_has_cps_order_by_id()
+        self.all_staffs_has_customers_ids = get_staff_has_customer_by_id()
+        self.all_storage_has_products_ids = get_storage_has_products_by_id()
+        self.all_storage_ids = get_storage_by_id()
+        self.all_supplier_cps_orders_ids = get_suppliers_has_cps_order_by_id()
+        self.all_supplier_ids = get_supplier_by_id()
+        self.all_cps_order_internal_nos = get_cps_orders_by_id()  # cps_orders_internal_order_no()
+
         date = ""
         storage = ""
         storage_name = ""
@@ -105,7 +153,7 @@ class CpsCreator(GeneratorSetup):
         shipping_date = ""
         status = ""
         comments = ""
-        customers_id_customers = ""
+        # customers_id_customers = ""
         order = ""
         productline = ""
         text_description = ""
@@ -125,15 +173,12 @@ class CpsCreator(GeneratorSetup):
         orderdetails = ""
         staffs_has_cpsorders_key_list = []
         staffs_has_cpsorders = ""
-        staffs_id_staff = ""
-        cps_orders_internal_order_no = ""
+
+        # cps_orders_internal_order_no = ""
         storage_has_products = ""
         storage_storage_id = 1
         products_product_id = 1
-        staffs_has_staffs_key_list = []
-        staffs_has_staffs = ""
-        staffs_id_staff = ""
-        staffs_id_staff1 = ""
+
         staffs_has_customers_key_list = []
         staffs_has_customers = ""
         staffs_id_staff = ""
@@ -146,6 +191,8 @@ class CpsCreator(GeneratorSetup):
         manufacturer_contact_person = ""
         manufacturers_manufacturer_id = ""
         staffs_has_cps_orders = ""
+        copy_of_productline = ""
+        copy_productline_from_products = ""
 
         # class selfs:
 
@@ -159,8 +206,8 @@ class CpsCreator(GeneratorSetup):
         self.customers_id_customers = customers_id_customers
         self.order_no = order_no
         self.suppliers_supplier_id = suppliers_supplier_id
-        self.cps_orders_internal_order_no = cps_orders_internal_order_no
-
+        # self.cps_orders_internal_order_no = cps_orders_internal_order_no
+        self.copy_productline_from_products = copy_productline_from_products
         self.suppliers_has_cps_orders = suppliers_has_cps_orders
         self.name_manufacturer = name_manufacturer
         self.main_office_adress1 = main_office_adress1
@@ -170,8 +217,6 @@ class CpsCreator(GeneratorSetup):
         self.contact_person_phone = contact_person_phone
         self.contact_person_email = contact_person_email
         self.manufactureres_has_cps_orders = manufactureres_has_cps_orders
-
-
 
         self.manufacturers_has_cps_orders_list = manufacturers_has_cps_orders_list
         self.order_date = order_date
@@ -183,12 +228,6 @@ class CpsCreator(GeneratorSetup):
 
         self.cps_orders = cps_orders
 
-        self.staffs_id_staff = staffs_id_staff
-        self.staffs_id_staff1 = staffs_id_staff1
-        self.staffs_has_staffs_key_list = staffs_has_staffs_key_list
-        self.staffs_has_staffs = staffs_has_staffs
-
-        self.staffs_id_staff = staffs_id_staff
         self.cps_orders_internal_order_no = cps_orders_internal_order_no
         self.staffs_has_cpsorders_key_list = staffs_has_cpsorders_key_list
         self.staffs_has_cpsorders = staffs_has_cpsorders
@@ -292,7 +331,17 @@ class CpsCreator(GeneratorSetup):
         self.supplier_name = supplier_name
         self.date = date
         self.order_date = order_date
+        self.staffs_id_staff = staffs_id_staff
+        self.all_cars_ids = all_cars_ids
+        self.copy_of_productline = copy_of_productline
 
+        # self.all_supplier_ids = all_supplier_ids
+        # self.all_cps_order_internal_nos = all_cps_order_internal_nos
+        # self.all_storage_ids = all_storage_ids
+        # self.all_product_ids = all_product_ids
+        # self.all_manufacturer_cps_order_ids = all_manufacturer_cps_order_ids
+        # self.all_staff_ids = all_staff_ids
+        # self.all_order_no = all_order_no
 
         # KEY LISTS GOES HERE
 
@@ -406,18 +455,45 @@ class CpsCreator(GeneratorSetup):
         return self.rnd_number
 
     # HERE GOES ALL ASSEMBLE FUNCTIONS
-    def assemble_car_object(self):
+    # def assemble_car_object(self):  # OLD CARS ASSEMBLE TAKE AWAY THIS IF THE
+    # OTHER ONE WORKS AS IT SHOULD.
+    #     self.reg_no = self.generator.random_reg_no()
+    #     self.manufacturer = self.generator.random_manufacturer()
+    #     self.color = self.generator.random_color()
+    #     self.model = self.generator.random_car_model()
+    #     self.year_model = self.generator.random_year_model()
+    #     self.owner_id = self.generator.random_owner_id()
+
+    def assemble_car_object(self, all_cars_ids):
+        self.all_cars_ids = all_cars_ids
+        # self.all_customers_ids = get_customer_by_id()
         self.reg_no = self.generator.random_reg_no()
-        self.manufacturer = self.generator.random_manufacturer()
-        self.color = self.generator.random_color()
-        self.model = self.generator.random_car_model()
-        self.year_model = self.generator.random_year_model()
-        self.owner_id = self.generator.random_owner_id()
+        if self.reg_no in self.all_cars_ids:
+            status = True
+            while status:
+                # print("Reg number exists, generating a new one: ")
+                self.reg_no = self.generator.random_reg_no()
+                if self.reg_no not in self.all_cars_ids:
+                    status = False
+                    self.manufacturer = self.generator.random_manufacturer()
+                    self.color = self.generator.random_color()
+                    self.model = self.generator.random_car_model()
+                    self.year_model = self.generator.random_year_model()
+
+                    self.owner_id = random.choice(self.all_customers_ids)
+        else:
+
+            self.manufacturer = self.generator.random_manufacturer()
+            self.color = self.generator.random_color()
+            self.model = self.generator.random_car_model()
+            self.year_model = self.generator.random_year_model()
+
+            self.owner_id = random.choice(self.all_customers_ids)
 
     def assemble_payment_object(self):
         self.payment_amount = self.generator.random_amount()
         self.payment_date = self.generator.random_date()
-        self.customer_paid_bill_id = self.generator.random_payment_bill_id()
+        self.customer_paid_bill_id = random.choice(self.all_customers_ids)
 
     def assemble_order_object(self):
         # self.order_no = cpsab.orders
@@ -429,7 +505,8 @@ class CpsCreator(GeneratorSetup):
         self.customers_id_customers = self.rnd_number
 
     def assemble_productline_object(self):
-        self.productline = self.generator.random_productline()
+        # self.productline = self.generator.random_productline()
+        # self.copy_of_productline = self.productline
         self.text_description = self.generator.random_text_description()
         self.html_description = self.generator.random_html_description()
         self.image = self.generator.load_image()
@@ -437,9 +514,10 @@ class CpsCreator(GeneratorSetup):
         # self.generator.random_productline_image()
         # THIS ONE IS SPECIAL, HAS TO BE EXACT THE SAME IN THE PRODUCTS TABLE
         # OTHERWISE ITS GOING TO CRASH
-        self.products_copy_of_productlines_productline = self.productline
+        self.productline = self.copy_productline_from_products
 
     def assemble_products_object(self):
+        # self.all_product_ids = get_product_by_id()
         self.product_name = self.generator.random_product_name()
         self.product_description = self.generator.random_product_descriptions()
         self.inprice = self.generator.random_inprice()
@@ -488,8 +566,9 @@ class CpsCreator(GeneratorSetup):
         self.order_no_comments = ""
 
     def assemble_suppliers_has_cps_orders_object(self):
-        self.suppliers_supplier_id = 1  # hämta från annas lista
-        self.cps_orders_internal_order_no = 1  # hämta från annas lista
+        self.all_supplier_cps_orders_ids = get_suppliers_has_cps_order_by_id()
+        self.suppliers_supplier_id = self.all_supplier_ids[-1]
+        self.cps_orders_internal_order_no = random.choice(self.all_cps_order_internal_nos)
 
     def assemble_manufacturers_object(self):
         self.name_manufacturer = self.generator.random_manufacturer()
@@ -518,12 +597,8 @@ class CpsCreator(GeneratorSetup):
         self.store = random.choice(store_list)
 
     def assemble_staffs_has_cps_orders_object(self):
-        self.staffs_id_staff = 1  # Annas lista
-        self.cps_orders_internal_order_no = 1  # Annas lista
-
-    def assemble_staff_has_staff_object(self):
-        self.staffs_id_staff = 1  # Annas lista
-        self.staffs_id_staff1 = 1  # Annas lista
+        self.staffs_id_staff = random.choice(self.all_staff_ids)
+        self.cps_orders_internal_order_no = random.choice(self.all_cps_order_internal_nos)
 
     def assemble_staffs_has_customers_object(self):
         self.staffs_id_staff = 1  # Annas lista

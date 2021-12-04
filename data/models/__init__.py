@@ -169,15 +169,6 @@ class Payment(Base):
     customer_paid_bill = relationship('Customer', back_populates="payments")
 
 
-class Productline(Base):
-    __tablename__ = "productlines"
-
-    productline = Column(String(50), primary_key=True, nullable=False)
-    text_description = Column(String(5000))
-    html_description = Column(MEDIUMTEXT)
-    image = Column(MEDIUMBLOB)
-
-
 class Product(Base):
     __tablename__ = "products"
 
@@ -188,6 +179,17 @@ class Product(Base):
     outprice = Column(DECIMAL(10, 2), nullable=False)
     productlines = Column(String(50), ForeignKey('productlines.productline'))
     product_to_order = relationship('OrderDetail', back_populates="product")
+    product_to_storage = relationship('StorageHasProducts', back_populates='products')
+    productline = relationship('Productline', back_populates='product1')
+
+
+class Productline(Base):
+    __tablename__ = "productlines"
+    productline = Column(String(50), primary_key=True, nullable=False)
+    text_description = Column(String(5000))
+    html_description = Column(MEDIUMTEXT)
+    image = Column(MEDIUMBLOB)
+    product1 = relationship('Product', back_populates='productline')
 
 
 class Staff(Base):
@@ -220,8 +222,8 @@ class Supplier(Base):
 
     supplier_id = Column(Integer, primary_key=True, autoincrement=True)
     supplier_name = Column(String(45), nullable=False)
-    supplier_address1 = Column(String(45), nullable=False)
-    supplier_address2 = Column(String(45))
+    supplier_adress1 = Column(String(45), nullable=False)
+    supplier_adress2 = Column(String(45))
     city = Column(String(100), nullable=False)
     zip_code = Column(String(45), nullable=False)
     country = Column(String(45), nullable=False)

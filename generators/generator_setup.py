@@ -511,7 +511,7 @@ class GeneratorSetup:
         return status
 
     def random_customer_order_id(self):
-        self.rnd_x = random.randrange(1, 20)
+        self.rnd_x = random.randrange(0, 1)
         return self.rnd_x
 
     def load_productline(self):
@@ -637,15 +637,15 @@ class GeneratorSetup:
 
     # added random owner_id because sqlalchemy is a little bitch not wanting to add things without a fucking owner_id
     def random_owner_id(self):
-        self.owner_id = random.randrange(12, 20)
+        self.owner_id = random.randrange(0, 1)
         return self.owner_id
 
     def random_payment_bill_id(self):
-        self.customer_paid_bill_id = random.randrange(1, 20)
+        self.customer_paid_bill_id = random.randrange(0, 1)
         return self.customer_paid_bill_id
 
     def random_orders_order_no(self):  # -----> FOREIGN KEY (NN)
-        self.orders_order_no = random.randrange(1, 3)
+        self.orders_order_no = random.randrange(0, 1)
         return self.orders_order_no
 
     def random_products_product_id(self):  # -----> FOREIGN KEY (NN)

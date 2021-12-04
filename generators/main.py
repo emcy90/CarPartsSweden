@@ -1,12 +1,27 @@
+from controllers.cps_orders_controller import create_cps_orders, get_cps_orders_by_id
 from controllers.customer_car_controller import create_car, get_customer_cars_by_reg_no
-from controllers.customer_controller import create_customer
-from controllers.order_controller import create_order
-from controllers.orderdetails_controller import create_order_details
-from controllers.payment_controller import create_payment
-from controllers.product_controller import get_product_by_id
-from controllers.productline_controller import create_productline
+from controllers.customer_controller import create_customer, get_customer_by_id
+from controllers.manufacturer_controller import create_manufacture, get_manufacturer_by_id
+from controllers.manufacturers_has_cps_orders_controller import create_manufacturer_has_cps_order, \
+    get_manufacturer_has_cps_order_by_id
+from controllers.order_controller import create_order, get_order_by_no
+from controllers.orderdetails_controller import create_order_details, get_order_details_by_id
+from controllers.payment_controller import create_payment, get_payment_by_no
+from controllers.product_controller import get_product_by_id, create_product
+from controllers.productline_controller import create_productline, get_productline_by_id
+from controllers.staff_controller import create_staff, get_customer_by_id
+from controllers.staff_has_customers_controller import create_staff_has_customer, get_staff_has_customer_by_id
+from controllers.staffs_has_cps_orders_controller import create_staff_has_cps_order, get_staff_has_cps_order_by_id
+from controllers.storage_controller import create_storage, get_storage_by_id
+from controllers.storage_has_products_controller import create_storage_has_product, get_storage_has_products_by_id
+from controllers.supplier_controller import create_supplier, get_supplier_by_id
+from controllers.suppliers_has_cps_orders_controller import create_suppliers_has_cps_order, \
+    get_suppliers_has_cps_orders_by_id
 from data.repository.customer_repositroy import get_customer_by_id
 from data.repository.order_repository import get_order_by_id
+from data.repository.staff_repository import get_staff_by_id
+from data.repository.suppliers_has_cps_orders_repository import get_suppliers_has_cps_order_by_id, \
+    cps_orders_internal_order_no
 
 from generators.cps_object import CpsCreator
 
@@ -14,66 +29,42 @@ from generators.cps_object import CpsCreator
 creator = CpsCreator()
 creator.load_all_data()
 
-
-# CALLING FUNCTIONS ----> CONTROLLER ----> REPOSITORY ----> DB
-def calling_multicreate():
-    # create_customer(creator.customer)
-    # create_car(creator.customer_car)
-    # create_payment(creator.payment)
-    # create_order(creator.order)
-    # create_productline(creator.productline)
-    # create_order_details(creator.orderdetails)
-    # create_storage(creator.storage)
-    # create_storage_has_product(creator.storage_has_products)
-    # create_supplier(creator.suppliers)
-    # create_cps_orders(creator.cps_orders)
-    # create_suppliers_has_cps_order(creator.suppliers_has_cps_orders)
-    # create_manufacture(creator.manufacturers)
-    # create_manufacturer_has_cps_order(creator.manufacturers_has_cps_orders)
-    # create_staff(creator.staffs)
-    # create_staff_has_cps_order(creator.staff_has_cps_orders)
-    # create_staff_has_staff(creator.staffs_has_staffs)
-    # create_staff_has_customer(creator.staffs_has_customers)
-    pass
-
-
 # all_cps_order_ids = get_cps_orders_by_id()
 all_cars_ids = get_customer_cars_by_reg_no()
 all_customers_ids = get_customer_by_id()
 all_order_no = get_order_by_id()
 all_product_ids = get_product_by_id()
-# all_payments_ids = get_payment_by_no()
-# all_manufacturer_ids = get_manufacturer_by_id()
-# all_manufacturer_cps_order_ids = get_manufacturer_has_cps_order_by_id()
-# all_orderdetail_ids = get_order_details_by_id()
-# all_productline_ids = get_productline_by_id()
-# all_staff_ids = get_staff_by_id()
-# all_staffs_cps_order_ids = get_staff_has_cps_order_by_id()
-# all_staffs_has_customers_ids = get_staff_has_customer_by_id()
-# all_staffs_has_staffs_ids = get_staff_has_staff_by_id()
-# all_storage_has_products_ids = get_storage_has_products_by_id()
-# all_storage_ids = get_storage_by_id()
-# all_supplier_cps_orders_ids = get_suppliers_has_cps_order_by_id()
-# all_supplier_ids = get_supplier_by_id()
+all_payments_ids = get_payment_by_no()
+all_manufacturer_ids = get_manufacturer_by_id()
+all_manufacturer_cps_order_ids = get_manufacturer_has_cps_order_by_id()
+all_orderdetail_ids = get_order_details_by_id()
+all_productline_ids = get_productline_by_id()
+all_staff_ids = get_staff_by_id()
+all_staffs_cps_order_ids = get_staff_has_cps_order_by_id()
+all_staffs_has_customers_ids = get_staff_has_customer_by_id()
+all_storage_has_products_ids = get_storage_has_products_by_id()
+all_storage_ids = get_storage_by_id()
+all_supplier_cps_orders_ids = get_suppliers_has_cps_order_by_id()
+all_supplier_ids = get_supplier_by_id()
+all_cps_order_internal_nos = get_cps_orders_by_id()
 
 print(f'All customers id: {all_customers_ids}')
 print(f'All cars ids: {all_cars_ids}')
 # print(f'All payment ids: {all_payments_ids}')
 print(f'All order ids: {all_order_no}')
 print(f'All product ids: {all_product_ids}')
-# print(f'All cps order ids: {all_cps_order_ids}')
-# print(f'All manufacturer ids: {all_manufacturer_ids}')
-# print(f'All manufacturer cps order ids: {all_manufacturer_cps_order_ids}')
-# print(f'All orderdetail ids: {all_orderdetail_ids}')
-# print(f'All productline ids: {all_productline_ids}')
-# print(f'All staff ids: {all_staff_ids}')
-# print(f'All staffs cps order ids: {all_staffs_cps_order_ids}')
-# print(f'All staffs has customer ids: {all_staffs_has_customers_ids}')
-# print(f'All staffs has staff ids: {all_staffs_has_staffs_ids}')
-# print(f'All storage has product ids: {all_storage_has_products_ids}')
-# print(f'All storage ids: {all_storage_ids}')
-# print(f'All supplier_cps_order ids: {all_supplier_cps_orders_ids}')
-# print(f'All supplier ids: {all_supplier_ids}')
+print(f'All cps order ids: {all_cps_order_ids}')
+print(f'All manufacturer ids: {all_manufacturer_ids}')
+print(f'All manufacturer cps order ids: {all_manufacturer_cps_order_ids}')
+print(f'All orderdetail ids: {all_orderdetail_ids}')
+print(f'All productline ids: {all_productline_ids}')
+print(f'All staff ids: {all_staff_ids}')
+print(f'All staffs cps order ids: {all_staffs_cps_order_ids}')
+print(f'All staffs has customer ids: {all_staffs_has_customers_ids}')
+print(f'All storage has product ids: {all_storage_has_products_ids}')
+print(f'All storage ids: {all_storage_ids}')
+print(f'All supplier_cps_order ids: {all_supplier_cps_orders_ids}')
+print(f'All supplier ids: {all_supplier_ids}')
 print()
 
 # CREATING A CUSTOMER OBJECT
@@ -83,9 +74,10 @@ creator.customer_list = [creator.first_name, creator.last_name, creator.company,
                          creator.country, creator.my_sales_representant, creator.state]
 creator.create_customer_dict(creator.customer_key_list, creator.customer_list)
 print(creator.customer)
+create_customer(creator.customer)
 
 # CREATING A CAR OBJECT
-creator.assemble_car_object()
+creator.assemble_car_object(all_cars_ids)
 customer_car_list = [creator.reg_no, creator.manufacturer, creator.color, creator.model,
                      creator.year_model, creator.owner_id]
 creator.create_customer_car_dict(creator.customer_car_key_list, customer_car_list)
@@ -100,7 +92,7 @@ print(creator.payment)
 # calling_multicreate()
 
 # GET RANDOM CUSTOMER.CUSTOMER_ID
-creator.rnd_number_function()
+# creator.rnd_number_function()
 # print(creator.rnd_number)
 
 # Creating a order object  -----> How to have customer id less than numbers of customers when creating an order id
@@ -169,9 +161,9 @@ creator.cps_orders_list = [creator.order_date, creator.required_date, creator.sh
                            creator.status, creator.comments, creator.order_no_comments]
 creator.create_cps_orders_dict(creator.cps_orders_key_list, creator.cps_orders_list)
 print(creator.cps_orders)
-calling_multicreate()
-#
-# # CREATING SUPPLIERS HAS CPS ORDERS OBJECT
+create_cps_orders(creator.cps_orders)
+
+# CREATING SUPPLIERS HAS CPS ORDERS OBJECT
 creator.assemble_suppliers_has_cps_orders_object()
 creator.suppliers_has_cps_orders_list = [creator.suppliers_supplier_id, creator.cps_orders_internal_order_no]
 creator.create_suppliers_has_cps_orders_dict(creator.suppliers_has_cps_orders_key_list,
@@ -187,9 +179,8 @@ creator.manufacturers_list = [creator.name_manufacturer, creator.main_office_adr
                               creator.contact_person_email]
 creator.create_manufacturers_dict(creator.manufacturers_key_list, creator.manufacturers_list)
 print(creator.manufacturers)
-calling_multicreate()
+create_manufacture(creator.manufacturers)
 
-#
 # CREATING MANUFACTURERS HAS CPS ORDERS OBJECT
 creator.assemble_manufacturers_has_cps_orders_object()
 creator.manufacturers_has_cps_orders_list = [creator.manufacturers_manufacturer_id,
@@ -212,16 +203,9 @@ print(creator.staffs)
 # CREATING STAFFS HAS CPS ORDERS OBJECT
 creator.assemble_staffs_has_cps_orders_object()
 creator.staffs_has_cps_orders_list = [creator.staffs_id_staff, creator.cps_orders_internal_order_no]
-creator.create_staffs_has_cpsorders_dict(creator.staffs_has_cps_orders_key_list, creator.staffs_has_cps_orders_list)
-print(creator.staffs_has_cps_orders)
-# calling_multicreate()
-
-# CREATING STAFFS HAS STAFFS
-# creator.assemble_staff_has_staff_object()
-# creator.staff_has_staff_list = [creator.staffs_id_staff, creator.staffs_id_staff1]
-# creator.create_staff_has_staff_dict(creator.staff_has_staff_key_list, creator.staff_has_staff_list)
-# print(creator.staff_has_staff)
-# # calling_multicreate()
+creator.create_staffs_has_cps_orders_dict(creator.staffs_has_cps_orders_key_list, creator.staffs_has_cps_orders_list)
+print(creator.staffs_has_cpsorders)
+create_staff_has_cps_order(creator.staffs_has_cps_orders)
 
 # # CREATING STAFFS HAS CUSTOMERS OBJECT
 # creator.assemble_staffs_has_customers_object()

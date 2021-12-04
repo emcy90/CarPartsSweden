@@ -1,8 +1,8 @@
 from data.repository import customer_repositroy
 
 
-def get_customer_by_id(_id):
-    return customer_repositroy.get_customer_by_id(_id)
+def get_customer_by_id():
+    return customer_repositroy.get_customer_by_id()
 
 
 def create_customer(customer):

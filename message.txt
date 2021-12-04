@@ -98,8 +98,8 @@ INSERT INTO staffs_has_cpsorders (staffs_id_staff, cps_orders_internal_order_no)
 VALUES ('1', '1');
 
 # Här kan man generera staffs_has_staffs
-#INSERT INTO staffs_has_staffs (staffs_id_staff, staffs_id_staff1)
-#VALUES ('1', '1');
+# INSERT INTO staffs_has_staffs (staffs_id_staff, staffs_id_staff1)
+# VALUES ('1', '1');
 
 # Här kan man generera staffs_has_customers
 # måste matcha staffs id och customer id

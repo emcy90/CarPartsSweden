@@ -1,8 +1,8 @@
 from data.repository import payment_repository
 
 
-def get_payment_by_no(_id):
-    return payment_repository.get_payment_by_no(_id)
+def get_payment_by_no():
+    return payment_repository.get_payment_by_no()
 
 
 def create_payment(payment):
