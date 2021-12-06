@@ -38,15 +38,15 @@ INSERT INTO orders (order_date, required_date, shipping_date, status, comments, 
 VALUES ('2021-10-10','2021-10-15','2021-10-12','Ok','Denna kommer gå i tid.','1');
 
 # Här kan man generera en productline
-INSERT INTO productlines (productline, text_description, html_description, image)
+INSERT INTO product_description_table (product_description, text_description, html_description, image)
 VALUES ('Saab Trollhättan', 'Saab vi flyger fram.','<h1>Saab</h1>', 'saab.png');
 
 # Här kan man generera en product, OBS Tänk på fältet productlines måste vara exakt
 # samma som fältet productlines där man genererar en productline.
 # DVS Fältet productlines
 # från tabellen productlines måste vara samma som fältet productlines i tabellen products.
-INSERT INTO products (product_name, product_description, inprice, outprice, productlines)
-VALUES ('Sportratt till Saab 9000', 'En sportig ratt till Saab 9000', '2700.99', '3700.99', 'Saab Trollhättan');
+INSERT INTO products (product_name, product_description, inprice, outprice)
+VALUES ('Sportratt till Saab 9000', 'En sportig ratt till Saab 9000', '2700.99', '3700.99');
 
 # Här kan generera en orderdetails
 # OBS products_product_id måste ha samma som det product_id som finns i tabellen products
