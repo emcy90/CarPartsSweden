@@ -580,8 +580,8 @@ class CpsCreator(GeneratorSetup):
         self.all_supplier_cps_orders_ids = get_suppliers_has_cps_order_by_id()
         self.all_cps_order_internal_nos = get_cps_orders_by_id()
         self.suppliers_supplier_id = self.all_supplier_ids[-1]
-        self.cps_orders_internal_order_no = self.all_cps_order_internal_nos[
-            -1]  # random.choice(self.all_cps_order_internal_nos)
+        self.cps_orders_internal_order_no = self.all_cps_order_internal_nos[-1]
+        # random.choice(self.all_cps_order_internal_nos)
 
     def assemble_manufacturers_object(self):
         self.name_manufacturer = self.generator.random_manufacturer()
@@ -615,16 +615,24 @@ class CpsCreator(GeneratorSetup):
         self.reports_to = random.choice(self.all_staff_ids)
 
     def assemble_staffs_has_cps_orders_object(self):
-        if self.staffs_id_staff == 1:
-            self.staffs_id_staff = self.all_staff_ids[0] = 2
-            self.cps_orders_internal_order_no = random.choice(self.all_cps_order_internal_nos)
-        else:
-            self.staffs_id_staff = random.choice(self.all_staff_ids)
-            self.cps_orders_internal_order_no = random.choice(self.all_cps_order_internal_nos)
+        self.all_staff_ids = get_staff_by_id()
+        self.all_cps_order_internal_nos = get_cps_orders_by_id()
+        # if self.staffs_id_staff == 1:
+        #     self.staffs_id_staff += 1  # self.all_staff_ids[0] = 2
+        #     self.cps_orders_internal_order_no = random.choice(self.all_cps_order_internal_no
+        # else:
+        self.staffs_id_staff = random.choice(self.all_staff_ids)
+        self.cps_orders_internal_order_no = random.choice(self.all_cps_order_internal_nos)
 
     def assemble_staffs_has_customers_object(self):
-        self.staffs_id_staff = random.choice(self.all_staff_ids)
-        self.customers_id_customers = random.choice(self.all_customers_ids)
+        self.all_staff_ids = get_staff_by_id()
+        self.all_customers_ids = get_customer_by_id()
+        if self.all_staff_ids == 1:
+            self.all_staff_ids = self.all_staff_ids[-1]
+            self.customers_id_customers = random.choice(self.all_customers_ids)
+        else:
+            self.staffs_id_staff = random.choice(self.all_staff_ids)
+            self.customers_id_customers = random.choice(self.all_customers_ids)
 
     # HERE GOES ALL DICT CREATING FUNCTIONS
 
