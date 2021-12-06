@@ -107,7 +107,7 @@ create_order(creator.order)
 # CREATING PRODUCTS OBJECT
 creator.assemble_products_object()
 creator.products_list = [creator.product_name, creator.product_description, creator.inprice,
-                         creator.outprice, creator.productlines]
+                         creator.outprice]
 creator.create_product_dict(creator.product_key_list, creator.products_list)
 print(creator.product)
 create_product(creator.product)
@@ -116,8 +116,8 @@ create_product(creator.product)
 # This needs a productline.txt file, text_description.txt and html_description.txt
 # and image.txt to work, haven't got those files yet.
 creator.assemble_productline_object()
-creator.productline_list = [creator.productline, creator.text_description, creator.html_description,
-                            creator.image]
+creator.productline_list = [creator.product_description, creator.text_description, creator.html_description,
+                            creator.image, creator.products_description_id]
 creator.create_productline_dict(creator.productline_key_list, creator.productline_list)
 print(creator.productline)
 create_productline(creator.productline)
@@ -202,7 +202,7 @@ creator.assemble_staffs_has_cps_orders_object()
 creator.staffs_has_cps_orders_list = [creator.staffs_id_staff, creator.cps_orders_internal_order_no]
 creator.create_staffs_has_cps_orders_dict(creator.staffs_has_cps_orders_key_list, creator.staffs_has_cps_orders_list)
 print(creator.staffs_has_cpsorders)
-create_staff_has_cps_order(creator.staffs_has_cps_orders)
+create_staff_has_cps_order(creator.staffs_has_cpsorders)
 
 # CREATING STAFFS HAS CUSTOMERS OBJECT
 creator.assemble_staffs_has_customers_object()

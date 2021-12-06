@@ -17,10 +17,47 @@ class StaffHasCustomer(Base):
 class ManufacturerHasCpsOrder(Base):
     __tablename__ = "manufacturers_has_cps_orders"
 
-    manufacturers_manufacturer_id = Column(ForeignKey('manufacturers.manufacturer_id'), primary_key=True)
-    cps_orders_internal_order_no = Column(ForeignKey('cps_orders.internal_order_no'), primary_key=True)
+    # manufacturers_manufacturer_id = Column(ForeignKey('manufacturers_manufacturer_id'), primary_key=True)
+    manufacturers_manufacturer_id = Column(Integer, ForeignKey('manufacturers.manufacturer_id'), primary_key=True)
+    cps_orders_internal_order_no = Column(Integer, ForeignKey('cps_orders.internal_order_no'), primary_key=True)
     parent = relationship('Manufacture', back_populates='children')
     child = relationship('CpsOrder', back_populates='parents')
+    # relationship('Manufacture')
+
+
+class Manufacture(Base):
+    __tablename__ = "manufacturers"
+
+    manufacturer_id = Column(Integer, primary_key=True, autoincrement=True)
+    name_manufacturer = Column(String(45), nullable=False)
+    main_office_adress1 = Column(String(100), nullable=False)
+    main_office_adress2 = Column(String(100))
+    main_office_name = Column(String(100), nullable=False)
+    contact_person_name = Column(String(200), nullable=False)
+    contact_person_phone = Column(String(45), nullable=False)
+    contact_person_email = Column(String(45), nullable=False)
+    # manufacturers_has_cps_orders = Column(Integer, ForeignKey('manufacturers_has_cps_orders.manufacturers_manufacturer_id'))
+    children = relationship('ManufacturerHasCpsOrder', back_populates='parent')
+    # relationship('ManufacturerHasCpsOrder')
+    # cps_orders = relationship('CpsOrder')
+    # manufacturers = relationship('Manufacture')
+
+
+class CpsOrder(Base):
+    __tablename__ = "cps_orders"
+
+    internal_order_no = Column(Integer, primary_key=True)
+    order_date = Column(Date, nullable=False)
+    required_date = Column(Date)
+    shipping_date = Column(Date)
+    status = Column(String(45), nullable=False)
+    comments = Column(Text)
+    order_no_comments = Column(Text)
+    parents = relationship('ManufacturerHasCpsOrder', back_populates='child')
+    child = relationship('StaffHasCpsOrder', back_populates='parent')
+    parent = relationship('SupplierHasCpsOrder', back_populates='cps_orders')
+
+    # manufacturers = relationship('Manufacture')
 
 
 class StaffHasCpsOrder(Base):
@@ -87,23 +124,6 @@ class Customer(Base):
     # orders = relationship('Order')
 
 
-class Manufacture(Base):
-    __tablename__ = "manufacturers"
-
-    manufacturer_id = Column(Integer, primary_key=True, autoincrement=True)
-    name_manufacturer = Column(String(45), nullable=False)
-    main_office_adress1 = Column(String(100), nullable=False)
-    main_office_adress2 = Column(String(100))
-    main_office_name = Column(String(100), nullable=False)
-    contact_person_name = Column(String(200), nullable=False)
-    contact_person_phone = Column(String(45), nullable=False)
-    contact_person_email = Column(String(45), nullable=False)
-    # manufacturers_has_cps_orders = Column(Integer, ForeignKey('manufacturers_has_cps_orders.manufacturers_manufacturer_id'))
-    children = relationship('ManufacturerHasCpsOrder', back_populates='parent')
-    # cps_orders = relationship('CpsOrder')
-    # manufacturers = relationship('Manufacture')
-
-
 class Order(Base):
     __tablename__ = "orders"
 
@@ -116,23 +136,6 @@ class Order(Base):
     customers_id_customers = Column(Integer, ForeignKey('customers.id_customers'))
     order_to_product = relationship('OrderDetail', back_populates="order")
     customer_order = relationship('Customer', back_populates='order_customer')
-
-
-class CpsOrder(Base):
-    __tablename__ = "cps_orders"
-
-    internal_order_no = Column(Integer, primary_key=True)
-    order_date = Column(Date, nullable=False)
-    required_date = Column(Date)
-    shipping_date = Column(Date)
-    status = Column(String(45), nullable=False)
-    comments = Column(Text)
-    order_no_comments = Column(Text)
-    parents = relationship('ManufacturerHasCpsOrder', back_populates='child')
-    child = relationship('StaffHasCpsOrder', back_populates='parent')
-    parent = relationship('SupplierHasCpsOrder', back_populates='cps_orders')
-
-    # manufacturers = relationship('Manufacture')
 
 
 class CustomerCar(Base):
@@ -162,29 +165,35 @@ class Product(Base):
     __tablename__ = "products"
 
     product_id = Column(Integer, primary_key=True, autoincrement=True)
+    # fk_nyckel = Column(String(50), ForeignKey('productlines.productline'))
     product_name = Column(String(45), nullable=False)
     product_description = Column(Text, nullable=False)
     inprice = Column(DECIMAL(10, 2), nullable=False)
     outprice = Column(DECIMAL(10, 2), nullable=False)
-    productlines = Column(String(50), ForeignKey('productlines.productline'))
+    # productlines_productline = Column(String(50), nullable=False)
     product_to_order = relationship('OrderDetail', back_populates="product")
     product_to_storage = relationship('StorageHasProducts', back_populates='products')
-    productline = relationship('Productline', back_populates='product1')
+    relationship('Productline')  # , back_populates='n2')
+    # productline = relationship("Productline", backref="productlines")
 
 
 class Productline(Base):
-    __tablename__ = "productlines"
-    productline = Column(String(50), primary_key=True, nullable=False)
-    text_description = Column(String(5000))
+    __tablename__ = "product_description_table"
+    desc_count = Column(Integer, primary_key=True, autoincrement=True)
+    product_description = Column(String(50))
+    # productline = Column(String(50))
+    text_description = Column(String(5000), nullable=True)
     html_description = Column(MEDIUMTEXT)
     image = Column(MEDIUMBLOB)
-    product1 = relationship('Product', back_populates='productline')
+    products_description_id = Column(Integer, ForeignKey('products.product_id'))
+    relationship('Product')
+    # n2 = relationship('Productline', back_populates='n1')
 
 
 class Staff(Base):
     __tablename__ = "staffs"
 
-    id_staff = Column(Integer, primary_key=True, autoincrement=False)
+    id_staff = Column(Integer, primary_key=True, autoincrement=True)
     first_name = Column(String(45), nullable=False)
     last_name = Column(String(45), nullable=False)
     job_title = Column(String(45), nullable=False)

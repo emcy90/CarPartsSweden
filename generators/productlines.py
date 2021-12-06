@@ -1,17 +1,18 @@
-from controllers.productline_controller import create_productline
+from data.db import session
+from data.models import Productline
 
 
-def main():
-    productline = {
-        'productline': 'Saab',
-        'text_description': 'A nice Saab',
-        'html_description': '<h1>Saab</h1>',
-        'image': 'Saab.jpg'
-
-    }
-
-    create_productline(productline)
+def get_productline_by_id():
+    productline = session.query(Productline.product_description).all()
+    productline_id_clean_list = []
+    for id in productline:
+        productline_id_clean_list.append(id[0])
+    return productline_id_clean_list
 
 
-if __name__ == '__main__':
-    main()
+def create_productline(productline):
+    productline = Productline(**productline)
+    session.add(productline)
+    session.commit()
+    print()
+    print('Added productline successfully!!!')

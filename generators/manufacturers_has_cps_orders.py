@@ -1,15 +1,19 @@
-from controllers.manufacturers_has_cps_orders_controller import create_manufacturer_has_cps_order
+from data.db import session
+from data.models import ManufacturerHasCpsOrder
 
 
-def main():
-    manufacturer_has_cps_order = {
-        'manufacturers_manufacturer_id': '',
-        'cps_orders_internal_order_no': ''
+# cpsab.manufacturers_has_cps_orders.manufacturers_manufacturer_id
+def get_manufacturer_has_cps_order_by_id():
+    # manu_cps_id = session.query(ManufacturerHasCpsOrder.manufacturers_manufacturer_id).all()
+    manu_cps_id = session.query(ManufacturerHasCpsOrder.manufacturers_manufacturer_id).all()
+    manufacturer_has_cps_order_id_clean_list = []
+    for id in manu_cps_id:
+        manufacturer_has_cps_order_id_clean_list.append(id[0])
+    return manufacturer_has_cps_order_id_clean_list
 
-    }
 
-    create_manufacturer_has_cps_order(manufacturer_has_cps_order)
+def create_manufacturer_has_cps_order(manufacturer_has_cps_order):
+    manufacturer_has_cps_order = ManufacturerHasCpsOrder(**manufacturer_has_cps_order)
+    session.add(manufacturer_has_cps_order)
+    session.commit()
 
-
-if __name__ == '__main__':
-    main()
