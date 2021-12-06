@@ -615,8 +615,12 @@ class CpsCreator(GeneratorSetup):
         self.reports_to = random.choice(self.all_staff_ids)
 
     def assemble_staffs_has_cps_orders_object(self):
-        self.staffs_id_staff = random.choice(self.all_staff_ids)
-        self.cps_orders_internal_order_no = random.choice(self.all_cps_order_internal_nos)
+        if self.staffs_id_staff == 1:
+            self.staffs_id_staff = self.all_staff_ids[0] = 2
+            self.cps_orders_internal_order_no = random.choice(self.all_cps_order_internal_nos)
+        else:
+            self.staffs_id_staff = random.choice(self.all_staff_ids)
+            self.cps_orders_internal_order_no = random.choice(self.all_cps_order_internal_nos)
 
     def assemble_staffs_has_customers_object(self):
         self.staffs_id_staff = random.choice(self.all_staff_ids)
