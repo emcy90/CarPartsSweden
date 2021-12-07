@@ -906,6 +906,9 @@ class CpsCreator(GeneratorSetup):
 
         real_staff_and_cps_internal_order_no_list = []
         staff_internal_no_order_combo_list = []
+        self.all_staff_ids = get_staff_by_id()
+        self.all_cps_order_ids = get_cps_orders_by_id()
+
         self.all_staffs_cps_order_ids = get_staff_has_cps_order_by_id()
         self.all_staffs_cps_orders_internal_order_no = get_staffs_cps_orders_internal_order_no()
 
@@ -915,8 +918,8 @@ class CpsCreator(GeneratorSetup):
             real_staff_and_cps_internal_order_no_list.append([st1, cu1])
 
         # self.all_customers_ids = get_customer_by_id()
-        last_cps_order_internal_no = self.all_staffs_cps_orders_internal_order_no[-1]
-        lokal_staff_id = random.randint(1, 15)
+        last_cps_order_internal_no = self.all_cps_order_ids[-1]
+        lokal_staff_id = random.randint(1, 6)
         random_cps_order_internal_no = random.randint(1, last_cps_order_internal_no)
 
         staff_internal_no_order_combo_list = [lokal_staff_id, random_cps_order_internal_no]
@@ -986,7 +989,7 @@ class CpsCreator(GeneratorSetup):
 
         # self.all_customers_ids = get_customer_by_id()
         last_customer_id = self.all_customers_ids[-1]
-        lokal_staff_id = random.randint(1, 15)
+        lokal_staff_id = random.randint(1, 6)
         random_customer_id = random.randint(1, last_customer_id)
 
         staff_customer_combo_list = [lokal_staff_id, random_customer_id]
