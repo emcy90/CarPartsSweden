@@ -615,6 +615,7 @@ class GeneratorSetup:
 
     def random_product_descriptions(self):
         description = random.choice(self.product_list)
+        # suggestion for solution generate random product description by combining random car-model and random manufacturer
         return description
 
     def random_inprice(self):
