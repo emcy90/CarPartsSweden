@@ -493,12 +493,14 @@ class CpsCreator(GeneratorSetup):
     #     self.owner_id = self.generator.random_owner_id()
 
     def assemble_car_object(self, all_cars_ids):
-        self.all_cars_ids = all_cars_ids
+        self.all_cars_ids = get_customer_cars_by_reg_no()
+
         # self.all_customers_ids = get_customer_by_id()
         self.reg_no = self.generator.random_reg_no()
         if self.reg_no in self.all_cars_ids:
             status = True
             while status:
+                self.all_cars_ids = get_customer_cars_by_reg_no()
                 # print("Reg number exists, generating a new one: ")
                 self.reg_no = self.generator.random_reg_no()
                 if self.reg_no not in self.all_cars_ids:
@@ -507,16 +509,16 @@ class CpsCreator(GeneratorSetup):
                     self.color = self.generator.random_color()
                     self.model = self.generator.random_car_model()
                     self.year_model = self.generator.random_year_model()
-
                     self.owner_id = random.choice(self.all_customers_ids)
+                    self.all_cars_ids = get_customer_cars_by_reg_no()
         else:
 
             self.manufacturer = self.generator.random_manufacturer()
             self.color = self.generator.random_color()
             self.model = self.generator.random_car_model()
             self.year_model = self.generator.random_year_model()
-
             self.owner_id = random.choice(self.all_customers_ids)
+            self.all_cars_ids = get_customer_cars_by_reg_no()
 
     def assemble_payment_object(self):
         self.payment_amount = self.generator.random_amount()
@@ -571,8 +573,8 @@ class CpsCreator(GeneratorSetup):
             real_product_id_and_order_no_list.append([st1, cu1])
 
         # self.all_customers_ids = get_customer_by_id()
-        last_orderdetail_id = self.all_orderdetail_ids[-1]
-        last_product_rnd_id = self.all_products_product_ids[-1]
+        last_orderdetail_id = self.all_order_no[-1]
+        last_product_rnd_id = self.all_product_ids[-1]
         lokal_orderdetail_id = random.randint(1, last_orderdetail_id)
         lokal_product_id = random.randint(1, last_product_rnd_id)
 
