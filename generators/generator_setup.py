@@ -357,7 +357,7 @@ class GeneratorSetup:
 
     def reg_no_generator(self):  # -----> COMPARE WITH length OF car_reg_no_clean_list??
         self.reg_no_list = []
-        for i in range(0, 99):
+        for i in range(0, 5000):
 
             for x in range(0, 3):
                 alpha_plate = random.choice(self.alpha_list)
