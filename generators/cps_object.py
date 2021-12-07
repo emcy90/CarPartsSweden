@@ -44,6 +44,8 @@ class CpsCreator(GeneratorSetup):
         all_manufacturer_cps_order_ids = []
         all_staff_ids = []
         all_order_no = []
+        all_customers_id_customers_ids = []
+        all_manufacturer_cps_orders_internal_order_nos = []
 
         self.all_cps_order_ids = get_cps_orders_by_id()
         self.all_cars_ids = get_customer_cars_by_reg_no()
@@ -58,11 +60,13 @@ class CpsCreator(GeneratorSetup):
         self.all_staff_ids = get_staff_by_id()
         self.all_staffs_cps_order_ids = get_staff_has_cps_order_by_id()
         self.all_staffs_has_customers_ids = get_staff_has_customer_by_id()
+        self.all_customers_id_customers_ids = get_customers_id_customers_by_id()
         self.all_storage_has_products_ids = get_storage_has_products_by_id()
         self.all_storage_ids = get_storage_by_id()
         self.all_supplier_cps_orders_ids = get_suppliers_has_cps_order_by_id()
         self.all_supplier_ids = get_supplier_by_id()
         self.all_cps_order_internal_nos = get_cps_orders_by_id()  # cps_orders_internal_order_no()
+        self.all_manufacturer_cps_orders_internal_order_nos = get_manufacturer_cps_orders_internal_order_no()
 
         date = ""
         storage = ""
@@ -552,10 +556,71 @@ class CpsCreator(GeneratorSetup):
         # self.orders_order_no = self.all_productline_ids[-1]
 
     def assemble_orderdetails_object(self):
+        real_product_id_and_order_no_list = []
         # här behöver vi hämta värden från dom snygga listorna, som Anna fixade.
-        self.all_order_no = get_order_by_id()
-        self.orders_order_no = self.all_order_no[-1]
-        self.products_product_id = random.choice(self.all_product_ids)
+        # self.all_order_no = get_order_by_id()
+        # self.orders_order_no = self.all_order_no[-1]
+        # self.products_product_id = random.choice(self.all_product_ids)
+
+        self.all_orderdetail_ids = get_order_details_by_id()
+        self.all_products_product_ids = get_products_product_by_id()
+
+        for xx in range(len(self.all_orderdetail_ids)):
+            st1 = self.all_orderdetail_ids[xx]
+            cu1 = self.all_products_product_ids[xx]
+            real_product_id_and_order_no_list.append([st1, cu1])
+
+        # self.all_customers_ids = get_customer_by_id()
+        last_orderdetail_id = self.all_orderdetail_ids[-1]
+        last_product_rnd_id = self.all_products_product_ids[-1]
+        lokal_orderdetail_id = random.randint(1, last_orderdetail_id)
+        lokal_product_id = random.randint(1, last_product_rnd_id)
+
+        orderdetails_product_combo_list = [lokal_orderdetail_id, lokal_product_id]
+
+        if orderdetails_product_combo_list not in real_product_id_and_order_no_list:
+            real_product_id_and_order_no_list.append(orderdetails_product_combo_list)
+            variable_to_split_list = real_product_id_and_order_no_list[-1]
+
+            cc = str(variable_to_split_list)
+            cc = cc.replace('[', '')
+            cc = cc.replace(']', '')
+            cc = cc.strip()
+
+            x, y = cc.split(',')
+            x = (int(x))
+            y = (int(y))
+            self.orders_order_no = x
+            self.products_product_id = y
+
+        else:
+            loop = True
+            while loop:
+                last_orderdetail_id = self.all_orderdetail_ids[-1]
+                last_product_rnd_id = self.all_products_product_ids[-1]
+                lokal_orderdetail_id = random.randint(1, last_orderdetail_id)
+                lokal_product_id = random.randint(1, last_product_rnd_id)
+
+                orderdetails_product_combo_list = [lokal_orderdetail_id, lokal_product_id]
+
+                if orderdetails_product_combo_list not in real_product_id_and_order_no_list:
+                    real_product_id_and_order_no_list.append(orderdetails_product_combo_list)
+                    variable_to_split_list = real_product_id_and_order_no_list[-1]
+
+                    cc = str(variable_to_split_list)
+                    cc = cc.replace('[', '')
+                    cc = cc.replace(']', '')
+                    cc = cc.strip()
+
+                    # sp = str(variable_to_split_list)
+                    x, y = cc.split(',')
+                    x = (int(x))
+                    y = (int(y))
+                    self.orders_order_no = x
+                    self.products_product_id = y
+                    loop = False
+
+        # These should be outside the if else block
         self.quantity = self.generator.random_quantity()
         self.price_each = self.generator.random_price()
 
@@ -568,8 +633,74 @@ class CpsCreator(GeneratorSetup):
         self.storage_city = self.generator.create_city()
 
     def assemble_storage_has_products_object(self):
-        self.storage_storage_id = random.choice(self.all_storage_ids)
-        self.products_product_id = random.choice(self.all_product_ids)
+        # if self.storage_storage_id == 1:
+        #    self.storage_storage_id = self.all_storage_ids[0] = 2
+        #    self.storage_storage_id = random.choice(self.all_storage_ids)
+        # else:
+        #    self.storage_storage_id = random.choice(self.all_storage_ids)
+        #    self.products_product_id = random.choice(self.all_product_ids)
+
+        real_storage_id_and_product_id_list = []
+
+        self.all_storage_has_products_ids = get_storage_has_products_by_id()
+        self.all_storage_products_product_ids = get_storage_products_product_by_id()
+
+        for xx in range(len(self.all_storage_has_products_ids)):
+            st1 = self.all_storage_has_products_ids[xx]
+            cu1 = self.all_storage_products_product_ids[xx]
+            real_storage_id_and_product_id_list.append([st1, cu1])
+
+        # self.all_customers_ids = get_customer_by_id()
+        last_storage_id = self.all_storage_has_products_ids[-1]
+        last_product_id = self.all_storage_products_product_ids[-1]
+
+        lokal_storage_id = random.randint(1, last_storage_id)
+        lokal_product_id = random.randint(1, last_product_id)
+
+        storage_product_combo_list = [lokal_storage_id, lokal_product_id]
+
+        if storage_product_combo_list not in real_storage_id_and_product_id_list:
+            real_storage_id_and_product_id_list.append(storage_product_combo_list)
+            variable_to_split_list = real_storage_id_and_product_id_list[-1]
+
+            cc = str(variable_to_split_list)
+            cc = cc.replace('[', '')
+            cc = cc.replace(']', '')
+            cc = cc.strip()
+
+            x, y = cc.split(',')
+            x = (int(x))
+            y = (int(y))
+            self.storage_storage_id = x
+            self.products_product_id = y
+
+        else:
+            loop = True
+            while loop:
+                last_storage_id = self.all_storage_has_products_ids[-1]
+                last_product_id = self.all_storage_products_product_ids[-1]
+
+                lokal_storage_id = random.randint(1, last_storage_id)
+                lokal_product_id = random.randint(1, last_product_id)
+
+                storage_product_combo_list = [lokal_storage_id, lokal_product_id]
+
+                if storage_product_combo_list not in real_storage_id_and_product_id_list:
+                    real_storage_id_and_product_id_list.append(storage_product_combo_list)
+                    variable_to_split_list = real_storage_id_and_product_id_list[-1]
+
+                    cc = str(variable_to_split_list)
+                    cc = cc.replace('[', '')
+                    cc = cc.replace(']', '')
+                    cc = cc.strip()
+
+                    # sp = str(variable_to_split_list)
+                    x, y = cc.split(',')
+                    x = (int(x))
+                    y = (int(y))
+                    self.storage_storage_id = x
+                    self.products_product_id = y
+                    loop = False
 
     def assemble_supplier_object(self):
         suppliers = ['johans verkstad', 'biltema', 'jula']
@@ -599,6 +730,67 @@ class CpsCreator(GeneratorSetup):
         # self.suppliers_supplier_id = self.all_supplier_ids[-1]
         # self.cps_orders_internal_order_no = self.all_cps_order_internal_nos[-1]
         # random.choice(self.all_cps_order_internal_nos)
+
+        real_supplier_id_and_internal_order_no_list = []
+
+        self.all_supplier_cps_orders_ids = get_suppliers_has_cps_order_by_id()
+        self.all_suppliers_cps_orders_internal_nos_nos = get_suppliers_cps_orders_internal_order_no()
+
+        for xx in range(len(self.all_supplier_cps_orders_ids)):
+            st1 = self.all_supplier_cps_orders_ids[xx]
+            cu1 = self.all_suppliers_cps_orders_internal_nos_nos[xx]
+            real_supplier_id_and_internal_order_no_list.append([st1, cu1])
+
+        # self.all_customers_ids = get_customer_by_id()
+        last_supplier_id = self.all_supplier_cps_orders_ids[-1]
+        last_internal_order_no = self.all_suppliers_cps_orders_internal_nos_nos[-1]
+
+        lokal_supplier_id = random.randint(1, last_supplier_id)
+        lokal_internal_order_no = random.randint(1, last_internal_order_no)
+
+        supplier_internal_order_combo_list = [lokal_supplier_id, lokal_internal_order_no]
+
+        if supplier_internal_order_combo_list not in real_supplier_id_and_internal_order_no_list:
+            real_supplier_id_and_internal_order_no_list.append(supplier_internal_order_combo_list)
+            variable_to_split_list = real_supplier_id_and_internal_order_no_list[-1]
+
+            cc = str(variable_to_split_list)
+            cc = cc.replace('[', '')
+            cc = cc.replace(']', '')
+            cc = cc.strip()
+
+            x, y = cc.split(',')
+            x = (int(x))
+            y = (int(y))
+            self.suppliers_supplier_id = x
+            self.cps_orders_internal_order_no = y
+
+        else:
+            loop = True
+            while loop:
+                last_supplier_id = self.all_supplier_cps_orders_ids[-1]
+                last_internal_order_no = self.all_suppliers_cps_orders_internal_nos_nos[-1]
+
+                lokal_supplier_id = random.randint(1, last_supplier_id)
+                lokal_internal_order_no = random.randint(1, last_internal_order_no)
+
+                supplier_internal_order_combo_list = [lokal_supplier_id, lokal_internal_order_no]
+
+                if supplier_internal_order_combo_list not in real_supplier_id_and_internal_order_no_list:
+                    real_supplier_id_and_internal_order_no_list.append(supplier_internal_order_combo_list)
+                    variable_to_split_list = real_supplier_id_and_internal_order_no_list[-1]
+
+                    cc = str(variable_to_split_list)
+                    cc = cc.replace('[', '')
+                    cc = cc.replace(']', '')
+                    cc = cc.strip()
+
+                    x, y = cc.split(',')
+                    x = (int(x))
+                    y = (int(y))
+                    self.suppliers_supplier_id = x
+                    self.cps_orders_internal_order_no = y
+                    loop = False
 
     def assemble_manufacturers_object(self):
         self.name_manufacturer = self.generator.random_manufacturer()

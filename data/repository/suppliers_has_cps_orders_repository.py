@@ -11,6 +11,15 @@ def get_suppliers_has_cps_order_by_id():
     return suppliers_has_cps_order_id_clean_list
 
 
+def get_suppliers_cps_orders_internal_order_no():
+    supplier_internal = session.query(SupplierHasCpsOrder.cps_orders_internal_order_no).all()
+    suppliers_cps_orders_internal_order_no_clean_list = []
+    for no in supplier_internal:
+        suppliers_cps_orders_internal_order_no_clean_list.append(no[0])
+
+    return suppliers_cps_orders_internal_order_no_clean_list
+
+
 def cps_orders_internal_order_no():
     supplier_cps = session.query(SupplierHasCpsOrder.cps_orders_internal_order_no).all()
     cps_orders_internal_order_no_clean_list = []
