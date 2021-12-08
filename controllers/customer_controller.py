@@ -1,4 +1,4 @@
-from data.repository import customer_repositroy
+from data.repository import customer_repository
 
 
 def get_customer_by_id():

@@ -19,7 +19,7 @@ from controllers.storage_has_products_controller import create_storage_has_produ
 from controllers.supplier_controller import create_supplier, get_supplier_by_id
 from controllers.suppliers_has_cps_orders_controller import create_suppliers_has_cps_order, \
     get_suppliers_has_cps_orders_by_id
-from data.repository.customer_repositroy import get_customer_by_id
+from data.repository.customer_repository import get_customer_by_id
 from data.repository.order_repository import get_order_by_id
 from data.repository.staff_repository import get_staff_by_id
 from data.repository.suppliers_has_cps_orders_repository import get_suppliers_has_cps_order_by_id, \
@@ -69,8 +69,8 @@ print(f'All supplier_cps_order ids: {all_supplier_cps_orders_ids}')
 print(f'All supplier ids: {all_supplier_ids}')
 print()
 
-i = 501
-for i in range(10):
+i = 57
+for i in range(1):
 
     time.sleep(0.5)
     # CREATING A CUSTOMER OBJECT
@@ -79,7 +79,7 @@ for i in range(10):
                              creator.street_adress + " " + creator.house_number, '', creator.city, creator.zip_code,
                              creator.country, creator.my_sales_representant, creator.state]
     creator.create_customer_dict(creator.customer_key_list, creator.customer_list)
-    print(creator.customer)
+    # print(creator.customer)
     create_customer(creator.customer)
 
     # CREATING A CAR OBJECT
@@ -87,14 +87,14 @@ for i in range(10):
     customer_car_list = [creator.reg_no, creator.manufacturer, creator.color, creator.model,
                          creator.year_model, creator.owner_id]
     creator.create_customer_car_dict(creator.customer_car_key_list, customer_car_list)
-    print(creator.customer_car)
+    # print(creator.customer_car)
     create_car(creator.customer_car)
 
     # CREATING A PAYMENT OBJECT
     creator.assemble_payment_object()
     creator.payment_list = [creator.payment_date, creator.payment_amount, creator.customer_paid_bill_id]
     creator.create_payment_dict(creator.payment_key_list, creator.payment_list)
-    print(creator.payment)
+    # print(creator.payment)
     create_payment(creator.payment)
 
     # CREATING ORDER OBJECT
@@ -102,7 +102,7 @@ for i in range(10):
     creator.order_list = [creator.order_date, creator.required_date, creator.shipping_date,
                           creator.status, creator.comments, creator.customers_id_customers]
     creator.create_order_dict(creator.order_key_list, creator.order_list)
-    print(creator.order)
+    # print(creator.order)
     create_order(creator.order)
 
     # CREATING PRODUCTS OBJECT
@@ -110,7 +110,7 @@ for i in range(10):
     creator.products_list = [creator.product_name, creator.product_description, creator.inprice,
                              creator.outprice]
     creator.create_product_dict(creator.product_key_list, creator.products_list)
-    print(creator.product)
+    # print(creator.product)
     create_product(creator.product)
 
     # CREATING PRODUCTLINES OBJECT
@@ -120,7 +120,7 @@ for i in range(10):
     creator.productline_list = [creator.product_description, creator.text_description, creator.html_description,
                                 creator.image, creator.products_description_id]
     creator.create_productline_dict(creator.productline_key_list, creator.productline_list)
-    print(creator.productline)
+    # print(creator.productline)
     create_productline(creator.productline)
 
     # CREATING ORDERDETAILS OBJECT
@@ -128,21 +128,21 @@ for i in range(10):
     creator.orderdetails_list = [creator.orders_order_no, creator.products_product_id, creator.quantity,
                                  creator.price_each]
     creator.create_orderdetails_dict(creator.orderdetails_key_list, creator.orderdetails_list)
-    print(creator.orderdetails)
+    # print(creator.orderdetails)
     create_order_details(creator.orderdetails)
 
     # CREATING STORAGE OBJECT
     creator.assemble_storage_object()
     creator.storage_list = [creator.storage_name, creator.storage_quantity, creator.storage_city]
     creator.create_storage_dict(creator.storage_key_list, creator.storage_list)
-    print(creator.storage)
+    # print(creator.storage)
     create_storage(creator.storage)
 
     # CREATING STORAGE HAS PRODUCTS OBJECT
     creator.assemble_storage_has_products_object()
     creator.storage_has_products_list = [creator.storage_storage_id, creator.products_product_id]
     creator.create_storage_has_products_dict(creator.storage_has_products_key_list, creator.storage_has_products_list)
-    print(creator.storage_has_products)
+    # print(creator.storage_has_products)
     create_storage_has_product(creator.storage_has_products)
 
     # CREATING SUPPLIERS OBJECT
@@ -151,7 +151,7 @@ for i in range(10):
                              creator.zip_code, creator.country, creator.suppliers_contact_person, creator.phone_number,
                              creator.email]
     creator.create_suppliers_dict(creator.suppliers_key_list, creator.supplier_list)
-    print(creator.suppliers)
+    # print(creator.suppliers)
     create_supplier(creator.suppliers)
 
     # CREATING CPS ORDERS OBJECT
@@ -159,7 +159,7 @@ for i in range(10):
     creator.cps_orders_list = [creator.order_date, creator.required_date, creator.shipping_date,
                                creator.status, creator.comments, creator.order_no_comments]
     creator.create_cps_orders_dict(creator.cps_orders_key_list, creator.cps_orders_list)
-    print(creator.cps_orders)
+    # print(creator.cps_orders)
     create_cps_orders(creator.cps_orders)
 
     # CREATING SUPPLIERS HAS CPS ORDERS OBJECT
@@ -167,7 +167,7 @@ for i in range(10):
     creator.suppliers_has_cps_orders_list = [creator.suppliers_supplier_id, creator.cps_orders_internal_order_no]
     creator.create_suppliers_has_cps_orders_dict(creator.suppliers_has_cps_orders_key_list,
                                                  creator.suppliers_has_cps_orders_list)
-    print(creator.suppliers_has_cps_orders)
+    # print(creator.suppliers_has_cps_orders)
     create_suppliers_has_cps_order(creator.suppliers_has_cps_orders)
 
     # CREATING MANUFACTURERS OBJECT
@@ -177,7 +177,7 @@ for i in range(10):
                                   creator.manufacturer_contact_person, creator.contact_person_phone,
                                   creator.contact_person_email]
     creator.create_manufacturers_dict(creator.manufacturers_key_list, creator.manufacturers_list)
-    print(creator.manufacturers)
+    # print(creator.manufacturers)
     create_manufacture(creator.manufacturers)
 
     # CREATING MANUFACTURERS HAS CPS ORDERS OBJECT
@@ -187,7 +187,7 @@ for i in range(10):
 
     creator.create_manufactureres_has_cps_orders_dict(creator.manufacturers_has_cps_orders_key_list,
                                                       creator.manufacturers_has_cps_orders_list)
-    print(creator.manufactureres_has_cps_orders)
+    # print(creator.manufactureres_has_cps_orders)
     create_manufacturer_has_cps_order(creator.manufactureres_has_cps_orders)  # manufacturers_has_cps_orders)
 
     # CREATING STAFFS OBJECT
@@ -195,7 +195,7 @@ for i in range(10):
     creator.staffs_list = [creator.first_name, creator.last_name, creator.job_title,
                            creator.phone, creator.store, creator.reports_to]
     creator.create_staffs_dict(creator.staffs_key_list, creator.staffs_list)
-    print(creator.staffs)
+    # print(creator.staffs)
     create_staff(creator.staffs)
 
     # CREATING STAFFS HAS CPS ORDERS OBJECT
@@ -203,12 +203,12 @@ for i in range(10):
     creator.staffs_has_cps_orders_list = [creator.staffs_id_staff, creator.cps_orders_internal_order_no]
     creator.create_staffs_has_cps_orders_dict(creator.staffs_has_cps_orders_key_list,
                                               creator.staffs_has_cps_orders_list)
-    print(creator.staffs_has_cpsorders)
+    # print(creator.staffs_has_cpsorders)
     create_staff_has_cps_order(creator.staffs_has_cpsorders)
 
     # CREATING STAFFS HAS CUSTOMERS OBJECT
     creator.assemble_staffs_has_customers_object()
     creator.staffs_has_customers_list = [creator.staffs_id_staff, creator.customers_id_customers]
     creator.create_staffs_has_customers_dict(creator.staffs_has_customers_key_list, creator.staffs_has_customers_list)
-    print(creator.staffs_has_customers)
+    # print(creator.staffs_has_customers)
     create_staff_has_customer(creator.staffs_has_customers)

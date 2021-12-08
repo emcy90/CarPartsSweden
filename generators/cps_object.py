@@ -869,6 +869,7 @@ class CpsCreator(GeneratorSetup):
             real_staff_and_cps_internal_order_no_list.append([st1, cu1])
 
         last_cps_order_internal_no = self.all_cps_order_ids[-1]
+        # will crash in the beginning a bit until you have 6 in staff
         lokal_staff_id = random.randint(1, 6)
         random_cps_order_internal_no = random.randint(1, last_cps_order_internal_no)
 
