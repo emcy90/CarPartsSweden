@@ -16,7 +16,6 @@ SELECT * FROM manufacturers;
 SELECT * FROM manufacturers_has_cps_orders;
 SELECT * FROM staffs;
 SELECT * FROM staffs_has_cpsorders;
-SELECT * FROM staffs_has_staffs;
 SELECT * FROM staffs_has_customers;
 
 
