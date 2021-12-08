@@ -4,7 +4,7 @@ SELECT * From customers;
 SELECT * From customer_cars;
 SELECT * FROM payments;
 SELECT * FROM orders;
-SELECT * FROM productlines;
+SELECT * FROM product_description_table;
 SELECT * FROM products;
 SELECT * FROM ordersdetails;
 SELECT * FROM storage;
