@@ -12,7 +12,6 @@ def main():
         'contact_person': '',
         'phone_number': '',
         'email': ''
-
     }
 
     create_supplier(supplier)

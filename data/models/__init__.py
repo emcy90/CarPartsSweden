@@ -17,12 +17,10 @@ class StaffHasCustomer(Base):
 class ManufacturerHasCpsOrder(Base):
     __tablename__ = "manufacturers_has_cps_orders"
 
-    # manufacturers_manufacturer_id = Column(ForeignKey('manufacturers_manufacturer_id'), primary_key=True)
     manufacturers_manufacturer_id = Column(Integer, ForeignKey('manufacturers.manufacturer_id'), primary_key=True)
     cps_orders_internal_order_no = Column(Integer, ForeignKey('cps_orders.internal_order_no'), primary_key=True)
     parent = relationship('Manufacture', back_populates='children')
     child = relationship('CpsOrder', back_populates='parents')
-    # relationship('Manufacture')
 
 
 class Manufacture(Base):
@@ -36,11 +34,7 @@ class Manufacture(Base):
     contact_person_name = Column(String(200), nullable=False)
     contact_person_phone = Column(String(45), nullable=False)
     contact_person_email = Column(String(45), nullable=False)
-    # manufacturers_has_cps_orders = Column(Integer, ForeignKey('manufacturers_has_cps_orders.manufacturers_manufacturer_id'))
     children = relationship('ManufacturerHasCpsOrder', back_populates='parent')
-    # relationship('ManufacturerHasCpsOrder')
-    # cps_orders = relationship('CpsOrder')
-    # manufacturers = relationship('Manufacture')
 
 
 class CpsOrder(Base):
@@ -56,8 +50,6 @@ class CpsOrder(Base):
     parents = relationship('ManufacturerHasCpsOrder', back_populates='child')
     child = relationship('StaffHasCpsOrder', back_populates='parent')
     parent = relationship('SupplierHasCpsOrder', back_populates='cps_orders')
-
-    # manufacturers = relationship('Manufacture')
 
 
 class StaffHasCpsOrder(Base):
@@ -118,11 +110,6 @@ class Customer(Base):
     parents = relationship('StaffHasCustomer', back_populates='child')
     order_customer = relationship('Order', back_populates='customer_order')
 
-    # customers_id_customers = Column(Integer, ForeignKey('customers.id_customers'))
-    # customer_cars_reg_no = Column(String(20), ForeignKey('customer.cars_reg_no'))
-    # CustomerCar = relationship("customer_cars", back_populates="customer")
-    # orders = relationship('Order')
-
 
 class Order(Base):
     __tablename__ = "orders"
@@ -148,7 +135,6 @@ class CustomerCar(Base):
     year_model = Column(String(45), nullable=False)
     owner_id = Column(Integer, ForeignKey('customers.id_customers'))
     owner = relationship('Customer', back_populates="customer_cars")
-    # customer_cars = relationship("Customer", back_populates="customer_cars")
 
 
 class Payment(Base):
@@ -165,29 +151,25 @@ class Product(Base):
     __tablename__ = "products"
 
     product_id = Column(Integer, primary_key=True, autoincrement=True)
-    # fk_nyckel = Column(String(50), ForeignKey('productlines.productline'))
     product_name = Column(String(45), nullable=False)
     product_description = Column(Text, nullable=False)
     inprice = Column(DECIMAL(10, 2), nullable=False)
     outprice = Column(DECIMAL(10, 2), nullable=False)
-    # productlines_productline = Column(String(50), nullable=False)
     product_to_order = relationship('OrderDetail', back_populates="product")
     product_to_storage = relationship('StorageHasProducts', back_populates='products')
     relationship('Productline')  # , back_populates='n2')
-    # productline = relationship("Productline", backref="productlines")
 
 
 class Productline(Base):
     __tablename__ = "product_description_table"
+
     desc_count = Column(Integer, primary_key=True, autoincrement=True)
     product_description = Column(String(50))
-    # productline = Column(String(50))
     text_description = Column(String(5000), nullable=True)
     html_description = Column(MEDIUMTEXT)
     image = Column(MEDIUMBLOB)
     products_description_id = Column(Integer, ForeignKey('products.product_id'))
     relationship('Product')
-    # n2 = relationship('Productline', back_populates='n1')
 
 
 class Staff(Base):
@@ -202,7 +184,6 @@ class Staff(Base):
     reports_to = Column(Integer, ForeignKey('staffs.id_staff'))
     parents = relationship('StaffHasCustomer', back_populates='children')
     child = relationship('StaffHasCpsOrder', back_populates='staffs')
-    # staffstaff = relationship('Staff', back_populates='staffstaff')
 
 
 class Storage(Base):

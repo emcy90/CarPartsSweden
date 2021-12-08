@@ -10,7 +10,6 @@ def main():
         'contact_person_name': 'Sven Svensson',
         'contact_person_phone': '+46764538904',
         'contact_person_email': 'sven.sven@gmail.com'
-
     }
 
     create_manufacture(manufacture)

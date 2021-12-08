@@ -5,7 +5,6 @@ def main():
     staff_has_customer = {
         'staffs_id_staff': '',
         'customers_id_customers': ''
-
     }
 
     create_staff_has_customer(staff_has_customer)

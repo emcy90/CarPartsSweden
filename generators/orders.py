@@ -9,7 +9,6 @@ def main():
         'status': 'NOK',
         'comments': 'Customer has not paid hes last bill.',
         'customers_id_customers': '1'
-
     }
 
     create_order(order)

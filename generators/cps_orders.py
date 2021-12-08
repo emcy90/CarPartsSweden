@@ -8,8 +8,7 @@ def main():
         'shipping_date': '',
         'status': '',
         'comments': '',
-        'order_no_comments': '',
-
+        'order_no_comments': ''
     }
 
     create_cps_orders(cps_orders)

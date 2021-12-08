@@ -6,7 +6,6 @@ def main():
         'storage_name': '',
         'storage_quantity': '',
         'storage_city': ''
-
     }
 
     create_storage(storage)

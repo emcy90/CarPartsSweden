@@ -7,7 +7,6 @@ def main():
         'price_each': '1500',
         'orders_order_no': '2',
         'products_product_id': '3'
-
     }
 
     create_order_details(orderdetails)

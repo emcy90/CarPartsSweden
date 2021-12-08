@@ -9,7 +9,6 @@ def main():
         'phone': '',
         'reports_to': '',
         'store': ''
-
     }
 
     create_staff(staff)

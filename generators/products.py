@@ -8,7 +8,6 @@ def main():
         'inprice': '1000',
         'outprice': '2000',
         'productlines': 'Saab'
-
     }
 
     create_product(product)

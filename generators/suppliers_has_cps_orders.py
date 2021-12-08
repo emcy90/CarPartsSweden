@@ -5,7 +5,6 @@ def main():
     suppliers_has_cps_order = {
         'suppliers_supplier_id': '',
         'cps_orders_internal_order_no': ''
-
     }
 
     create_suppliers_has_cps_order(suppliers_has_cps_order)
