@@ -7,11 +7,15 @@ def main():
     while True:
         menu_pick = menu()
         if menu_pick == "1":
-            create_customer()
+            print("fake customer stuff")
+            # create_customer()
         elif menu_pick == "2":
-            pass
-        elif menu_pick == "3":
-            get_records_by_order_no()
+            print("printing BS about customer")
+        elif menu_pick == "4":
+            print("fake order stuff")
+            # get_records_by_order_no()
+        elif menu_pick == "5":
+            print("pretend shit about seller")
         elif menu_pick == "9":
             break
 
