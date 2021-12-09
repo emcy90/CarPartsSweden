@@ -8,7 +8,7 @@ def main():
         menu_pick = menu()
         if menu_pick == "1":
             print("fake customer stuff")
-            # create_customer()
+            customer_menu()
         elif menu_pick == "2":
             print("printing BS about customer")
             show_all()
