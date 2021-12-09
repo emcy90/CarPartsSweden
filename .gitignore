@@ -5,3 +5,5 @@ db_config.py
 db_config_mongo.py
 docker-compose.yml
 *.pyc
+MongoDB/docker-compose.yml
+MongoDB/dll/db/db_config_mongo.py
