@@ -1,4 +1,4 @@
-from controllers.staff_controller import create_staff
+from app.bll.staff_controller import create_staff
 
 
 def main():

@@ -1,29 +1,27 @@
 import time
 
-from controllers.cps_orders_controller import create_cps_orders, get_cps_orders_by_id
-from controllers.customer_car_controller import create_car, get_customer_cars_by_reg_no
-from controllers.customer_controller import create_customer, get_customer_by_id
-from controllers.manufacturer_controller import create_manufacture, get_manufacturer_by_id
-from controllers.manufacturers_has_cps_orders_controller import create_manufacturer_has_cps_order, \
+from app.bll.cps_orders_controller import create_cps_orders, get_cps_orders_by_id
+from app.bll import create_car, get_customer_cars_by_reg_no
+from app.bll import create_customer
+from app.bll import create_manufacture, get_manufacturer_by_id
+from app.bll import create_manufacturer_has_cps_order, \
     get_manufacturer_has_cps_order_by_id
-from controllers.order_controller import create_order, get_order_by_no
-from controllers.orderdetails_controller import create_order_details, get_order_details_by_id
-from controllers.payment_controller import create_payment, get_payment_by_no
-from controllers.product_controller import get_product_by_id, create_product
-from controllers.productline_controller import create_productline, get_productline_by_id
-from controllers.staff_controller import create_staff, get_customer_by_id
-from controllers.staff_has_customers_controller import create_staff_has_customer, get_staff_has_customer_by_id
-from controllers.staffs_has_cps_orders_controller import create_staff_has_cps_order, get_staff_has_cps_order_by_id
-from controllers.storage_controller import create_storage, get_storage_by_id
-from controllers.storage_has_products_controller import create_storage_has_product, get_storage_has_products_by_id
-from controllers.supplier_controller import create_supplier, get_supplier_by_id
-from controllers.suppliers_has_cps_orders_controller import create_suppliers_has_cps_order, \
-    get_suppliers_has_cps_orders_by_id
-from data.repository.customer_repository import get_customer_by_id
-from data.repository.order_repository import get_order_by_id
-from data.repository.staff_repository import get_staff_by_id
-from data.repository.suppliers_has_cps_orders_repository import get_suppliers_has_cps_order_by_id, \
-    cps_orders_internal_order_no
+from app.bll import create_order
+from app.bll.orderdetails_controller import create_order_details, get_order_details_by_id
+from app.bll import create_payment, get_payment_by_no
+from app.bll.product_controller import get_product_by_id, create_product
+from app.bll.productline_controller import create_productline, get_productline_by_id
+from app.bll.staff_controller import create_staff
+from app.bll import create_staff_has_customer, get_staff_has_customer_by_id
+from app.bll.staffs_has_cps_orders_controller import create_staff_has_cps_order, get_staff_has_cps_order_by_id
+from app.bll import create_storage, get_storage_by_id
+from app.bll import create_storage_has_product, get_storage_has_products_by_id
+from app.bll.supplier_controller import create_supplier, get_supplier_by_id
+from app.bll.suppliers_has_cps_orders_controller import create_suppliers_has_cps_order
+from app.dll.repository.customer_repository import get_customer_by_id
+from app.dll import get_order_by_id
+from app.dll import get_staff_by_id
+from app.dll import get_suppliers_has_cps_order_by_id
 
 from generators.cps_object import CpsCreator
 

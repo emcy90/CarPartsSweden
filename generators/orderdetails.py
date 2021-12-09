@@ -1,4 +1,4 @@
-from controllers.orderdetails_controller import create_order_details
+from app.bll.orderdetails_controller import create_order_details
 
 
 def main():

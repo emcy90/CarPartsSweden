@@ -1,4 +1,4 @@
-from controllers.manufacturer_controller import create_manufacture
+from app.bll import create_manufacture
 
 
 def main():

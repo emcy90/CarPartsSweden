@@ -1,4 +1,4 @@
-from controllers.staffs_has_cps_orders_controller import create_staff_has_cps_order
+from app.bll.staffs_has_cps_orders_controller import create_staff_has_cps_order
 
 
 def main():

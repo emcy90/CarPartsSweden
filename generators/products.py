@@ -1,4 +1,4 @@
-from controllers.product_controller import create_product
+from app.bll.product_controller import create_product
 
 
 def main():

@@ -1,4 +1,4 @@
-from controllers.supplier_controller import create_supplier
+from app.bll.supplier_controller import create_supplier
 
 
 def main():

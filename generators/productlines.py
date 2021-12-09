@@ -1,5 +1,5 @@
-from data.db import session
-from data.models import Productline
+from app.dll import session
+from app.dll import Productline
 
 
 def get_productline_by_id():

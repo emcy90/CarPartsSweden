@@ -1,4 +1,4 @@
-from controllers.staff_has_customers_controller import create_staff_has_customer
+from app.bll import create_staff_has_customer
 
 
 def main():

@@ -121,7 +121,7 @@ class GeneratorSetup:
         # *************************************************#
 
     def load_first_name(self):
-        self.f = open('random_generators/data_files/firstname.txt', 'r',
+        self.f = open('fake_data/data_files/firstname.txt', 'r',
                       encoding="utf-8")
         self.line_row = self.f.readlines()
         self.f.close()
@@ -134,7 +134,7 @@ class GeneratorSetup:
         return self.big_first_name_list
 
     def load_last_name(self):
-        self.f = open('random_generators/data_files/lastname.txt', 'r',
+        self.f = open('fake_data/data_files/lastname.txt', 'r',
                       encoding="utf-8")
         self.line_row = self.f.readlines()
         self.f.close()
@@ -147,7 +147,7 @@ class GeneratorSetup:
         return self.big_last_name_list
 
     def load_street_adress(self):
-        self.f = open('random_generators/data_files/gatuadress.txt', 'r',
+        self.f = open('fake_data/data_files/gatuadress.txt', 'r',
                       encoding="utf-8")
         self.line_row = self.f.readlines()
         self.f.close()
@@ -160,7 +160,7 @@ class GeneratorSetup:
         return self.big_gatuadress_list
 
     def load_house_numbers(self):
-        self.f = open('random_generators/data_files/house_numbers.txt', 'r',
+        self.f = open('fake_data/data_files/house_numbers.txt', 'r',
                       encoding="utf-8")
         self.line_row = self.f.readlines()
         self.f.close()
@@ -173,7 +173,7 @@ class GeneratorSetup:
         return self.big_house_number_list
 
     def load_zip_codes(self):
-        self.f = open('random_generators/data_files/zip_codes.txt', 'r',
+        self.f = open('fake_data/data_files/zip_codes.txt', 'r',
                       encoding="utf-8")
         self.line_row = self.f.readlines()
         self.f.close()
@@ -186,7 +186,7 @@ class GeneratorSetup:
         return self.big_zip_code_list
 
     def load_citys(self):
-        self.f = open('random_generators/data_files/city.txt', 'r',
+        self.f = open('fake_data/data_files/city.txt', 'r',
                       encoding="utf-8")
         self.line_row = self.f.readlines()
         self.f.close()
@@ -199,7 +199,7 @@ class GeneratorSetup:
         return self.big_city_list
 
     def load_country(self):
-        self.f = open('random_generators/data_files/country.txt', 'r',
+        self.f = open('fake_data/data_files/country.txt', 'r',
                       encoding="utf-8")
         self.line_row = self.f.readlines()
         self.f.close()
@@ -212,7 +212,7 @@ class GeneratorSetup:
         return self.big_country_list
 
     def load_states(self):
-        self.f = open('random_generators/data_files/states.txt', 'r',
+        self.f = open('fake_data/data_files/states.txt', 'r',
                       encoding="utf-8")
         self.line_row = self.f.readlines()
         self.f.close()
@@ -225,7 +225,7 @@ class GeneratorSetup:
         return self.big_states_list
 
     def load_company(self):
-        self.f = open('random_generators/data_files/company.txt', 'r',
+        self.f = open('fake_data/data_files/company.txt', 'r',
                       encoding="utf-8")
         self.line_row = self.f.readlines()
         self.f.close()
@@ -238,7 +238,7 @@ class GeneratorSetup:
         return self.big_company_list
 
     def load_phone(self):
-        self.f = open('random_generators/data_files/phone_numbers.txt', 'r',
+        self.f = open('fake_data/data_files/phone_numbers.txt', 'r',
                       encoding="utf-8")
         self.line_row = self.f.readlines()
         self.f.close()
@@ -374,7 +374,7 @@ class GeneratorSetup:
     def cars_and_their_manufacturers(self, car_list_split, car_manufacturer_list):
         self.cars_list = car_list_split
         self.manufacturers_list = car_manufacturer_list
-        self.f = open('random_generators/data_files/manufacturers.txt', 'r',
+        self.f = open('fake_data/data_files/manufacturers.txt', 'r',
                       encoding="utf-8")
         self.line_row = self.f.readlines()
         self.f.close()
@@ -391,7 +391,7 @@ class GeneratorSetup:
         return manufacturer
 
     def load_color(self):
-        self.f = open('random_generators/data_files/colors.txt', 'r',
+        self.f = open('fake_data/data_files/colors.txt', 'r',
                       encoding="utf-8")
         self.line_row = self.f.readlines()
         self.f.close()
@@ -408,7 +408,7 @@ class GeneratorSetup:
         return color
 
     def load_car_model(self):
-        self.f = open('random_generators/data_files/car_model.txt', 'r',
+        self.f = open('fake_data/data_files/car_model.txt', 'r',
                       encoding="utf-8")
         self.line_row = self.f.readlines()
         self.f.close()
@@ -425,7 +425,7 @@ class GeneratorSetup:
         return car_model
 
     def load_year_model(self):
-        self.f = open('random_generators/data_files/year_model.txt', 'r',
+        self.f = open('fake_data/data_files/year_model.txt', 'r',
                       encoding="utf-8")
         self.line_row = self.f.readlines()
         self.f.close()
@@ -442,7 +442,7 @@ class GeneratorSetup:
         return year_model
 
     def load_reg_no(self):
-        self.f = open('random_generators/data_files/reg_no.txt', 'r',
+        self.f = open('fake_data/data_files/reg_no.txt', 'r',
                       encoding="utf-8")
         self.line_row = self.f.readlines()
         self.f.close()
@@ -459,7 +459,7 @@ class GeneratorSetup:
         return reg_no
 
     def load_date(self):
-        self.f = open('random_generators/data_files/date.txt', 'r',
+        self.f = open('fake_data/data_files/date.txt', 'r',
                       encoding="utf-8")
         self.line_row = self.f.readlines()
         self.f.close()
@@ -485,7 +485,7 @@ class GeneratorSetup:
         return self.pay
 
     def load_status(self):
-        self.f = open('random_generators/data_files/status.txt', 'r',
+        self.f = open('fake_data/data_files/status.txt', 'r',
                       encoding="utf-8")
         self.line_row = self.f.readlines()
         self.f.close()
@@ -506,7 +506,7 @@ class GeneratorSetup:
         return self.rnd_x
 
     def load_productline(self):
-        self.f = open('random_generators/data_files/productline.txt', 'r',
+        self.f = open('fake_data/data_files/productline.txt', 'r',
                       encoding="utf-8")
         self.line_row = self.f.readlines()
         self.f.close()
@@ -519,7 +519,7 @@ class GeneratorSetup:
         return self.productline_list
 
     def load_text_description(self):
-        self.f = open('random_generators/data_files/text_description.txt', 'r',
+        self.f = open('fake_data/data_files/text_description.txt', 'r',
                       encoding="utf-8")
         self.line_row = self.f.readlines()
         self.f.close()
@@ -532,7 +532,7 @@ class GeneratorSetup:
         return self.text_description_list
 
     def load_html_description(self):
-        self.f = open('random_generators/data_files/html_description.txt', 'r',
+        self.f = open('fake_data/data_files/html_description.txt', 'r',
                       encoding="utf-8")
         self.line_row = self.f.readlines()
         self.f.close()
@@ -545,7 +545,7 @@ class GeneratorSetup:
         return self.html_description_list
 
     def load_image(self):
-        self.f = open('random_generators/data_files/image.txt', 'r',
+        self.f = open('fake_data/data_files/image.txt', 'r',
                       encoding="utf-8")
         self.line_row = self.f.readlines()
         self.f.close()
@@ -559,7 +559,7 @@ class GeneratorSetup:
         return self.image  # _list
 
     def load_product_name(self):
-        self.f = open('random_generators/data_files/products.txt', 'r',
+        self.f = open('fake_data/data_files/products.txt', 'r',
                       encoding="utf-8")
         self.line_row = self.f.readlines()
         self.f.close()
@@ -572,7 +572,7 @@ class GeneratorSetup:
         return self.product_list
 
     def load_product_description(self):
-        self.f = open('random_generators/data_files/product_description.txt', 'r',
+        self.f = open('fake_data/data_files/product_description.txt', 'r',
                       encoding="utf-8")
         self.line_row = self.f.readlines()
         self.f.close()

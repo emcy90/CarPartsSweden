@@ -1,4 +1,4 @@
-from controllers.cps_orders_controller import create_cps_orders
+from app.bll.cps_orders_controller import create_cps_orders
 
 
 def main():

@@ -1,0 +1,9 @@
+from app.dll.repository import manufacturers_has_cps_orders_repository
+
+
+def get_manufacturer_has_cps_order_by_id():
+    return manufacturers_has_cps_orders_repository.get_manufacturer_has_cps_order_by_id()
+
+
+def create_manufacturer_has_cps_order(manufacturer_has_cps_order):
+    manufacturers_has_cps_orders_repository.create_manufacturer_has_cps_order(manufacturer_has_cps_order)

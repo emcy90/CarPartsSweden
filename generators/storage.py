@@ -1,4 +1,4 @@
-from controllers.storage_controller import create_storage
+from app.bll import create_storage
 
 
 def main():

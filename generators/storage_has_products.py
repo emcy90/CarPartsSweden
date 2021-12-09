@@ -1,4 +1,4 @@
-from controllers.storage_has_products_controller import create_storage_has_product
+from app.bll import create_storage_has_product
 
 
 def main():

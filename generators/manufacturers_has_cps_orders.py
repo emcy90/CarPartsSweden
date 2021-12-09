@@ -1,5 +1,5 @@
-from data.db import session
-from data.models import ManufacturerHasCpsOrder
+from app.dll import session
+from app.dll import ManufacturerHasCpsOrder
 
 
 # cpsab.manufacturers_has_cps_orders.manufacturers_manufacturer_id

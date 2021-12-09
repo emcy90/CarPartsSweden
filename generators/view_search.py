@@ -1,6 +1,4 @@
-from data.models import Storage
-from data.repository.view_search_repository import search_view_by_id, search_product_view_by_id
-from generators import storage
+from app.dll.repository.view_search_repository import search_view_by_id, search_product_view_by_id
 
 
 # def __repr__(self):

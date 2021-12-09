@@ -1,4 +1,4 @@
-from controllers.suppliers_has_cps_orders_controller import create_suppliers_has_cps_order
+from app.bll.suppliers_has_cps_orders_controller import create_suppliers_has_cps_order
 
 
 def main():
