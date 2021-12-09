@@ -3,11 +3,11 @@ def menu():
     print("Welcome to the APP")
     print("*" * 50)
     print()
-    print("1. Add customer")
-    print("2. Show Customer")
-    print("3. Delete Customer")
-    print("4. Show order")
-    print("5. show seller")
+    print("1. Customer menu")
+    print("2. Show order")
+    print("3. ")
+    print("4. ")
+    print("5. ")
     print()
     print("9. Quit")
     while True:
@@ -16,7 +16,3 @@ def menu():
             break
         print("Valid options are 1, 2, 3, 4, 5 or 9")
     return pick
-
-
-def customer_menu():
-    pass

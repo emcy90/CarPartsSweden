@@ -1,4 +1,4 @@
-from app.bll.customer_controller import create_customer
+from app.bll.customer_controller import create_customer, show_all_customer, delete_customer
 
 
 def customer_menu():
@@ -6,13 +6,16 @@ def customer_menu():
     while running:
         print('========== Customer Menu ==========')
         print()
-        print("1. view customer")
-        print('2. view all customers')
-        print('3. add customer')
+        print("1. View customer")
+        print('2. View all customers')
+        print('3. Add customer')
+        print('4. Delete customer')
+        # print('5. Go back to main menu')
 
         input_choice = input("> ")
         if input_choice == "1":
             pass
+            running = False
 
         elif input_choice == "2":
             show_all_customer()
@@ -20,6 +23,7 @@ def customer_menu():
             # # alla customers
             # for customer in customers:
             #     print(customer)
+            running = False
 
         elif input_choice == "3":
             first_name = str(input("First Name: "))
@@ -44,3 +48,12 @@ def customer_menu():
             single_customer = dict(zip(customer_key_list, create_single_customer))
 
             create_customer(single_customer)
+            running = False
+
+        elif input_choice == "4":
+            del_customer = 835 # input("Delete customer by ID: ")
+            # customer = str(input(f"Are you sure you want to delete {}?"))
+            delete_customer(del_customer)
+            print(f'customer deleted: deleted')
+
+

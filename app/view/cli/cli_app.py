@@ -7,7 +7,7 @@ def main():
     while True:
         menu_pick = menu()
         if menu_pick == "1":
-            print("fake customer stuff")
+            print("customer menu")
             customer_menu()
         elif menu_pick == "2":
             print("Show order")
