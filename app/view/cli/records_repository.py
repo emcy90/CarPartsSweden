@@ -6,7 +6,6 @@ def get_records_by_name(_name):
     customer = session.query(Customer).filter(Customer.first_name == _name).all()
     customer_clean_list = []
     for no in customer:
-
         customer_clean_list.append(no)
     print(customer_clean_list)
     return customer_clean_list
@@ -27,13 +26,6 @@ def get_records_by_staff_has_customer():
     for no in staff_has_customer:
         staff_has_customer_clean_list.append(no[0])
     return staff_has_customer_clean_list
-
-
-def show_records_by_order_no():
-    #records = Records()
-    #session.add(records)
-    #session.commit()
-    pass
 
 
 def get_all_records():
