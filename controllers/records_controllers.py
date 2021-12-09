@@ -5,8 +5,8 @@ def get_records_by_name(name):
     return records_repository.get_records_by_name(name)
 
 
-def get_records_by_order_no():
-    return records_repository.get_records_by_order_no()
+def get_records_by_order_no(order):
+    return records_repository.get_records_by_order_no(order)
 
 
 def get_records_by_staff_has_customer():

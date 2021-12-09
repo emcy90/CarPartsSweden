@@ -2,17 +2,18 @@ from data.db import session
 from data.models import Customer, Order, StaffHasCustomer
 
 
-def get_records_by_name(name):
-    customer = session.query(Customer).filter_by(first_name=name).all()
+def get_records_by_name(_name):
+    customer = session.query(Customer).filter(Customer.first_name == _name).all()
     customer_clean_list = []
     for no in customer:
-        customer_clean_list.append((no[0]))
+
+        customer_clean_list.append(no)
     print(customer_clean_list)
     return customer_clean_list
 
 
-def get_records_by_order_no(order):
-    order = session.query(Order.order_no).filter.first()
+def get_records_by_order_no(_order):
+    order = session.query(Order).filter(Order.order_no == _order).first()
     order_clean_list = []
     for no in order:
         order_clean_list.append(no[0])

@@ -20,6 +20,16 @@ def show_all():
 # def delete_record():
 #    pass
 
+def show_order():
+    print("Input order no: ")
+    order = input()
+    records = get_records_by_order_no(order)
+    print("***********")
+    print("All Records")
+    print("***********")
+    for record in records:
+        print(record)
+
 if __name__ == '__main__':
     show_all()
 

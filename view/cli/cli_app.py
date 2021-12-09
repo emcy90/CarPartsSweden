@@ -11,9 +11,10 @@ def main():
             # create_customer()
         elif menu_pick == "2":
             print("printing BS about customer")
+            show_all()
         elif menu_pick == "4":
             print("fake order stuff")
-            # get_records_by_order_no()
+            show_order()
         elif menu_pick == "5":
             print("pretend shit about seller")
         elif menu_pick == "9":
