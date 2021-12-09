@@ -2,8 +2,9 @@ from app.bll.customer_controller import create_customer
 
 
 def customer_menu():
-    while True:
-        print('Customer Menu')
+    running = True
+    while running:
+        print('========== Customer Menu ==========')
         print()
         print("1. view customer")
         print('2. view all customers')
@@ -36,8 +37,8 @@ def customer_menu():
             customer_key_list = ['first_name', 'last_name', 'company_name', 'phone', 'adress1', 'adress2',
                                  'city', 'zip_code', 'country', 'sales_representant', 'states']
 
-            create_single_customer = {first_name, last_name, company_name, phone, adress1, adress2, city, zip_code,
-                                      country, sales_representant, states}
+            create_single_customer = [first_name, last_name, company_name, phone, adress1, adress2, city, zip_code,
+                                      country, sales_representant, states]
 
             # create_customer_dict(customer_key_list, create_single_customer):
             single_customer = dict(zip(customer_key_list, create_single_customer))
