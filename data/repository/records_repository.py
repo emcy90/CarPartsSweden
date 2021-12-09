@@ -13,10 +13,10 @@ def get_records_by_name(_name):
 
 
 def get_records_by_order_no(_order):
-    order = session.query(Order).filter(Order.order_no == _order).first()
+    order = session.query(Order).filter(Order.order_no == _order).all()
     order_clean_list = []
     for no in order:
-        order_clean_list.append(no[0])
+        order_clean_list.append(no)
     print(order_clean_list)
     return order_clean_list
 
