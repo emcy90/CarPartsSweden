@@ -46,6 +46,29 @@ def show_all_customers():
     #     print('*******************************************************************')
 
 
+def delete_customer(xxx):
+    del_customer2 = session.query(Customer).filter(Customer.id_customers == xxx).all()
+    # staff = session.query(StaffHasStaff).filter(StaffHasStaff.staffs_id_staff == _id).first()
+    print(del_customer2)
+    # our_view_storage_and_product_view(delete_customer)
+    # customer = customer_menu(del_customer)
+    print(del_customer2.id_customers)
+    # print(f'Customer id: {Customer.id_customers}, First Name: {Customer.first_name},'
+    #       f', Last Name: {Customer.last_name}, Company Name: {Customer.company_name},'
+    #       f' Phone: {Customer.phone}, Address 1: {Customer.adress1},'
+    #       f' Adress 2: {Customer.adress2}, City: {Customer.city},'
+    #       f' Zip Code: {Customer.zip_code}, Country: {Customer.country},'
+    #       f' Sales_representant: {Customer.sales_representant}, State: {Customer.state}')
+    # print(data)
+    xx = str(input("Do you want to delete this customer? Please type y for yes if you want to proceed"))
+
+    if xx[0] == "y":
+        xy = session.query(Customer).filter(Customer.del_customer.id_customers == del_customer2.id_customers).delete()
+    else:
+        menu()
+
+    # print(f'Customer id: {customers.id_customers} First name: {customers.first_name} Last name: {customers.last_name}')
+
 
 def create_customer(customer):
     customer = Customer(**customer)

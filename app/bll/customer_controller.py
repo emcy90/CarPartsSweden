@@ -5,5 +5,13 @@ def get_customer_by_id():
     return customer_repository.get_customer_by_id()
 
 
+def show_all_customer():
+    return customer_repository.show_all_customers()
+
+
+def delete_customer(del_customer):
+    return customer_repository.delete_customer(del_customer)
+
+
 def create_customer(customer):
     customer_repository.create_customer(customer)

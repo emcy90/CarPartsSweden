@@ -15,7 +15,7 @@ def customer_menu():
             pass
 
         elif input_choice == "2":
-            pass
+            show_all_customer()
             # customer = get_all_customers()  # skapa en funktion i controllern som pratar med customer repo som hämtar
             # # alla customers
             # for customer in customers:

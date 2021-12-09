@@ -10,8 +10,9 @@ def main():
             print("fake customer stuff")
             customer_menu()
         elif menu_pick == "2":
-            print("printing BS about customer")
-            show_all()
+            print("Show order")
+            show_order()
+            # show_all_customers()
         elif menu_pick == "4":
             print("fake order stuff")
             show_order()
