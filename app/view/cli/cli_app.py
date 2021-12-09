@@ -1,3 +1,4 @@
+from app.view.cli.customer_menu import customer_menu
 from app.view.cli.main_menu import menu
 from app.view.cli.records import *
 

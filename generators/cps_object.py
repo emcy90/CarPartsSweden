@@ -197,7 +197,6 @@ class CpsCreator(GeneratorSetup):
         all_staffs_staffs_ids = []
         all_suppliers_cps_orders_internal_nos_nos = []
 
-
         # cps_orders_internal_order_no = ""
         storage_has_products = ""
         storage_storage_id = 1
@@ -223,7 +222,6 @@ class CpsCreator(GeneratorSetup):
         manufacturers_manufacturer_id = 0
         all_staffs_cps_orders_internal_order_no = []
         all_storage_products_product_ids = []
-
 
         # class selfs:
 
@@ -487,7 +485,6 @@ class CpsCreator(GeneratorSetup):
         self.my_sales_representant = self.generator.create_sales_representant()
         self.state = self.generator.create_states()
 
-
     # HERE GOES ALL ASSEMBLE FUNCTIONS
     def assemble_car_object(self, all_cars_ids):
         self.all_cars_ids = get_customer_cars_by_reg_no()
@@ -541,13 +538,11 @@ class CpsCreator(GeneratorSetup):
         # THIS ONE IS SPECIAL, HAS TO BE EXACT THE SAME IN THE PRODUCTS TABLE
         # OTHERWISE ITS GOING TO CRASH
 
-
     def assemble_products_object(self):
         self.product_name = self.generator.random_product_name()
         self.product_description = self.generator.random_product_descriptions()
         self.inprice = self.generator.random_inprice()
         self.outprice = self.generator.random_outprice()
-
 
     def assemble_orderdetails_object(self):
         real_product_id_and_order_no_list = []
@@ -924,7 +919,6 @@ class CpsCreator(GeneratorSetup):
                     self.cps_orders_internal_order_no = y
                     loop = False
 
-
     def assemble_staffs_has_customers_object(self):
         real_staff_and_customer_id_list = []
 
@@ -984,7 +978,6 @@ class CpsCreator(GeneratorSetup):
                     self.staffs_id_staff = x
                     self.customers_id_customers = y
                     loop = False
-
 
     # HERE GOES ALL DICT CREATING FUNCTIONS
 

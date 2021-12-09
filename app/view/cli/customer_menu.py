@@ -14,10 +14,11 @@ def customer_menu():
             pass
 
         elif input_choice == "2":
-            customer = get_all_customers() # skapa en funktion i controllern som pratar med customer repo som hämtar
-        # alla customers
-            for customer in customers:
-                print(customer)
+            pass
+            # customer = get_all_customers()  # skapa en funktion i controllern som pratar med customer repo som hämtar
+            # # alla customers
+            # for customer in customers:
+            #     print(customer)
 
         elif input_choice == "3":
             first_name = str(input("First Name: "))
@@ -31,10 +32,14 @@ def customer_menu():
             country = str(input("Country: "))
             sales_representant = str(input("Sales Representant: "))
             states = str(input("State: "))
+
+            customer_key_list = ['first_name', 'last_name', 'company_name', 'phone', 'adress1', 'adress2',
+                                 'city', 'zip_code', 'country', 'sales_representant', 'states']
+
             create_single_customer = {first_name, last_name, company_name, phone, adress1, adress2, city, zip_code,
-                                country, sales_representant, states}
+                                      country, sales_representant, states}
 
-            create_customer(create_single_customer)
+            # create_customer_dict(customer_key_list, create_single_customer):
+            single_customer = dict(zip(customer_key_list, create_single_customer))
 
-
-
+            create_customer(single_customer)

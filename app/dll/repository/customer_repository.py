@@ -18,15 +18,13 @@ def get_customer_by_id():
 def show_all_customers():
     show_customers = session.query(Customer.id_customers).all()
 
-
-
-
     print(f'Customer id: {show_customers.id_customers}, First name: {show_customers.first_name},'
-            f' Last name: {show_customers.last_name}, Company name: {show_customers.company_name},'
-            f' Phone: {produkten.product_id}, Adress 2: {produkten.product_description},'
-            f' City: {show_customers.last_name}, Zipcode: {show_customers.company_name}',
+          f' Last name: {show_customers.last_name}, Company name: {show_customers.company_name},'
+          f' Phone: {show_customers.phone}, Adress 2: {show_customers.product_description},'
+          f' City: {show_customers.city}, Zipcode: {show_customers.zip_code},'
+          f' Country: {show_customers.country}, sales_representant: {show_customers.sales_representant},'
+          f' State: {show_customers.states}')
 
-          )
 
 def create_customer(customer):
     customer = Customer(**customer)
