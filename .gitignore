@@ -2,5 +2,6 @@ venv/
 .idea/
 __pycache__/
 db_config.py
+db_config_mongo.py
 docker-compose.yml
 *.pyc
