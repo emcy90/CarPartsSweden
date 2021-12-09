@@ -30,3 +30,5 @@ def create_staff_has_customer(staff_has_customer):
     staff_has_customer = StaffHasCustomer(**staff_has_customer)
     session.add(staff_has_customer)
     session.commit()
+    print()
+    print('Added staff has customer successfully!')

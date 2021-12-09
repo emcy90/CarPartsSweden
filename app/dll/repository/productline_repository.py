@@ -15,4 +15,4 @@ def create_productline(productline):
     session.add(productline)
     session.commit()
     print()
-    print('Added productline successfully!!!')
+    print('Added productline successfully!')

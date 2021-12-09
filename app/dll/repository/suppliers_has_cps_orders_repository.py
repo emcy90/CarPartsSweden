@@ -33,3 +33,5 @@ def create_suppliers_has_cps_order(supplier_has_cps_order):
     supplier_has_cps_order = SupplierHasCpsOrder(**supplier_has_cps_order)
     session.add(supplier_has_cps_order)
     session.commit()
+    print()
+    print('Added supplier has cps order successfully!')

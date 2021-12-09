@@ -22,3 +22,5 @@ def create_manufacturer_has_cps_order(manufacturer_has_cps_order):
     manufacturer_has_cps_order = ManufacturerHasCpsOrder(**manufacturer_has_cps_order)
     session.add(manufacturer_has_cps_order)
     session.commit()
+    print()
+    print('Added manufacturer has cps order successfully!')

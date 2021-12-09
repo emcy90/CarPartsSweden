@@ -22,3 +22,5 @@ def create_staff_has_cps_order(staff_has_cps_order):
     staff_has_cps_order = StaffHasCpsOrder(**staff_has_cps_order)
     session.add(staff_has_cps_order)
     session.commit()
+    print()
+    print('Added staff has cps order successfully!')

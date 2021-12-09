@@ -14,3 +14,5 @@ def create_staff(staff):
     staff = Staff(**staff)
     session.add(staff)
     session.commit()
+    print()
+    print('Added staff successfully!')

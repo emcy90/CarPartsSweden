@@ -22,3 +22,5 @@ def create_storage_has_product(storage_has_product):
     storage_has_product = StorageHasProducts(**storage_has_product)
     session.add(storage_has_product)
     session.commit()
+    print()
+    print('Added storage has product successfully!')

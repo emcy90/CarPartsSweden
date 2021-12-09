@@ -1,29 +1,38 @@
 import random
 
 from app.bll.cps_orders_controller import get_cps_orders_by_id
-from app.bll import get_customer_cars_by_reg_no
-from app.bll import get_customer_by_id
-from app.bll import get_manufacturer_by_id
-from app.bll import get_manufacturer_has_cps_order_by_id
+from app.bll.customer_car_controller import get_customer_cars_by_reg_no
+from app.bll.customer_controller import get_customer_by_id
+from app.bll.manufacturer_controller import get_manufacturer_by_id
+from app.bll.manufacturers_has_cps_orders_controller import get_manufacturer_has_cps_order_by_id
 from app.bll.orderdetails_controller import get_order_details_by_id
-from app.bll import get_payment_by_no
+from app.bll.payment_controller import get_payment_by_no
 from app.bll.product_controller import get_product_by_id
 from app.bll.productline_controller import get_productline_by_id
-from app.bll import get_staff_has_customer_by_id
+from app.bll.staff_has_customers_controller import get_staff_has_customer_by_id
 from app.bll.staffs_has_cps_orders_controller import get_staff_has_cps_order_by_id
-from app.bll import get_storage_by_id
-from app.bll import get_storage_has_products_by_id
+from app.bll.storage_controller import get_storage_by_id
+from app.bll.storage_has_products_controller import get_storage_has_products_by_id
 from app.bll.supplier_controller import get_supplier_by_id
-from app.dll import get_manufacturer_cps_orders_internal_order_no
-from app.dll import get_order_by_id
-from app.dll import get_products_product_by_id
-from app.dll import get_staff_by_id
-from app.dll import get_staffs_cps_orders_internal_order_no
-from app.dll import get_customers_id_customers_by_id, get_staffs_id_staffs
-from app.dll import get_storage_products_product_by_id
-from app.dll import get_suppliers_has_cps_order_by_id, \
-    get_suppliers_cps_orders_internal_order_no
+# from app.dll. import get_manufacturer_cps_orders_internal_order_no
+# from app.dll import get_order_by_id
+# from app.dll import get_products_product_by_id
+# from app.dll import get_staff_by_id
+# from app.dll import get_staffs_cps_orders_internal_order_no
+# from app.dll import get_customers_id_customers_by_id, get_staffs_id_staffs
+# from app.dll import get_storage_products_product_by_id
+# from app.dll import get_suppliers_has_cps_order_by_id, \
+#     get_suppliers_cps_orders_internal_order_no
 # from dll.repository.suppliers_has_cps_orders_repository import get_suppliers_has_cps_orders_by_id
+from app.dll.repository.manufacturers_has_cps_orders_repository import get_manufacturer_cps_orders_internal_order_no
+from app.dll.repository.order_repository import get_order_by_id
+from app.dll.repository.orderdetails_repository import get_products_product_by_id
+from app.dll.repository.staff_repository import get_staff_by_id
+from app.dll.repository.staffs_has_cps_orders_repository import get_staffs_cps_orders_internal_order_no
+from app.dll.repository.staffs_has_customers_repository import get_customers_id_customers_by_id, get_staffs_id_staffs
+from app.dll.repository.storage_has_products_repository import get_storage_products_product_by_id
+from app.dll.repository.suppliers_has_cps_orders_repository import get_suppliers_has_cps_order_by_id, \
+    get_suppliers_cps_orders_internal_order_no
 from generators.generator_setup import GeneratorSetup
 
 

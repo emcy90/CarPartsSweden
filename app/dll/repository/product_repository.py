@@ -19,3 +19,5 @@ def create_product(product):
     product = Product(**product)
     session.add(product)
     session.commit()
+    print()
+    print('Added product successfully!')

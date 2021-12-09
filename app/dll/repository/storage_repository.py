@@ -19,3 +19,5 @@ def create_storage(storage):
     storage = Storage(**storage)
     session.add(storage)
     session.commit()
+    print()
+    print('Added storage successfully!')

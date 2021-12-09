@@ -23,4 +23,4 @@ def create_order_details(orderdetails):
     session.add(order_details)
     session.commit()
     print()
-    print('Added orderdetails successfully!!')
+    print('Added orderdetails successfully!')

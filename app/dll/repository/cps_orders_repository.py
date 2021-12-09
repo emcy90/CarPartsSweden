@@ -14,3 +14,5 @@ def create_cps_orders(cps_orders):
     cps_orders = CpsOrder(**cps_orders)
     session.add(cps_orders)
     session.commit()
+    print()
+    print('Added cps order successfully!')

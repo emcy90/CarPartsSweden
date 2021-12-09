@@ -14,3 +14,5 @@ def create_manufacture(manufacturers):
     manufacture = Manufacture(**manufacturers)
     session.add(manufacture)
     session.commit()
+    print()
+    print('Added manufacturer successfully!')
