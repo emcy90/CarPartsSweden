@@ -155,8 +155,10 @@ class Product(Base):
     product_description = Column(Text, nullable=False)
     inprice = Column(DECIMAL(10, 2), nullable=False)
     outprice = Column(DECIMAL(10, 2), nullable=False)
-    product_to_order = relationship('OrderDetail', back_populates="product")
-    product_to_storage = relationship('StorageHasProducts', back_populates='products')
+    product_to_order = relationship('OrderDetail', back_populates="product",
+                                    cascade="all, delete, delete-orphan")
+    product_to_storage = relationship('StorageHasProducts', back_populates='products',
+                                      cascade="all, delete, delete-orphan")
     relationship('Productline')  # , back_populates='n2')
 
 
@@ -182,8 +184,10 @@ class Staff(Base):
     phone = Column(String(45), nullable=False)
     store = Column(String(45))
     reports_to = Column(Integer, ForeignKey('staffs.id_staff'))
-    parents = relationship('StaffHasCustomer', back_populates='children')
-    child = relationship('StaffHasCpsOrder', back_populates='staffs')
+    parents = relationship('StaffHasCustomer', back_populates='children',
+                           cascade="all, delete, delete-orphan")
+    child = relationship('StaffHasCpsOrder', back_populates='staffs',
+                         cascade="all, delete, delete-orphan")
 
 
 class Storage(Base):
@@ -193,7 +197,8 @@ class Storage(Base):
     storage_name = Column(String(150), nullable=False)
     storage_quantity = Column(Integer, nullable=False)
     storage_city = Column(String(100), nullable=False)
-    storage_to_product = relationship('StorageHasProducts', back_populates='storages')
+    storage_to_product = relationship('StorageHasProducts', back_populates='storages',
+                                      cascade="all, delete, delete-orphan")
 
 
 class Supplier(Base):
@@ -209,4 +214,5 @@ class Supplier(Base):
     contact_person = Column(String(100))
     phone_number = Column(String(45), nullable=False)
     email = Column(String(45), nullable=False)
-    parent = relationship('SupplierHasCpsOrder', back_populates='suppliers')
+    parent = relationship('SupplierHasCpsOrder', back_populates='suppliers',
+                          cascade="all, delete, delete-orphan")

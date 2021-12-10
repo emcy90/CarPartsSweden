@@ -51,7 +51,7 @@ def customer_menu():
             running = False
 
         elif input_choice == "4":
-            del_customer = 835 # input("Delete customer by ID: ")
+            del_customer = input("Delete customer by ID: ")
             # customer = str(input(f"Are you sure you want to delete {}?"))
             delete_customer(del_customer)
             print(f'customer deleted: deleted')

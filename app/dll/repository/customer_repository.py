@@ -1,6 +1,7 @@
 from app.dll.db import session
-from app.dll.models import Customer
+from app.dll.models import Customer, CustomerCar
 # from app.view.cli.customer_menu import customer_menu
+from app.view import main
 from app.view.cli.main_menu import menu
 
 
@@ -22,10 +23,14 @@ def get_customer_by_id():
 
 def show_all_customers():
     show_customers = session.query(Customer).all()
-
+    count = 0
     for customers in show_customers:
-        print(
-            f'Customer id: {customers.id_customers} First name: {customers.first_name} Last name: {customers.last_name}')
+        xc = len(customers.customer_cars)
+        print(customers.customer_cars[count].color)
+        if count == xc:
+            count = 0
+#        print(
+ #           f'Customer id: {customers.customer_cars.color} First name: {customers.first_name} Last name: {customers.last_name}')
 
     # print(show_customers)
     # print()
@@ -47,25 +52,28 @@ def show_all_customers():
 
 
 def delete_customer(xxx):
-    del_customer2 = session.query(Customer).filter(Customer.id_customers == xxx).all()
+    del_customer2 = session.query(Customer).filter(Customer.id_customers == xxx).first()
     # staff = session.query(StaffHasStaff).filter(StaffHasStaff.staffs_id_staff == _id).first()
     print(del_customer2)
     # our_view_storage_and_product_view(delete_customer)
     # customer = customer_menu(del_customer)
     print(del_customer2.id_customers)
-    # print(f'Customer id: {Customer.id_customers}, First Name: {Customer.first_name},'
-    #       f', Last Name: {Customer.last_name}, Company Name: {Customer.company_name},'
-    #       f' Phone: {Customer.phone}, Address 1: {Customer.adress1},'
-    #       f' Adress 2: {Customer.adress2}, City: {Customer.city},'
-    #       f' Zip Code: {Customer.zip_code}, Country: {Customer.country},'
-    #       f' Sales_representant: {Customer.sales_representant}, State: {Customer.state}')
+    print(f'Customer id: {del_customer2.id_customers}, First Name: {del_customer2.first_name},'
+          f', Last Name: {del_customer2.last_name}, Company Name: {del_customer2.company_name},'
+          f' Phone: {del_customer2.phone}, Address 1: {del_customer2.adress1},'
+          f' Adress 2: {del_customer2.adress2}, City: {del_customer2.city},'
+          f' Zip Code: {del_customer2.zip_code}, Country: {del_customer2.country},'
+          f' Sales_representant: {del_customer2.sales_representant}, State: {del_customer2.states}')
     # print(data)
-    xx = str(input("Do you want to delete this customer? Please type y for yes if you want to proceed"))
+    xx = str(input("Do you want to delete this customer? Please type y for yes if you want to proceed "))
 
     if xx[0] == "y":
-        xy = session.query(Customer).filter(Customer.del_customer.id_customers == del_customer2.id_customers).delete()
+        session.query(Customer).filter(Customer.id_customers == xxx).delete()
+        # session.query(CustomerCar).filter(CustomerCar.owner_id == xxx).delete
+        session.commit()
+
     else:
-        menu()
+        main()
 
     # print(f'Customer id: {customers.id_customers} First name: {customers.first_name} Last name: {customers.last_name}')
 

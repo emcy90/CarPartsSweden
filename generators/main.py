@@ -71,8 +71,8 @@ print(f'All supplier_cps_order ids: {all_supplier_cps_orders_ids}')
 print(f'All supplier ids: {all_supplier_ids}')
 print()
 
-i = 103
-for i in range(10):
+i = 60
+for i in range(1):
 
     time.sleep(0.5)
     # CREATING A CUSTOMER OBJECT
@@ -81,6 +81,7 @@ for i in range(10):
                              creator.street_adress + " " + creator.house_number, '', creator.city, creator.zip_code,
                              creator.country, creator.my_sales_representant, creator.state]
     creator.create_customer_dict(creator.customer_key_list, creator.customer_list)
+    # mg = creator.create_customer_dict(creator.customer_key_list, creator.customer_list)
     # print(creator.customer)
     create_customer(creator.customer)
 
