@@ -34,7 +34,8 @@ class Manufacture(Base):
     contact_person_name = Column(String(200), nullable=False)
     contact_person_phone = Column(String(45), nullable=False)
     contact_person_email = Column(String(45), nullable=False)
-    children = relationship('ManufacturerHasCpsOrder', back_populates='parent')
+    children = relationship('ManufacturerHasCpsOrder', back_populates='parent',
+                            cascade="all, delete, delete-orphan")
 
 
 class CpsOrder(Base):
@@ -47,9 +48,12 @@ class CpsOrder(Base):
     status = Column(String(45), nullable=False)
     comments = Column(Text)
     order_no_comments = Column(Text)
-    parents = relationship('ManufacturerHasCpsOrder', back_populates='child')
-    child = relationship('StaffHasCpsOrder', back_populates='parent')
-    parent = relationship('SupplierHasCpsOrder', back_populates='cps_orders')
+    parents = relationship('ManufacturerHasCpsOrder', back_populates='child',
+                           cascade="all, delete, delete-orphan")
+    child = relationship('StaffHasCpsOrder', back_populates='parent',
+                         cascade="all, delete, delete-orphan")
+    parent = relationship('SupplierHasCpsOrder', back_populates='cps_orders',
+                          cascade="all, delete, delete-orphan")
 
 
 class StaffHasCpsOrder(Base):
@@ -105,11 +109,15 @@ class Customer(Base):
     country = Column(String(45), nullable=False)
     sales_representant = Column(String(150), nullable=False)
     states = Column(String(100))
-    customer_cars = relationship('CustomerCar', back_populates="owner")
-    payments = relationship('Payment', back_populates="customer_paid_bill")
-    parents = relationship('StaffHasCustomer', back_populates='child')
-    order_customer = relationship('Order', back_populates='customer_order')
-
+    customer_cars = relationship('CustomerCar', back_populates="owner",
+                                 cascade="all, delete, delete-orphan")
+    payments = relationship('Payment', back_populates="customer_paid_bill",
+                            cascade="all, delete, delete-orphan")
+    parents = relationship('StaffHasCustomer', back_populates='child',
+                           cascade="all, delete, delete-orphan")
+    order_customer = relationship('Order', back_populates='customer_order',
+                                  cascade="all, delete, delete-orphan")
+1
 
 class Order(Base):
     __tablename__ = "orders"
@@ -133,8 +141,8 @@ class CustomerCar(Base):
     color = Column(String(45), nullable=False)
     model = Column(String(45), nullable=False)
     year_model = Column(String(45), nullable=False)
-    owner_id = Column(Integer, ForeignKey('customers.id_customers'))
-    owner = relationship('Customer', back_populates="customer_cars")
+    owner_id = Column(Integer, ForeignKey('customers.id_customers', ondelete='CASCADE'))
+    owner = relationship('Customer', back_populates='customer_cars')  # , backref="customer_car")
 
 
 class Payment(Base):
