@@ -1,4 +1,4 @@
-from app.bll import create_customer
+from app.bll.customer_controller import create_customer
 
 
 def main():

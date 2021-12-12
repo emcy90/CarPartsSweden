@@ -1,4 +1,4 @@
-from app.bll import create_payment
+from app.bll.payment_controller import create_payment
 
 
 def main():

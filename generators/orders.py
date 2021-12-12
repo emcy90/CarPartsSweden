@@ -1,4 +1,4 @@
-from app.bll import create_order
+from app.bll.order_controller import create_order
 
 
 def main():
