@@ -15,3 +15,6 @@ def delete_customer(del_customer):
 
 def create_customer(customer):
     customer_repository.create_customer(customer)
+
+def update_customer(customer):
+    customer_repository.update_customer(customer)

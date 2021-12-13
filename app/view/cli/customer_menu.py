@@ -1,4 +1,4 @@
-from app.bll.customer_controller import create_customer, show_all_customer, delete_customer
+from app.bll.customer_controller import create_customer, show_all_customer, delete_customer, update_customer
 
 
 def customer_menu():
@@ -10,6 +10,7 @@ def customer_menu():
         print('2. View all customers')
         print('3. Add customer')
         print('4. Delete customer')
+        print('5. Update customer')
         # print('5. Go back to main menu')
 
         input_choice = input("> ")
@@ -55,5 +56,10 @@ def customer_menu():
             # customer = str(input(f"Are you sure you want to delete {}?"))
             delete_customer(del_customer)
             print(f'customer deleted: deleted')
+            running = False
 
-
+        elif input_choice == "5":
+            up_customer = input("Which customer do you want to update? ")
+            update_customer(up_customer)
+            print(f'Customer updated: updated')
+            running = False

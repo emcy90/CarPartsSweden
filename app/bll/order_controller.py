@@ -7,3 +7,7 @@ def get_order_by_no():
 
 def create_order(order):
     order_repository.create_order(order)
+
+
+def show_order(order):
+    return order_repository.show_order(order)

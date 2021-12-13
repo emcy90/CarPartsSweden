@@ -4,7 +4,6 @@ from app.dll.models import Customer, CustomerCar
 from app.view import main
 from app.view.cli.main_menu import menu
 
-
 # from app.view.cli.cli_app import main
 
 
@@ -84,3 +83,11 @@ def create_customer(customer):
     session.commit()
     print()
     print('Added customer successfully.')
+
+
+def update_customer(xxx):
+    up_customer = session.query(Customer).filter(Customer.id_customers == xxx).first()
+
+
+
+

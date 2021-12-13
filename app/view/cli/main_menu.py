@@ -4,15 +4,12 @@ def menu():
     print("*" * 50)
     print()
     print("1. Customer menu")
-    print("2. Show order")
-    print("3. ")
-    print("4. ")
-    print("5. ")
+    print("2. Order menu")
     print()
     print("9. Quit")
     while True:
         pick = input("> ")
-        if pick in "123459":
+        if pick in "129":
             break
-        print("Valid options are 1, 2, 3, 4, 5 or 9")
+        print("Valid options are 1, 2 or 9")
     return pick

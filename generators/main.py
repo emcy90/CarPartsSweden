@@ -71,8 +71,8 @@ print(f'All supplier_cps_order ids: {all_supplier_cps_orders_ids}')
 print(f'All supplier ids: {all_supplier_ids}')
 print()
 
-i = 60
-for i in range(1):
+i = 15
+for i in range(10):
 
     time.sleep(0.5)
     # CREATING A CUSTOMER OBJECT
