@@ -20,3 +20,10 @@ def create_cps_orders(cps_orders):
     session.commit()
     print()
     print('Added cps order successfully!')
+
+
+def mongo_create_cps_orders(super_cps_orders):
+    my_clean_dict = super_cps_orders
+    print()
+    db.cps_orders.insert_one(my_clean_dict)
+    print("Added mongo cps orders")

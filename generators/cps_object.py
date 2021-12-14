@@ -126,6 +126,9 @@ class CpsCreator(GeneratorSetup):
         # manufacturers_manufacturer_id = ""
         storage_has_products_key_list = []
 
+        super_customer_key_list_mongo = []
+        super_order_key_list_mongo = []
+
         suppliers_has_cps_orders_key_list = []
         suppliers_has_cps_orders = ""
         suppliers_supplier_id = ""
@@ -495,6 +498,14 @@ class CpsCreator(GeneratorSetup):
 
         self.cps_orders_internal_order_no = cps_orders_internal_order_no
         self.copy_text_description = copy_text_description
+        self.super_customer_key_list_mongo = super_customer_key_list_mongo
+        self.super_order_key_list_mongo = super_order_key_list_mongo
+        self.super_product_key_list_mongo = super_product_key_list_mongo
+        self.super_supplier_key_list_mongo = super_supplier_key_list_mongo
+        self.super_munufacturer_key_list_mongo = super_munufacturer_key_list_mongo
+        self.super_cps_orders_key_list_mongo = super_cps_orders_key_list_mongo
+        self.super_staff_key_list_mongo = super_staff_key_list_mongo
+        self.super_storage_key_list_mongo = super_storage_key_list_mongo
 
     def load_all_data(self):
         self.first_name = self.generator.load_first_name()

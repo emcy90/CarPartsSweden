@@ -20,3 +20,12 @@ def create_manufacture(manufacturers):
     session.commit()
     print()
     print('Added manufacturer successfully!')
+
+
+def mongo_create_manufacturer(super_manufacturer):
+    my_clean_dict = super_manufacturer
+    print()
+    db.manufacturer.insert_one(my_clean_dict)
+    print("Added mongo manufacturer")
+
+

@@ -16,5 +16,10 @@ def delete_customer(del_customer):
 def create_customer(customer):
     customer_repository.create_customer(customer)
 
+
+def mongo_create_customer(mongo_customer):
+    return customer_repository.mongo_create_customer(mongo_customer)
+
+
 def update_customer(customer):
     customer_repository.update_customer(customer)

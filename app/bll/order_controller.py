@@ -13,5 +13,9 @@ def create_order(order):
     order_repository.create_order(order)
 
 
+def mongo_create_order(super_order):
+    return order_repository.mongo_create_order(super_order)
+
+
 def show_order(order):
     return order_repository.show_order(order)

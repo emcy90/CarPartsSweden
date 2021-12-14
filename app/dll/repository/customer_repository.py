@@ -91,5 +91,13 @@ def create_customer(customer):
     print('Added customer successfully.')
 
 
+def mongo_create_customer(mongo_customer):
+    my_clean_dict = mongo_customer
+    # customer = Customer(**customer)
+    print()
+    db.customers.insert_one(my_clean_dict)
+    print("Added mongo customer")
+
+
 def update_customer(xxx):
     up_customer = session.query(Customer).filter(Customer.id_customers == xxx).first()
