@@ -222,6 +222,16 @@ class CpsCreator(GeneratorSetup):
         manufacturers_manufacturer_id = 0
         all_staffs_cps_orders_internal_order_no = []
         all_storage_products_product_ids = []
+        super_mongo_customer_collection = []
+        super_mongo_order_collection = []
+        super_product_key_list_mongo = []
+        super_mongo_product_collection = []
+        super_mongo_supplier_collection = []
+        super_mongo_manufacturer_collection = []
+        super_mongo_cps_orders_collection = []
+        super_mongo_staff_collection = []
+        super_mongo_storage_collection = []
+
 
         # class selfs:
 
@@ -360,7 +370,7 @@ class CpsCreator(GeneratorSetup):
         self.staffs_has_customers = staffs_has_customers
         self.suppliers_contact_person = suppliers_contact_person
         self.manufacturer_contact_person = manufacturer_contact_person
-
+        self.super_mongo_customer_collection = super_mongo_customer_collection
         self.manufacturers = manufacturers
 
         self.supplier_name = supplier_name
@@ -370,6 +380,13 @@ class CpsCreator(GeneratorSetup):
         self.all_cars_ids = all_cars_ids
         self.copy_of_productline = copy_of_productline
         self.products_description_id = products_description_id
+        self.super_mongo_order_collection = super_mongo_order_collection
+        self.super_mongo_product_collection = super_mongo_product_collection
+        self.super_mongo_supplier_collection = super_mongo_supplier_collection
+        self.super_mongo_manufacturer_collection = super_mongo_manufacturer_collection
+        self.super_mongo_cps_orders_collection = super_mongo_cps_orders_collection
+        self.super_mongo_staff_collection = super_mongo_staff_collection
+        self.super_mongo_storage_collection = super_mongo_storage_collection
 
         # self.all_supplier_ids = all_supplier_ids
         # self.all_cps_order_internal_nos = all_cps_order_internal_nos
@@ -380,6 +397,41 @@ class CpsCreator(GeneratorSetup):
         # self.all_order_no = all_order_no
 
         # KEY LISTS GOES HERE
+        super_customer_key_list_mongo = ['first_name', 'last_name', 'company_name', 'phone', 'adress1', 'adress2',
+                                         'city', 'zip_code', 'country', 'sales_representant', 'states', 'reg_no',
+                                         'manufacturer',
+                                         'color', 'model', 'year_model', 'owner_id', 'payment_date', 'payment_amount',
+                                         'customer_paid_bill_id', 'staffs_id_staff', 'customers_id_customers']
+
+        super_order_key_list_mongo = ['order_no', 'order_date', 'required_date', 'shipping_date', 'status', 'comments',
+                                      'customers_id_customers', 'orders_order_no', 'products_product_id', 'quantity',
+                                      'price_each']
+
+        super_product_key_list_mongo = ['product_id', 'product_name', 'product_description', 'inprice', 'outprice',
+                                        'product_description', 'text_description', 'html_description', 'image',
+                                        'products_description_id']
+
+        super_supplier_key_list_mongo = ['supplier_id','supplier_name', 'supplier_adress1', 'supplier_adress2', 'city',
+                                         'zip_code',
+                                         'country',
+                                         'contact_person', 'phone_number', 'email', 'suppliers_supplier_id',
+                                         'cps_orders_internal_order_no']
+
+        super_munufacturer_key_list_mongo = ['manufacturer_id', 'name_manufacturer', 'main_office_adress1',
+                                             'main_office_adress2',
+                                             'main_office_name',
+                                             'contact_person_name', 'contact_person_phone', 'contact_person_email',
+                                             'manufacturers_manufacturer_id', 'cps_orders_internal_order_no']
+
+        super_cps_orders_key_list_mongo = ['internal_order_no', 'order_date', 'required_date', 'shipping_date',
+                                           'status', 'comments',
+                                           'order_no_comments', 'staffs_id_staff', 'cps_orders_internal_order_no']
+
+        super_staff_key_list_mongo = ['id_staff', 'first_name', 'last_name', 'job_title', 'phone', 'store',
+                                      'reports_to']
+
+        super_storage_key_list_mongo = ['storage_id', 'storage_name', 'storage_quantity', 'storage_city',
+                                        'storage_storage_id', 'products_product_id']
 
         customer_key_list = ['first_name', 'last_name', 'company_name', 'phone', 'adress1', 'adress2',
                              'city', 'zip_code', 'country', 'sales_representant', 'states']
@@ -421,6 +473,7 @@ class CpsCreator(GeneratorSetup):
 
         staffs_key_list = ['first_name', 'last_name', 'job_title', 'phone', 'store', 'reports_to']
 
+        self.super_customer_key_list_mongo = super_customer_key_list_mongo
         self.customer_key_list = customer_key_list
         self.customer_car_key_list = customer_car_key_list
         self.payment_key_list = payment_key_list
@@ -1050,3 +1103,39 @@ class CpsCreator(GeneratorSetup):
     def create_staffs_has_customers_dict(self, staffs_has_customers_key_list, staffs_has_customers_list):
         self.staffs_has_customers = dict(zip(self.staffs_has_customers_key_list, staffs_has_customers_list))
         return self.staffs_has_customers
+
+    def create_super_customer_mongo_dict(self, super_customer_key_list_mongo, customer_list):
+        self.super_mongo_customer_collection = dict(zip(super_customer_key_list_mongo, customer_list))
+        return self.super_mongo_customer_collection
+
+    def create_super_order_mongo_dict(self, super_order_key_list_mongo, order_list):
+        self.super_mongo_order_collection = dict(zip(super_order_key_list_mongo, order_list))
+        return self.super_mongo_order_collection
+
+    def create_super_product_mongo_dict(self, super_product_key_list_mongo, product_list):
+        self.super_mongo_product_collection = dict(zip(super_product_key_list_mongo, product_list))
+        return self.super_mongo_product_collection
+
+    def create_super_supplier_mongo_dict(self, super_supplier_key_list_mongo, supplier_list):
+        self.super_mongo_supplier_collection = dict(zip(super_supplier_key_list_mongo, supplier_list))
+        return self.super_mongo_supplier_collection
+
+    def create_super_munufacturer_mongo_dict(self, super_munufacturer_key_list_mongo, mongo_creator_manufacturer_list):
+        self.super_mongo_manufacturer_collection = dict(zip(super_munufacturer_key_list_mongo,
+                                                            mongo_creator_manufacturer_list))
+        return self.super_mongo_manufacturer_collection
+
+    def create_super_cps_orders_mongo_dict(self, super_cps_orders_key_list_mongo, mongo_creator_cps_order_list):
+        self.super_mongo_cps_orders_collection = dict(zip(super_cps_orders_key_list_mongo,
+                                                          mongo_creator_cps_order_list))
+        return self.super_mongo_cps_orders_collection
+
+    def create_super_staff_mongo_dict(self, super_staff_key_list_mongo, mongo_creator_staff_list):
+        self.super_mongo_staff_collection = dict(zip(super_staff_key_list_mongo,
+                                                     mongo_creator_staff_list))
+        return self.super_mongo_staff_collection
+
+    def create_super_storage_mongo_dict(self, super_storage_key_list_mongo, mongo_creator_storage_list):
+        self.super_mongo_storage_collection = dict(zip(super_storage_key_list_mongo,
+                                                       mongo_creator_storage_list))
+        return self.super_mongo_storage_collection

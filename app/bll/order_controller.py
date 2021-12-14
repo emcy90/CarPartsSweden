@@ -1,4 +1,8 @@
 from app.dll.repository import order_repository
+from pymongo import MongoClient
+
+client = MongoClient('mongodb://root:slash@localhost:27017')
+db = client.real_cps
 
 
 def get_order_by_no():

@@ -1,5 +1,9 @@
 from app.dll.db import session
 from app.dll.models import Manufacture
+from pymongo import MongoClient
+
+client = MongoClient('mongodb://root:slash@localhost:27017')
+db = client.real_cps
 
 
 def get_manufacturer_by_id():

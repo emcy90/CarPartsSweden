@@ -117,7 +117,7 @@ class Customer(Base):
                            cascade="all, delete, delete-orphan")
     order_customer = relationship('Order', back_populates='customer_order',
                                   cascade="all, delete, delete-orphan")
-1
+
 
 class Order(Base):
     __tablename__ = "orders"

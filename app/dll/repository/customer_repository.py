@@ -3,8 +3,12 @@ from app.dll.models import Customer, CustomerCar
 # from app.view.cli.customer_menu import customer_menu
 from app.view import main
 from app.view.cli.main_menu import menu
+from pymongo import MongoClient
 
 # from app.view.cli.cli_app import main
+
+client = MongoClient('mongodb://root:slash@localhost:27017')
+db = client.real_cps
 
 
 def get_customer_by_id():
@@ -28,26 +32,28 @@ def show_all_customers():
         print(customers.customer_cars[count].color)
         if count == xc:
             count = 0
-#        print(
- #           f'Customer id: {customers.customer_cars.color} First name: {customers.first_name} Last name: {customers.last_name}')
 
-    # print(show_customers)
-    # print()
-    # print("*" * 50)
-    # show_customers = session.query(Customer.id_customers).all()
-    # show_cust = session.query(Customer.id_customers).all()
-    # show_customers = []
-    # for id in show_cust:
-    #     show_customers.append(id[0])
-    # for i in range(len(show_customers)):
-    #     print(f'Customer id: {show_cust.id_customers}, First name: {show_customers.first_name},'
-    #           f' Last name: {show_customers.last_name}, Company name: {show_customers.company_name},'
-    #           f' Phone: {show_customers.phone}, Adress 2: {show_customers.product_description},'
-    #           f' City: {show_customers.city}, Zipcode: {show_customers.zip_code},'
-    #           f' Country: {show_customers.country}, sales_representant: {show_customers.sales_representant},'
-    #           f' State: {show_customers.states}')
-    #     print()
-    #     print('*******************************************************************')
+
+#        print(
+#           f'Customer id: {customers.customer_cars.color} First name: {customers.first_name} Last name: {customers.last_name}')
+
+# print(show_customers)
+# print()
+# print("*" * 50)
+# show_customers = session.query(Customer.id_customers).all()
+# show_cust = session.query(Customer.id_customers).all()
+# show_customers = []
+# for id in show_cust:
+#     show_customers.append(id[0])
+# for i in range(len(show_customers)):
+#     print(f'Customer id: {show_cust.id_customers}, First name: {show_customers.first_name},'
+#           f' Last name: {show_customers.last_name}, Company name: {show_customers.company_name},'
+#           f' Phone: {show_customers.phone}, Adress 2: {show_customers.product_description},'
+#           f' City: {show_customers.city}, Zipcode: {show_customers.zip_code},'
+#           f' Country: {show_customers.country}, sales_representant: {show_customers.sales_representant},'
+#           f' State: {show_customers.states}')
+#     print()
+#     print('*******************************************************************')
 
 
 def delete_customer(xxx):
@@ -87,7 +93,3 @@ def create_customer(customer):
 
 def update_customer(xxx):
     up_customer = session.query(Customer).filter(Customer.id_customers == xxx).first()
-
-
-
-
