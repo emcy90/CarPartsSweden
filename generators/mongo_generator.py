@@ -94,7 +94,9 @@ def delete_a_collection():
 # ***************************************************************************************
 
 # add_one_item()
-# find_one_specific_mongo_id()
+find_one_specific_mongo_id()
+
+
 # find_all_mongo_id()
 # update_mongo_customer()
 # delete_mongo_customer()
@@ -140,6 +142,8 @@ counter = 1
 counter_cps_orders = 1
 counter_manufacturer_id = 1
 counter_supplier_id = 1
+payments_counter_no = 1
+
 print(mongo_id_list)
 
 
@@ -200,7 +204,7 @@ def load_counter_manufacturer_id():
 
 
 # Creating 10 clean customers to MONGO DB
-# for i in range(0, 10):
+# for i in range(0, 20):
 #     mongo_creator.assemble_customer_object()
 #     mongo_creator.customer_list = [mongo_creator.first_name, mongo_creator.last_name, mongo_creator.company,
 #                                    mongo_creator.phone,
@@ -217,6 +221,7 @@ counter_order_no = load_order_no()
 counter_supplier_id = load_counter_supplier_id()
 counter_cps_orders_id = load_counter_cps_orders_id()
 counter_manufacturer_id = load_counter_manufacturer_id()
+counter_payments_no = load_counter_payments_no()
 
 our_sales_staff_list = ['Barbro Lindgren', 'Maja Glad', 'Anneli Lund', 'Bobbo Nyqvist', 'Jonas Karlsson',
                         'Mimmi Johnsson',
@@ -224,7 +229,7 @@ our_sales_staff_list = ['Barbro Lindgren', 'Maja Glad', 'Anneli Lund', 'Bobbo Ny
 
 # CREATING CUSTOMERS COLLECTION
 
-for i in range(0, 10):
+for i in range(0, 200):
     mongo_id_list = find_all_mongo_id()
     owner_id = random_owner_ids_from_mongo_list(mongo_id_list)
     customer_id = random_customers_id_customers_from_mongo_list(mongo_id_list)
@@ -242,7 +247,7 @@ for i in range(0, 10):
                                    mongo_creator.country, mongo_creator.my_sales_representant, mongo_creator.state,
                                    mongo_creator.reg_no, mongo_creator.manufacturer, mongo_creator.color,
                                    mongo_creator.model,
-                                   mongo_creator.year_model, owner_id, mongo_creator.payment_date,
+                                   mongo_creator.year_model, owner_id, counter_payments_no, mongo_creator.payment_date,
                                    mongo_creator.payment_amount, customer_paid_bill_id,
                                    staffs_id_staff, customer_id]
     mongo_creator.create_super_customer_mongo_dict(mongo_creator.super_customer_key_list_mongo,
@@ -390,8 +395,9 @@ for i in range(0, 10):
     counter_order_no += 1
     counter_supplier_id += 1
     counter_cps_orders_id += 1
-
+    counter_payments_no += 1
     # Save the counters for each round
     save_order_no()
     save_counter_supplier_id()
     save_counter_cps_orders_id()
+    save_counter_payments_no()

@@ -1,0 +1,17 @@
+{
+    "_id": sdfsdfsdf,
+    "name": Pelle,
+    "cars": [
+        {
+            "reg_no": "ABC 123",
+
+        },
+        {
+            "reg_no": "ABX 123",
+
+        },
+    ]
+}
+
+filter = {"_id": ObjectID(sdflösdfölk)}
+customer_col.delete_on(filter)

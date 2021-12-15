@@ -1,4 +1,7 @@
-from app.bll.customer_controller import create_customer, show_all_customer, delete_customer, update_customer
+from app.bll.customer_controller import create_customer, show_all_customer, delete_customer, update_customer, \
+    show_one_customer
+from app.view import main
+from app.view.cli.main_menu import menu
 
 
 def customer_menu():
