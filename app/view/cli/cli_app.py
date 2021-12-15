@@ -4,7 +4,6 @@ from app.view.cli.order_menu import order_menu
 
 
 def main():
-    menu_pick = ""
     running = True
     while running:
         menu_pick = menu()

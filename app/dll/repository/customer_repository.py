@@ -482,7 +482,7 @@ def delete_one_mongo_customer(xxx):
           f'Address: {adress1}\nAddress 2: {adress2}\nCity: {city}\nZip Code: {zip_code}\nCountry: {country}\n'
           f'Sales Representant: {sales_representant}\nState: {states}\n'
           f'reg no: {reg_no}\n:manufacturer {manufacturer}\n'
-          f'color: {color}\nModel: {model}\nyear model: {year_model}\nowner id: {owner_id}\n:payments no: {payments_no}\n'
+          f'color: {color}\nModel: {model}\nyear model: {year_model}\nowner id: {owner_id}\npayments no: {payments_no}\n'
           f'payment date: {payment_date}\npayment amount: {payment_amount}\n'
           f'customer paid bill id: {customer_paid_bill_id}'
           f'staff id staff: {staffs_id_staff}\ncustomers id customers: {customers_id_customers}')
@@ -568,6 +568,7 @@ def delete_staff_has_customers(xxx):
 
         db.customers.update({'_id': obj_id}, {'$unset': {'staffs_id_staff': ""}})
         db.customers.update({'_id': obj_id}, {'$unset': {'customers_id_customers': ""}})
+
 
 def update_mongo_customer(xxx):
     running = True

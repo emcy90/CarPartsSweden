@@ -1,4 +1,5 @@
 from app.bll.order_controller import create_order, show_order
+from app.view import main
 
 
 def order_menu():
@@ -7,7 +8,7 @@ def order_menu():
         print('========== Order Menu ==========')
         print()
         print("1. View order")
-        print('2. Create order')
+        print('2. Go back to main menu')
 
         input_choice = input("> ")
         if input_choice == "1":
@@ -16,5 +17,9 @@ def order_menu():
             running = False
 
         elif input_choice == "2":
+            running = False
+            main()
+
+        # elif input_choice == "2":
             # create_order()
-            pass
+

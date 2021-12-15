@@ -43,3 +43,7 @@ def insert_one_customer():
 
 def delete_one_mongo_customer(xxx):
     customer_repository.delete_one_mongo_customer(xxx)
+
+
+def update_mongo_customer(xxx):
+    customer_repository.update_mongo_customer(xxx)
