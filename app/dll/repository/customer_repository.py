@@ -2,24 +2,16 @@ from bson import ObjectId
 
 from app.dll.db import session
 from app.dll.models import Customer, CustomerCar
-# from app.view.cli.customer_menu import customer_menu
+
 from app.view import main
 
-from app.view.cli.main_menu import menu
 from pymongo import MongoClient
-
-# from app.view.cli.cli_app import main
 
 client = MongoClient('mongodb://root:slash@localhost:27017')
 db = client.real_cps
 
 
 def get_customer_by_id():
-    # DELETE?
-    # return session.query(Customer.id_customers).all()
-    # return session.query(Order.order_no).all()
-    # return session.query(Product.product_id).all()
-
     customer_id = session.query(Customer.id_customers).all()
     customer_id_clean_list = []
     for id in customer_id:
@@ -54,11 +46,6 @@ def show_one_customer(xxx):
         main()
     else:
 
-        # if up_customer.id_customers not in all_customer_ids_clean_list:
-        #     print("This person id, does not exists:")
-        #     main()
-        # else:
-
         print(f' Customer id: {up_customer.id_customers}\n First name: {up_customer.first_name}\n'
               f' Last name: {up_customer.last_name}\n Company name: {up_customer.company_name}\n'
               f' Phone: {up_customer.phone}\n Adress 1: {up_customer.adress1}\n Adress 2: {up_customer.adress2}\n',
@@ -70,10 +57,9 @@ def show_one_customer(xxx):
 
 
 def show_all_customers():
-    show_customers = session.query(Customer).all()  # session.query(Customer.id_customers).all()
+    show_customers = session.query(Customer).all()
 
     for show_cust in show_customers:
-        # for i in range(len(show_customers)):
         print(f' Customer id: {show_cust.id_customers}\n First name: {show_cust.first_name}\n'
               f' Last name: {show_cust.last_name}\n Company name: {show_cust.company_name}\n'
               f' Phone: {show_cust.phone}\n Adress 1: {show_cust.adress1}\n Adress 2: {show_cust.adress2}\n',
@@ -91,10 +77,8 @@ def delete_customer(xxx):
         main()
     else:
 
-        # staff = session.query(StaffHasStaff).filter(StaffHasStaff.staffs_id_staff == _id).first()
         print(del_customer2)
-        # our_view_storage_and_product_view(delete_customer)
-        # customer = customer_menu(del_customer)
+
         print(del_customer2.id_customers)
         print(f'Customer id: {del_customer2.id_customers}\nFirst Name: {del_customer2.first_name}\n'
               f'Last Name: {del_customer2.last_name}\nCompany Name: {del_customer2.company_name}'
@@ -102,18 +86,16 @@ def delete_customer(xxx):
               f'Adress 2: {del_customer2.adress2}\nCity: {del_customer2.city}\n'
               f'Zip Code: {del_customer2.zip_code}\nCountry: {del_customer2.country}\n'
               f'Sales_representant: {del_customer2.sales_representant}\nState: {del_customer2.states}')
-        # print(data)
+
         xx = str(input("Do you want to delete this customer? Please type y for yes if you want to proceed "))
 
         if xx[0] == "y":
             session.query(Customer).filter(Customer.id_customers == xxx).delete()
-            # session.query(CustomerCar).filter(CustomerCar.owner_id == xxx).delete
+
             session.commit()
             print(f'customer deleted')
         else:
             main()
-
-        # print(f'Customer id: {customers.id_customers} First name: {customers.first_name} Last name: {customers.last_name}')
 
 
 def create_customer(customer):
@@ -126,7 +108,7 @@ def create_customer(customer):
 
 def mongo_create_customer(mongo_customer):
     my_clean_dict = mongo_customer
-    # customer = Customer(**customer)
+
     print()
     db.customers.insert_one(my_clean_dict)
     print("Added mongo customer")
@@ -236,7 +218,6 @@ def update_customer(xxx):
                 continue
 
 
-# ObjectId("61b7b96c526c3e26a16d5018")
 def view_single_mongo_customer(xxx):
     id_finder2 = db.customers.find({"_id": ObjectId(xxx)})
 
@@ -258,29 +239,114 @@ def view_single_mongo_customer(xxx):
               f'Address: {adress1}\nAddress 2: {adress2}\nCity: {city}\nZip Code: {zip_code}\nCountry: {country}\n'
               f'Sales Representant: {sales_representant}\nState: {states}')
 
+    car_finder = db.customers.find({"owner_id": ObjectId(xxx)})
+    car_records = list(car_finder)
+    if len(car_records) == 0:
+        print("This customer dont have any cars.")
+        reg_no = ""
+        manufacturer = ""
+        color = ""
+        model = ""
+        year_model = ""
+        owner_id = ""
+
+    else:
+
+        # Create a number of cars list the person has.
+        number_of_cars_found_list = []
+        print()
+        print(f"Cars who customer: {first_name} {last_name}")
+        print()
+        for m1 in car_records:
+            reg_no = (m1['reg_no'])
+            manufacturer = (m1['manufacturer'])
+            color = (m1['color'])
+            model = (m1['model'])
+            year_model = (m1['year_model'])
+            owner_id = (m1['owner_id'])
+            number_of_cars_found_list.append(reg_no)
+
+            print(f'reg no: {reg_no}\nmanufacturer {manufacturer}\n'
+                  f'color: {color}\nModel: {model}\nyear model: {year_model}\nowner id: {owner_id}\n')
+
+        # Here we get the customer payments
+        payment_finder = db.customers.find(({"customer_paid_bill_id": ObjectId(xxx)}))
+        payment_records = list(payment_finder)
+        if len(payment_records) == 0:
+            print("This customer dont have any payments")
+            payments_no = ""
+            payment_date = ""
+            payment_amount = ""
+            customer_paid_bill_id = ""
+        else:
+            collected_paid_bills_id = []
+            print()
+            print(f"Customers Payments: {first_name} {last_name}")
+            print()
+            for m2 in payment_records:
+                payments_no = (m2['payments_no'])
+                payment_date = (m2['payment_date'])
+                payment_amount = (m2['payment_amount'])
+                customer_paid_bill_id = (m2['customer_paid_bill_id'])
+                collected_paid_bills_id.append(payments_no)
+            num_payments = len(collected_paid_bills_id)
+
+            print(f'payments no: {payments_no}\n'
+                  f'payment date: {payment_date}\npayment amount: {payment_amount}\n'
+                  f'customer paid bill id: {customer_paid_bill_id}')
+
+            # Here we get customer staffs
+            staff_finder = db.customers.find(({"customers_id_customers": ObjectId(xxx)}))
+            staff_records = list(staff_finder)
+            if len(staff_records) == 0:
+                print("This customer doesnt have any staff.")
+                staffs_id_staff = ""
+                customers_id_customers = ""
+
+            else:
+                our_sales_personal = []
+                print()
+                print(f"Customers Staff: {first_name} {last_name}")
+                print()
+                for m3 in staff_records:
+                    staffs_id_staff = (m3['staffs_id_staff'])
+                    customers_id_customers = (m3['customers_id_customers'])
+                    our_sales_personal.append(staffs_id_staff)
+                num_staff = len(our_sales_personal)
+
+                print(f'staff id staff: {staffs_id_staff}\ncustomers id customers: {customers_id_customers}')
+
 
 def view_all_mongo_customers():
-    get_all_mongo_id = []
     id_items = db.customers.find()
-    for mongo_customer in id_items:
-        # print(id_items['_id'])
-        obj_id = (mongo_customer['_id'])
-        first_name = (mongo_customer['first_name'])  # ['_id'])
-        last_name = (mongo_customer['last_name'])
-        company_name = (mongo_customer['company_name'])
-        phone = (mongo_customer['phone'])
-        adress1 = (mongo_customer['adress1'])
-        adress2 = (mongo_customer['adress2'])
-        city = (mongo_customer['city'])
-        zip_code = (mongo_customer['zip_code'])
-        country = (mongo_customer['country'])
-        sales_representant = (mongo_customer['sales_representant'])
-        states = (mongo_customer['states'])
-        print(f'\nObjectId {obj_id}\nFirst Name: {first_name}\n'
-              f'Last Name: {last_name}\nCompany Name: {company_name}\nPhone: {phone}\n'
-              f'Address: {adress1}\nAddress 2: {adress2}\nCity: {city}\nZip Code: {zip_code}\nCountry: {country}\n'
-              f'Sales Representant: {sales_representant}\nState: {states}')
-        print("*" * 70)
+
+    filtered = []
+    for item in id_items:
+
+        # checking the cursor object so it has all these attributes.
+        # so we can handle the program not to crash, if one is missing.
+        if 'first_name' and 'company_name' in item:
+
+            filtered.append(item)
+
+            for mongo_customer in filtered:
+                obj_id = (mongo_customer['_id'])
+                first_name = (mongo_customer['first_name'])  # ['_id'])
+                last_name = (mongo_customer['last_name'])
+                company_name = (mongo_customer['company_name'])
+                phone = (mongo_customer['phone'])
+                adress1 = (mongo_customer['adress1'])
+                adress2 = (mongo_customer['adress2'])
+                city = (mongo_customer['city'])
+                zip_code = (mongo_customer['zip_code'])
+                country = (mongo_customer['country'])
+                sales_representant = (mongo_customer['sales_representant'])
+                states = (mongo_customer['states'])
+            print(f'\nObjectId {obj_id}\nFirst Name: {first_name}\n'
+                  f'Last Name: {last_name}\nCompany Name: {company_name}\nPhone: {phone}\n'
+                  f'Address: {adress1}\nAddress 2: {adress2}\nCity: {city}\nZip Code: {zip_code}\nCountry: {country}\n'
+                  f'Sales Representant: {sales_representant}\nState: {states}')
+            print("*" * 70)
 
 
 def insert_one_customer():
@@ -323,13 +389,7 @@ def insert_one_customer():
                               year_model, owner_id, payment_date,
                               payment_amount, customer_paid_bill_id,
                               staffs_id_staff, customers_id_customers]
-    # customer_key_list = ['first_name', 'last_name', 'company_name', 'phone', 'adress1', 'adress2',
-    # 'city', 'zip_code', 'country', 'sales_representant', 'states']
 
-    # create_single_customer = [first_name, last_name, company_name, phone, adress1, adress2, city, zip_code,
-    # country, sales_representant, states, reg_no,manufacturer]
-
-    # create_customer_dict(customer_key_list, create_single_customer):
     single_customer = dict(zip(super_customer_key_list_mongo, create_single_customer))
 
     db.customers.insert_one(single_customer)
@@ -369,7 +429,7 @@ def delete_one_mongo_customer(xxx):
         owner_id = ""
 
     else:
-        le = len(records3)
+
         # Create a number of cars list the person has.
         collected_cars_list = []
         for m1 in records3:
@@ -449,44 +509,22 @@ def delete_one_mongo_customer(xxx):
         # Here we need to initiate a loop so we can take away all cars the customer has.
         for delete_som_cars in range(0, num_cars):
             delete_car(xxx)
-            # db.customers.update({'_id': obj_id}, {'$unset': {'reg_no': ""}})
-            # db.customers.update({'_id': obj_id}, {'$unset': {'manufacturer': ""}})
-            # db.customers.update({'_id': obj_id}, {'$unset': {'color': ""}})
-            # db.customers.update({'_id': obj_id}, {'$unset': {'model': ""}})
-            # db.customers.update({'_id': obj_id}, {'$unset': {'year_model': ""}})
-            # db.customers.update({'_id': obj_id}, {'$unset': {'owner_id': ""}})
 
         # This block deletes payments
         # Here we need to initiate a loop so we can take away all customer paid bills.
         for delete_some_paid_bills in range(0, num_payments):
             delete_payments(xxx)
-            # db.customers.update({'_id': obj_id}, {'$unset': {'payments_no': ""}})
-            # db.customers.update({'_id': obj_id}, {'$unset': {'payment_date': ""}})
-            # db.customers.update({'_id': obj_id}, {'$unset': {'payment_amount': ""}})
-            # db.customers.update({'_id': obj_id}, {'$unset': {'customer_paid_bill_id': ""}})
 
         # This block deletes staff has customers
         # Here we need to make an loop to take away all the staffs customer contacts.
         for delete_som_staff_contacts in range(0, num_staff):
             delete_staff_has_customers(xxx)
-            # db.customers.update({'_id': obj_id}, {'$unset': {'staffs_id_staff': ""}})
-            # db.customers.update({'_id': obj_id}, {'$unset': {'customers_id_customers': ""}})
 
         print(f"Deleted customer and the document with object id: {obj_id}")
         print()
     else:
         # Jump back to the menu.
         pass
-
-    # 61b7c3f87ba147714583802f
-
-    # db.customers.update({'_id': "61b8a202cf8a0bf80af64ee1"}, {'$unset': {'phone': ""}})
-    # db.customers.update({'_id': "61b8a202cf8a0bf80af64ee1"}, {'$unset': {'phone': ""}})
-    # 61b89d4ddaa3cf541f87cb75
-
-    # ObjectId("61b8a202cf8a0bf80af64ee1")
-    # db.customers.update({'_id': "61b8a202cf8a0bf80af64ee1"}, {"$unset": {'last_name': ""}})
-    # db.items1.update({_id: 1}, { $unset: {"purqty": ""}})
 
 
 def delete_car(xxx):
@@ -530,3 +568,136 @@ def delete_staff_has_customers(xxx):
 
         db.customers.update({'_id': obj_id}, {'$unset': {'staffs_id_staff': ""}})
         db.customers.update({'_id': obj_id}, {'$unset': {'customers_id_customers': ""}})
+
+def update_mongo_customer(xxx):
+    running = True
+
+    while running:
+        update_finder = db.customers.find({"_id": ObjectId(xxx)})
+        if update_finder is None:
+            print("Cannot update, the person doesnt exist.")
+            main()
+
+        else:
+
+            for mongo_customer in update_finder:
+                obj_id = (mongo_customer['_id'])
+                first_name = (mongo_customer['first_name'])  # ['_id'])
+                last_name = (mongo_customer['last_name'])
+                company_name = (mongo_customer['company_name'])
+                phone = (mongo_customer['phone'])
+                adress1 = (mongo_customer['adress1'])
+                adress2 = (mongo_customer['adress2'])
+                city = (mongo_customer['city'])
+                zip_code = (mongo_customer['zip_code'])
+                country = (mongo_customer['country'])
+                sales_representant = (mongo_customer['sales_representant'])
+                states = (mongo_customer['states'])
+
+            print(f'\nObjectId {obj_id}\nFirst Name: {first_name}\n'
+                  f'Last Name: {last_name}\nCompany Name: {company_name}\nPhone: {phone}\n'
+                  f'Address: {adress1}\nAddress 2: {adress2}\nCity: {city}\nZip Code: {zip_code}\nCountry: {country}\n'
+                  f'Sales Representant: {sales_representant}\nState: {states}\n')
+
+            print()
+            print('*******************************************************************')
+
+            print("Press (1) for update first name")
+            print("Press (2) for update last name")
+            print("Press (3) for update company name")
+            print("Press (4) for update phone")
+            print("Press (5) for update adress 1")
+            print("Press (6) for update adress 2")
+            print("Press (7) for update city")
+            print("Press (8) for update zip code")
+            print("Press (9) for update country")
+            print("Press (10) for update sales_representant")
+            print("Press (11) for update state")
+            valet = str(input('Press number to update: '))
+
+            if valet == "1":
+                choice = str(input('Enter a new first name: '))
+                db.customers.update({'_id': obj_id}, {'$set': {'first_name': choice}})
+
+                print("Updated first name field")
+
+            elif valet == "2":
+                choice = str(input('Enter a new last name: '))
+                db.customers.update({'_id': obj_id}, {'$set': {'last_name': choice}})
+                print("Updated last name field")
+
+            elif valet == "3":
+                choice = str(input('Enter a new company name: '))
+                db.customers.update({'_id': obj_id}, {'$set': {'company_name': choice}})
+                print("Updated company field.")
+
+            elif valet == "4":
+                choice = str(input('Enter a new phone: '))
+                db.customers.update({'_id': obj_id}, {'$set': {'phone': choice}})
+                print("Updated phone field.")
+
+            elif valet == "5":
+                choice = str(input('Enter a new address: '))
+                db.customers.update({'_id': obj_id}, {'$set': {'adress1': choice}})
+                print("Updated adress 1 field.")
+
+            elif valet == "6":
+                choice = str(input('Enter a new adress 2: '))
+                db.customers.update({'_id': obj_id}, {'$set': {'adress2': choice}})
+                print("Updated adress 2 field.")
+
+            elif valet == "7":
+                choice = str(input('Enter a new city: '))
+                db.customers.update({'_id': obj_id}, {'$set': {'city': choice}})
+                print("Updated city field.")
+
+            elif valet == "8":
+                choice = str(input('Enter a new zip code: '))
+                db.customers.update({'_id': obj_id}, {'$set': {'zip_code': choice}})
+                print("Updated zip code field.")
+
+            elif valet == "9":
+                choice = str(input('Enter a new country: '))
+                db.customers.update({'_id': obj_id}, {'$set': {'country': choice}})
+                print("Updated country field")
+
+            elif valet == "10":
+                choice = str(input('Enter a new sales representant: '))
+                db.customers.update({'_id': obj_id}, {'$set': {'sales_representant': choice}})
+                print("Updated sales representant field")
+
+            elif valet == "11":
+                choice = str(input('Enter a new state: '))
+                db.customers.update({'_id': obj_id}, {'$set': {'states': choice}})
+                print("Updated state field")
+
+            update_finder = db.customers.find({"_id": ObjectId(xxx)})
+
+            for mongo_customer in update_finder:
+                obj_id = (mongo_customer['_id'])
+                first_name = (mongo_customer['first_name'])  # ['_id'])
+                last_name = (mongo_customer['last_name'])
+                company_name = (mongo_customer['company_name'])
+                phone = (mongo_customer['phone'])
+                adress1 = (mongo_customer['adress1'])
+                adress2 = (mongo_customer['adress2'])
+                city = (mongo_customer['city'])
+                zip_code = (mongo_customer['zip_code'])
+                country = (mongo_customer['country'])
+                sales_representant = (mongo_customer['sales_representant'])
+                states = (mongo_customer['states'])
+
+            print(f'\nObjectId {obj_id}\nFirst Name: {first_name}\n'
+                  f'Last Name: {last_name}\nCompany Name: {company_name}\nPhone: {phone}\n'
+                  f'Address: {adress1}\nAddress 2: {adress2}\nCity: {city}\nZip Code: {zip_code}\nCountry: {country}\n'
+                  f'Sales Representant: {sales_representant}\nState: {states}\n')
+            print()
+
+            sista_valet = str(input('Are you finished updating? (yes/no)? '))
+            if sista_valet[0] == "y":
+                running = False
+
+                # mongo_menu()
+                main()
+            else:
+                continue
