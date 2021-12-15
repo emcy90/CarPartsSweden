@@ -27,6 +27,48 @@ def get_customer_by_id():
     return customer_id_clean_list
 
 
+def show_one_customer_example_of_car():
+    pass
+
+    # show_customers = session.query(Customer).all()
+    # count = 0
+    # for customers in show_customers:
+    #     xc = len(customers.customer_cars)
+    #     print(customers.customer_cars[count].color)
+    #     if count == xc:
+    #         count = 0
+
+    #   print(
+    #      f'Customer id: {customers.id_customers} First name: {customers.first_name} Last name: {customers.last_name}')
+
+
+def show_one_customer(xxx):
+    all_customers = session.query(Customer.id_customers).all()
+    all_customer_ids_clean_list = []
+    for id in all_customers:
+        all_customer_ids_clean_list.append(id[0])
+
+    up_customer = session.query(Customer).filter(Customer.id_customers == xxx).first()
+    if up_customer is None:
+        print("This person id, does not exists:")
+        main()
+    else:
+
+        # if up_customer.id_customers not in all_customer_ids_clean_list:
+        #     print("This person id, does not exists:")
+        #     main()
+        # else:
+
+        print(f' Customer id: {up_customer.id_customers}\n First name: {up_customer.first_name}\n'
+              f' Last name: {up_customer.last_name}\n Company name: {up_customer.company_name}\n'
+              f' Phone: {up_customer.phone}\n Adress 1: {up_customer.adress1}\n Adress 2: {up_customer.adress2}\n',
+              f'City: {up_customer.city}\n Zipcode: {up_customer.zip_code}\n'
+              f' Country: {up_customer.country}\n sales_representant: {up_customer.sales_representant}\n'
+              f' State: {up_customer.states}')
+        print()
+        print('*******************************************************************')
+
+
 def show_all_customers():
     show_customers = session.query(Customer).all()  # session.query(Customer.id_customers).all()
 

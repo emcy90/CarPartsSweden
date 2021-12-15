@@ -203,6 +203,20 @@ def load_counter_manufacturer_id():
     return num
 
 
+def save_counter_payments_no():
+    with open('C:/skolan/CarPartsSweden/MongoDB/counter_payments_no.txt', 'w', encoding="utf-8") as f:
+        f.write((str(counter)))
+
+
+def load_counter_payments_no():
+    f = open('C:/skolan/CarPartsSweden/MongoDB/counter_payments_no.txt', 'r')
+    co = f.readlines()
+    num = 0
+    num = int(co[-1])
+    f.close()
+    return num
+
+
 # Creating 10 clean customers to MONGO DB
 # for i in range(0, 20):
 #     mongo_creator.assemble_customer_object()

@@ -4,7 +4,9 @@ from app.view.cli.order_menu import order_menu
 
 
 def main():
-    while True:
+    menu_pick = ""
+    running = True
+    while running:
         menu_pick = menu()
         if menu_pick == "1":
             print("customer menu")
@@ -14,8 +16,8 @@ def main():
             order_menu()
             # show_all_customers()
         elif menu_pick == "9":
-            break
-
+            running = False
+            print("Quiting the app")
 
 
 if __name__ == '__main__':

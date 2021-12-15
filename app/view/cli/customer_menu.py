@@ -7,6 +7,7 @@ from app.view.cli.main_menu import menu
 def customer_menu():
     running = True
     while running:
+
         print('========== Customer Menu ==========')
         print()
         print("1. View customer")
@@ -14,11 +15,13 @@ def customer_menu():
         print('3. Add customer')
         print('4. Delete customer')
         print('5. Update customer')
+        print('6. Go back to main menu')
         # print('5. Go back to main menu')
 
-        input_choice = input("> ")
+        input_choice = str(input("> "))
         if input_choice == "1":
-            pass
+            xxx = int(input("Which customer do you want to view? "))
+            show_one_customer(xxx)
             running = False
 
         elif input_choice == "2":
@@ -58,7 +61,6 @@ def customer_menu():
             del_customer = input("Delete customer by ID: ")
             # customer = str(input(f"Are you sure you want to delete {}?"))
             delete_customer(del_customer)
-            print(f'customer deleted: deleted')
             running = False
 
         elif input_choice == "5":
@@ -66,3 +68,7 @@ def customer_menu():
             update_customer(up_customer)
             print(f'Customer updated: updated')
             running = False
+
+        elif input_choice == "6":
+            running = False
+            main()

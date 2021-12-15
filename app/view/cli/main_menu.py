@@ -7,9 +7,10 @@ def menu():
     print("2. Order menu")
     print()
     print("9. Quit")
-    while True:
+    running = True
+    while running:
         pick = input("> ")
         if pick in "129":
-            break
-        print("Valid options are 1, 2 or 9")
-    return pick
+            running = False
+
+        return pick

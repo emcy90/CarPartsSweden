@@ -403,8 +403,9 @@ class CpsCreator(GeneratorSetup):
         super_customer_key_list_mongo = ['first_name', 'last_name', 'company_name', 'phone', 'adress1', 'adress2',
                                          'city', 'zip_code', 'country', 'sales_representant', 'states', 'reg_no',
                                          'manufacturer',
-                                         'color', 'model', 'year_model', 'owner_id', 'payment_date', 'payment_amount',
-                                         'customer_paid_bill_id', 'staffs_id_staff', 'customers_id_customers']
+                                         'color', 'model', 'year_model', 'owner_id', 'payments_no', 'payment_date',
+                                         'payment_amount', 'customer_paid_bill_id', 'staffs_id_staff',
+                                         'customers_id_customers']
 
         super_order_key_list_mongo = ['order_no', 'order_date', 'required_date', 'shipping_date', 'status', 'comments',
                                       'customers_id_customers', 'orders_order_no', 'products_product_id', 'quantity',
