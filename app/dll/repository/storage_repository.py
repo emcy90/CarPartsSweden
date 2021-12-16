@@ -13,11 +13,6 @@ def get_storage_by_id():
         storage_id_clean_list.append(id[0])
     return storage_id_clean_list
 
-    # WITH COMPREHENSION
-    # storage_id = session.query(storage.storage_id).all()
-    # storage_id_clean_list = [id[0] for id in storage_id]
-    # return storage_id_clean_list
-
 
 def create_storage(storage):
     storage = Storage(**storage)

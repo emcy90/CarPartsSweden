@@ -5,6 +5,7 @@ from pymongo import MongoClient
 client = MongoClient('mongodb://root:slash@localhost:27017')
 db = client.real_cps
 
+
 def get_staff_by_id():
     staff_id = session.query(Staff.id_staff).all()
     staff_id_clean_list = []

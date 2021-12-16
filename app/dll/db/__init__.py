@@ -1,5 +1,4 @@
 import sqlalchemy
-from sqlalchemy.ext.automap import automap_base
 from sqlalchemy.orm import sessionmaker
 from sqlalchemy.orm import declarative_base
 from .db_config import *

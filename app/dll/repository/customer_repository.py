@@ -19,9 +19,8 @@ def get_customer_by_id():
     return customer_id_clean_list
 
 
-def show_one_customer_example_of_car():
-    pass
-
+# def show_one_customer_example_of_car():
+    # this is just an example
     # show_customers = session.query(Customer).all()
     # count = 0
     # for customers in show_customers:

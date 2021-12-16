@@ -147,7 +147,7 @@ print(mongo_id_list)
 
 
 def save_order_no():
-    with open('C:/skolan/CarPartsSweden/MongoDB/counter.txt', 'w', encoding="utf-8") as f:
+    with open('mongo/counter.txt', 'w', encoding="utf-8") as f:
         f.write((str(counter)))
 
 

@@ -19,7 +19,6 @@ SELECT * FROM staffs_has_cpsorders;
 SELECT * FROM staffs_has_customers;
 
 
-
 # Här kan man generera en kund
 INSERT INTO customers (first_name, last_name, company_name, phone, adress1, adress2, city, zip_code, country, sales_representant, states)
 values ('Bertil', 'Karlsson', '', '+4676048484848', 'Snövägen 5A', '', 'Göteborg', '44979', 'Sweden', 'Gustaf Andersson', 'Västra Götaland');
@@ -95,10 +94,6 @@ VALUES ('Kalle', 'Viberg', 'Motor Salesman', '+4676885210', '1', 'Göteborg');
 # Samma som ovan, måste matcha id från tabellerna staffs och cps_orders
 INSERT INTO staffs_has_cpsorders (staffs_id_staff, cps_orders_internal_order_no)
 VALUES ('1', '1');
-
-# Här kan man generera staffs_has_staffs
-# INSERT INTO staffs_has_staffs (staffs_id_staff, staffs_id_staff1)
-# VALUES ('1', '1');
 
 # Här kan man generera staffs_has_customers
 # måste matcha staffs id och customer id

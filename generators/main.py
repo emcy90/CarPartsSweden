@@ -1,7 +1,6 @@
 import time
 
 from app.bll.cps_orders_controller import create_cps_orders, get_cps_orders_by_id
-# from app.bll import create_car, get_customer_cars_by_reg_no
 from app.bll.customer_controller import create_customer
 from app.bll.manufacturer_controller import create_manufacture, get_manufacturer_by_id
 from app.bll.manufacturers_has_cps_orders_controller import create_manufacturer_has_cps_order, \
@@ -20,9 +19,6 @@ from app.bll.storage_has_products_controller import create_storage_has_product, 
 from app.bll.supplier_controller import create_supplier, get_supplier_by_id
 from app.bll.suppliers_has_cps_orders_controller import create_suppliers_has_cps_order
 from app.dll.repository.customer_repository import get_customer_by_id
-# from app.dll. import get_order_by_id
-# from app.dll import get_staff_by_id
-# from app.dll import get_suppliers_has_cps_order_by_id
 from app.dll.repository.order_repository import get_order_by_id
 from app.dll.repository.staff_repository import get_staff_by_id
 from app.dll.repository.suppliers_has_cps_orders_repository import get_suppliers_has_cps_order_by_id

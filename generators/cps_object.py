@@ -342,14 +342,6 @@ class CpsCreator(GeneratorSetup):
         self.super_mongo_staff_collection = super_mongo_staff_collection
         self.super_mongo_storage_collection = super_mongo_storage_collection
 
-        # self.all_supplier_ids = all_supplier_ids
-        # self.all_cps_order_internal_nos = all_cps_order_internal_nos
-        # self.all_storage_ids = all_storage_ids
-        # self.all_product_ids = all_product_ids
-        # self.all_manufacturer_cps_order_ids = all_manufacturer_cps_order_ids
-        # self.all_staff_ids = all_staff_ids
-        # self.all_order_no = all_order_no
-
         # KEY LISTS GOES HERE
         super_customer_key_list_mongo = ['first_name', 'last_name', 'company_name', 'phone', 'adress1', 'adress2',
                                          'city', 'zip_code', 'country', 'sales_representant', 'states', 'reg_no',
@@ -485,8 +477,6 @@ class CpsCreator(GeneratorSetup):
         self.image = self.generator.load_image()
         self.product_name = self.generator.load_product_name()
         self.product_description = self.generator.load_product_description()
-        # self.inprice = self.generator.load_inprice()
-        # self.outprice = self.generator.load_outprice()
 
     def assemble_customer_object(self):
         self.house_number = self.generator.create_house_number()
@@ -505,7 +495,6 @@ class CpsCreator(GeneratorSetup):
     def assemble_car_object(self, all_cars_ids):
         self.all_cars_ids = get_customer_cars_by_reg_no()
 
-        # self.all_customers_ids = get_customer_by_id()
         self.reg_no = self.generator.random_reg_no()
         if self.reg_no in self.all_cars_ids:
             status = True
@@ -921,7 +910,6 @@ class CpsCreator(GeneratorSetup):
                     cc = cc.replace(']', '')
                     cc = cc.strip()
 
-                    # sp = str(variable_to_split_list)
                     x, y = cc.split(',')
                     x = (int(x))
                     y = (int(y))
@@ -981,7 +969,6 @@ class CpsCreator(GeneratorSetup):
                     cc = cc.replace(']', '')
                     cc = cc.strip()
 
-                    # sp = str(variable_to_split_list)
                     x, y = cc.split(',')
                     x = (int(x))
                     y = (int(y))
