@@ -1,0 +1,3 @@
+
+# För att hitta en bil ägare
+db.getCollection('customers').find({"_id": {$eq: ObjectId("61b718012e9bb79d4cc74984")}})

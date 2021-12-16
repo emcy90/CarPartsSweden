@@ -1,0 +1,4 @@
+mysql-connector-python==8.0.27
+SQLAlchemy==1.4.27
+pymongo==3.12.3
+mongoengine==0.23.1

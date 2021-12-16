@@ -1,0 +1,11 @@
+Sales person
+Order handler
+CEO
+Manager
+Customer relations
+Programmer
+Sales manager
+Accountant manager
+Accountant
+Order manager
+HR

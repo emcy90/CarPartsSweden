@@ -1,0 +1,81 @@
+CREATE TABLE storage_audit (
+    storage_id INT AUTO_INCREMENT PRIMARY KEY,
+    storage_name VARCHAR(150) NOT NULL,
+    storage_quantity_old INT NOT NULL,
+    storage_quantity_new INT NOT NULL,
+    storage_city VARCHAR(100) NOT NULL,
+    action VARCHAR(50) DEFAULT NULL
+);
+
+
+# Här är triggern som skriver till storage_audit tabellen
+
+CREATE TRIGGER before_storage_update
+    BEFORE UPDATE ON storage
+    FOR EACH ROW
+ INSERT INTO storage_audit
+ SET action = 'update',
+
+     storage_name = OLD.storage_name,
+     storage_quantity_old = OLD.storage_quantity,
+     storage_quantity_new = NEW.storage_quantity,
+     storage_city = OLD.storage_city;
+
+
+DELIMITER $$
+CREATE TRIGGER before_storage_update_quantity
+    BEFORE UPDATE ON storage
+    FOR EACH ROW
+
+    BEGIN
+        IF NEW.storage_quantity<10 THEN
+            SET NEW.storage_quantity := 50;
+        end if;
+    END$$
+DELIMITER ;
+
+SELECT * FROM storage;
+
+SELECT * FROM storage WHERE storage_id = '34';
+UPDATE storage SET storage_quantity = '8' WHERE storage_id = '31';
+
+
+
+#     BEGIN
+#      IF storage_quantity < 10 THEN
+#         SET storage_quantity = 50;
+#      END IF;
+#      end$$
+# DELIMITER ;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+# Denna visar förändringarna som har gjorts, hoppas jag
+SELECT * FROM storage;
+SELECT * FROM storage_audit;
+
+# Här uppdaterar vi allt som är under 50 i quantity hoppas jag. , kan vara att vi behöver använda insert istället.
+UPDATE storage
+SET
+    storage_quantity = 50
+WHERE
+    storage_quantity < 10;
+
+
