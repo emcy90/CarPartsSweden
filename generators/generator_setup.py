@@ -34,7 +34,7 @@ class GeneratorSetup:
         product_description_list = []
         quantity_list = []
         price_list = []
-
+        orders_order_no = 0
         rnd_x = 0
         owner_id = 0
         customer_paid_bill_id = 0
@@ -115,7 +115,7 @@ class GeneratorSetup:
 
         self.quantity_list = quantity_list
         self.price_list = price_list
-
+        self.orders_order_no = orders_order_no
         # **************************************************#
         # Here goes all loading functions this class uses. #
         # *************************************************#
@@ -606,7 +606,7 @@ class GeneratorSetup:
 
     def random_product_descriptions(self):
         description = random.choice(self.product_list)
-        # suggestion for solution generate random product description by combining random car-model and random manufacturer
+
         return description
 
     def random_inprice(self):
@@ -627,7 +627,6 @@ class GeneratorSetup:
             self.pay = random.choice(self.outprice_list)
         return self.pay
 
-    # added random owner_id because sqlalchemy is a little bitch not wanting to add things without a fucking owner_id
     def random_owner_id(self):
         self.owner_id = random.randrange(0, 1)
         return self.owner_id
@@ -670,9 +669,9 @@ class GeneratorSetup:
         return f'{contact_person}'
 
     @staticmethod
-    def generate_random_email(contact_person):  # INTE KLAR
+    def generate_random_email(contact_person):
         email_hosts = ['gmail.com', 'hotmail.com', 'outlook.com', 'live.se', 'yahoo.com']
         contact_person_email = contact_person + "@" + random.choice(email_hosts)
-        return contact_person_email  # f'{contact_person}@{random.choice(email_hosts)}'
+        return contact_person_email
 
     print()

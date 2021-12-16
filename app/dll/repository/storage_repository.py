@@ -5,6 +5,7 @@ from pymongo import MongoClient
 client = MongoClient('mongodb://root:slash@localhost:27017')
 db = client.real_cps
 
+
 def get_storage_by_id():
     storage_id = session.query(Storage.storage_id).all()
     storage_id_clean_list = []

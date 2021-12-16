@@ -235,7 +235,6 @@ class CpsCreator(GeneratorSetup):
         super_mongo_staff_collection = []
         super_mongo_storage_collection = []
 
-
         # class selfs:
 
         # ORDER VARIABLES
@@ -415,7 +414,7 @@ class CpsCreator(GeneratorSetup):
                                         'product_description', 'text_description', 'html_description', 'image',
                                         'products_description_id']
 
-        super_supplier_key_list_mongo = ['supplier_id','supplier_name', 'supplier_adress1', 'supplier_adress2', 'city',
+        super_supplier_key_list_mongo = ['supplier_id', 'supplier_name', 'supplier_adress1', 'supplier_adress2', 'city',
                                          'zip_code',
                                          'country',
                                          'contact_person', 'phone_number', 'email', 'suppliers_supplier_id',
@@ -670,12 +669,10 @@ class CpsCreator(GeneratorSetup):
                     self.products_product_id = y
                     loop = False
 
-        # These should be outside the if else block
         self.quantity = self.generator.random_quantity()
         self.price_each = self.generator.random_price()
 
     def assemble_storage_object(self):
-        # Behövs byggas 2 st random functioner en till storage name , quantity
         storage_name_list = ['lager göteborg', 'lager stockholm', 'lager malmö']
         quantity_list = [12, 43, 64, 2, 5]
         self.storage_name = random.choice(storage_name_list)
@@ -755,7 +752,6 @@ class CpsCreator(GeneratorSetup):
         self.zip_code = self.generator.create_zip_code()
         self.country = self.generator.create_country()
 
-        # Bygg en random function som slumpar fram förnamn och efternamn
         self.suppliers_contact_person = self.generator.random_first_and_last_name()
         self.phone_number = self.generator.create_phone()
         self.email = self.generator.generate_random_email(self.suppliers_contact_person)

@@ -153,7 +153,7 @@ def save_order_no():
 
 
 def load_order_no():
-    f = open('C:/skolan/CarPartsSweden/MongoDB/counter.txt', 'r')
+    f = open('mongo/counter.txt', 'r')
     co = f.readlines()
     num = 0
     num = int(co[-1])
@@ -162,12 +162,12 @@ def load_order_no():
 
 
 def save_counter_supplier_id():
-    with open('C:/skolan/CarPartsSweden/MongoDB/counter_supplier.txt', 'w', encoding="utf-8") as f:
+    with open('mongo/counter_supplier.txt', 'w', encoding="utf-8") as f:
         f.write((str(counter)))
 
 
 def load_counter_supplier_id():
-    f = open('C:/skolan/CarPartsSweden/MongoDB/counter_supplier.txt', 'r')
+    f = open('mongo/counter_supplier.txt', 'r')
     co = f.readlines()
     num = 0
     num = int(co[-1])
@@ -176,12 +176,12 @@ def load_counter_supplier_id():
 
 
 def save_counter_cps_orders_id():
-    with open('C:/skolan/CarPartsSweden/MongoDB/counter_cps_orders.txt', 'w', encoding="utf-8") as f:
+    with open('mongo/counter_cps_orders.txt', 'w', encoding="utf-8") as f:
         f.write((str(counter)))
 
 
 def load_counter_cps_orders_id():
-    f = open('C:/skolan/CarPartsSweden/MongoDB/counter_cps_orders.txt', 'r')
+    f = open('mongo/counter_cps_orders.txt', 'r')
     co = f.readlines()
     num = 0
     num = int(co[-1])
@@ -190,12 +190,12 @@ def load_counter_cps_orders_id():
 
 
 def save_counter_manufacturer_id():
-    with open('C:/skolan/CarPartsSweden/MongoDB/counter_manufacturer.txt', 'w', encoding="utf-8") as f:
+    with open('mongo/counter_manufacturer.txt', 'w', encoding="utf-8") as f:
         f.write((str(counter)))
 
 
 def load_counter_manufacturer_id():
-    f = open('C:/skolan/CarPartsSweden/MongoDB/counter_manufacturer.txt', 'r')
+    f = open('mongo/counter_manufacturer.txt', 'r')
     co = f.readlines()
     num = 0
     num = int(co[-1])
@@ -204,12 +204,12 @@ def load_counter_manufacturer_id():
 
 
 def save_counter_payments_no():
-    with open('C:/skolan/CarPartsSweden/MongoDB/counter_payments_no.txt', 'w', encoding="utf-8") as f:
+    with open('mongo/counter_payments_no.txt', 'w', encoding="utf-8") as f:
         f.write((str(counter)))
 
 
 def load_counter_payments_no():
-    f = open('C:/skolan/CarPartsSweden/MongoDB/counter_payments_no.txt', 'r')
+    f = open('mongo/counter_payments_no.txt', 'r')
     co = f.readlines()
     num = 0
     num = int(co[-1])
@@ -243,12 +243,12 @@ our_sales_staff_list = ['Barbro Lindgren', 'Maja Glad', 'Anneli Lund', 'Bobbo Ny
 
 # CREATING CUSTOMERS COLLECTION
 
-for i in range(0, 200):
+for i in range(0, 20):
     mongo_id_list = find_all_mongo_id()
     owner_id = random_owner_ids_from_mongo_list(mongo_id_list)
     customer_id = random_customers_id_customers_from_mongo_list(mongo_id_list)
     customer_paid_bill_id = random_customers_paid_bill_id_from_mongo_list(mongo_id_list)
-    staffs_id_staff = random_staffs_id_staff_from_mongo_list(staffs_id_list)
+    # ?staffs_id_staff = random_staffs_id_staff_from_mongo_list(staffs_id_list)
     staffs_id_staff = random.choice(our_sales_staff_list)
 
     mongo_creator.assemble_customer_object()
@@ -410,6 +410,7 @@ for i in range(0, 200):
     counter_supplier_id += 1
     counter_cps_orders_id += 1
     counter_payments_no += 1
+
     # Save the counters for each round
     save_order_no()
     save_counter_supplier_id()
