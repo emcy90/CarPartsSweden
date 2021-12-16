@@ -1,6 +1,6 @@
 def menu():
     print("*" * 50)
-    print("Welcome to the APP")
+    print("Welcome to MySql")
     print("*" * 50)
     print()
     print("1. Customer menu")

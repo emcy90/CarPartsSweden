@@ -14,16 +14,6 @@ from app.bll.staffs_has_cps_orders_controller import get_staff_has_cps_order_by_
 from app.bll.storage_controller import get_storage_by_id
 from app.bll.storage_has_products_controller import get_storage_has_products_by_id
 from app.bll.supplier_controller import get_supplier_by_id
-# from app.dll. import get_manufacturer_cps_orders_internal_order_no
-# from app.dll import get_order_by_id
-# from app.dll import get_products_product_by_id
-# from app.dll import get_staff_by_id
-# from app.dll import get_staffs_cps_orders_internal_order_no
-# from app.dll import get_customers_id_customers_by_id, get_staffs_id_staffs
-# from app.dll import get_storage_products_product_by_id
-# from app.dll import get_suppliers_has_cps_order_by_id, \
-#     get_suppliers_cps_orders_internal_order_no
-# from dll.repository.suppliers_has_cps_orders_repository import get_suppliers_has_cps_orders_by_id
 from app.dll.repository.manufacturers_has_cps_orders_repository import get_manufacturer_cps_orders_internal_order_no
 from app.dll.repository.order_repository import get_order_by_id
 from app.dll.repository.orderdetails_repository import get_products_product_by_id
@@ -45,16 +35,6 @@ class CpsCreator(GeneratorSetup):
         generator = GeneratorSetup()
         staffs_id_staff = ""
         all_cars_ids = []
-        all_customers_ids = []
-        all_supplier_ids = []
-        all_cps_order_internal_nos = []
-        all_storage_ids = []
-        all_product_ids = []
-        all_manufacturer_cps_order_ids = []
-        all_staff_ids = []
-        all_order_no = []
-        all_customers_id_customers_ids = []
-        all_manufacturer_cps_orders_internal_order_nos = []
 
         self.all_cps_order_ids = get_cps_orders_by_id()
         self.all_cars_ids = get_customer_cars_by_reg_no()
@@ -74,45 +54,34 @@ class CpsCreator(GeneratorSetup):
         self.all_storage_ids = get_storage_by_id()
         self.all_supplier_cps_orders_ids = get_suppliers_has_cps_order_by_id()
         self.all_supplier_ids = get_supplier_by_id()
-        self.all_cps_order_internal_nos = get_cps_orders_by_id()  # cps_orders_internal_order_no()
+        self.all_cps_order_internal_nos = get_cps_orders_by_id()
         self.all_manufacturer_cps_orders_internal_order_nos = get_manufacturer_cps_orders_internal_order_no()
 
-        date = ""
         storage = ""
         storage_name = ""
         storage_quantity = ""
         storage_city = ""
-        storage_key_list = []
+
         staffs_key_list = []
         all_products_product_ids = []
         staffs = ""
         first_name = ""
         last_name = ""
         job_title = ""
-        phone = ""
         reports_to = ""
         store = ""
-        cps_orders_key_list = []
+
         cps_orders = ""
 
-        required_date = ""
-        shipping_date = ""
-        status = ""
-        comments = ""
         order_no_comments = ""
-        suppliers_key_list = []
         suppliers = ""
         supplier_name = ""
         supplier_adress1 = ""
         supplier_adress2 = ""
-        city = ""
-        zip_code = ""
-        country = ""
         contact_person = ""
         phone_number = ""
         email = ""
         storage_has_products_list = []
-        manufacturers_key_list = []
         manufacturers = ""
         name_manufacturer = ""
         main_office_adress1 = ""
@@ -121,22 +90,13 @@ class CpsCreator(GeneratorSetup):
         contact_person_name = ""
         contact_person_phone = ""
         contact_person_email = ""
-        manufacturers_has_cps_orders_key_list = []
         manufacturers_has_cps_orders_list = []
-        # manufacturers_manufacturer_id = ""
-        storage_has_products_key_list = []
-
-        super_customer_key_list_mongo = []
-        super_order_key_list_mongo = []
-
-        suppliers_has_cps_orders_key_list = []
         suppliers_has_cps_orders = ""
         suppliers_supplier_id = ""
         cps_orders_internal_order_no = ""
         car_list_split = []
         car_manufacturer_list = []
         orders_order_no = 0
-        products_product_id = 0
         manufacturer = ""
         color = ""
         year_model = ""
@@ -177,7 +137,6 @@ class CpsCreator(GeneratorSetup):
         shipping_date = ""
         status = ""
         comments = ""
-        # customers_id_customers = ""
         order = ""
         productline = ""
         text_description = ""
@@ -200,7 +159,6 @@ class CpsCreator(GeneratorSetup):
         all_staffs_staffs_ids = []
         all_suppliers_cps_orders_internal_nos_nos = []
 
-        # cps_orders_internal_order_no = ""
         storage_has_products = ""
         storage_storage_id = 1
         products_product_id = 1
@@ -209,13 +167,9 @@ class CpsCreator(GeneratorSetup):
         staffs_has_customers = ""
 
         customers_id_customers = ""
-        # manufactureres_has_cps_orders_dict =
         manufactureres_has_cps_orders = ""
-        storage_key_list = []
-        staffs_has_cps_orders_key_list = []
         suppliers_contact_person = ""
         manufacturer_contact_person = ""
-        # manufacturers_manufacturer_id = ""
         staffs_has_cps_orders = ""
         copy_of_productline = ""
         copy_productline_from_products = ""
@@ -227,7 +181,6 @@ class CpsCreator(GeneratorSetup):
         all_storage_products_product_ids = []
         super_mongo_customer_collection = []
         super_mongo_order_collection = []
-        super_product_key_list_mongo = []
         super_mongo_product_collection = []
         super_mongo_supplier_collection = []
         super_mongo_manufacturer_collection = []
@@ -237,12 +190,12 @@ class CpsCreator(GeneratorSetup):
 
         # class selfs:
 
-        # ORDER VARIABLES
-        # self.manufacturers_manufacturer_id = manufacturers_manufacture_id
+        # ORDER VARIABEL
         self.all_storage_products_product_ids = all_storage_products_product_ids
         self.all_products_product_ids = all_products_product_ids
         self.all_staffs_cps_orders_internal_order_no = all_staffs_cps_orders_internal_order_no
         self.all_staffs_staffs_ids = all_staffs_staffs_ids
+
         self.order = order
         self.order_date = order_date
         self.required_date = required_date
@@ -252,7 +205,6 @@ class CpsCreator(GeneratorSetup):
         self.customers_id_customers = customers_id_customers
         self.order_no = order_no
         self.suppliers_supplier_id = suppliers_supplier_id
-        # self.cps_orders_internal_order_no = cps_orders_internal_order_no
         self.copy_productline_from_products = copy_productline_from_products
         self.suppliers_has_cps_orders = suppliers_has_cps_orders
         self.name_manufacturer = name_manufacturer
@@ -902,8 +854,6 @@ class CpsCreator(GeneratorSetup):
                     self.cps_orders_internal_order_no = y
                     loop = False
 
-        # Behöver hämta manufacturers_get_manufacturerers_cps_order_ids listan
-
     def assemble_staffs_object(self):
         self.first_name = self.generator.create_first_name()
         self.last_name = self.generator.create_last_name()
@@ -921,7 +871,6 @@ class CpsCreator(GeneratorSetup):
         cu = ""
 
         real_staff_and_cps_internal_order_no_list = []
-        staff_internal_no_order_combo_list = []
         self.all_staff_ids = get_staff_by_id()
         self.all_cps_order_ids = get_cps_orders_by_id()
 

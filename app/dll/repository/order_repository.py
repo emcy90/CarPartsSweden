@@ -34,6 +34,7 @@ def mongo_create_order(super_order):
 def show_order(xxx):
     order1 = session.query(Order).filter(Order.order_no == xxx).first()
     print(order1.order_no)
-    print(f'Order no: {order1.order_no}, Order date: {order1.order_date},'
-          f' Required date: {order1.required_date}, Shipping_date: {order1.shipping_date},'
-          f' Status: {order1.status}, Comments: {order1.comments}, Customer ID: {order1.customers_id_customers}')
+    print()
+    print(f'Order no: {order1.order_no}\nOrder date: {order1.order_date}\n'
+          f'Required date: {order1.required_date}\nShipping_date: {order1.shipping_date}\n'
+          f'Status: {order1.status}\nComments: {order1.comments}\nCustomer ID: {order1.customers_id_customers}')

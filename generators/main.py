@@ -99,7 +99,7 @@ for i in range(10):
     creator.create_payment_dict(creator.payment_key_list, creator.payment_list)
     # print(creator.payment)
     create_payment(creator.payment)
-    create_mongo_payment(creator.payment)
+
     # CREATING ORDER OBJECT
     creator.assemble_order_object()
     creator.order_list = [creator.order_date, creator.required_date, creator.shipping_date,

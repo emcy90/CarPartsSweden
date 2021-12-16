@@ -1,6 +1,26 @@
 from app.dll.db import session
 from app.dll.models import StorageHasProducts
 
+from app.dll.repository.view_search_repository import search_view_by_id, search_product_view_by_id
+
+
+# def main():
+#    our_storage_id = int(input('Enter the storage id: '))
+#    our_product_id = int(input('Enter the product id: '))
+
+#    kalle = our_view_storage_and_product_view(our_storage_id, our_product_id)
+#    print(kalle)
+
+
+def our_view_storage_and_product_view(our_storage_id, our_product_id):
+    storages = search_view_by_id(our_storage_id)
+    produkten = search_product_view_by_id(our_product_id)
+    data = (f'Storage id: {storages.storage_id}, Storage Name: {storages.storage_name}'
+            f', Storage Quantity: {storages.storage_quantity}, Storage City: {storages.storage_city},'
+            f' Product id: {produkten.product_id}, Product description: {produkten.product_description}')
+
+    return data
+
 
 def get_storage_has_products_by_id():
     storage_product = session.query(StorageHasProducts.storage_storage_id).all()

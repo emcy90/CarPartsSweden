@@ -50,9 +50,9 @@ class GeneratorSetup:
         pay = "0.00"
 
         # All variables goes here
-        the_first_name = ""
-        the_last_name = ""
-        productdesc = ""
+        # ?the_first_name = ""
+        # ?the_last_name = ""
+        # ?productdesc = ""
         complete_alpha = ""
         complete_numbers = ""
         f = ""
@@ -126,7 +126,6 @@ class GeneratorSetup:
         self.line_row = self.f.readlines()
         self.f.close()
 
-        # Clean the whitespaces
         self.big_first_name_list = []
         for names in self.line_row:
             names = names.strip()
@@ -139,7 +138,6 @@ class GeneratorSetup:
         self.line_row = self.f.readlines()
         self.f.close()
 
-        # Clean the whitespaces
         self.big_last_name_list = []
         for last_names in self.line_row:
             last_names = last_names.strip()
@@ -152,7 +150,6 @@ class GeneratorSetup:
         self.line_row = self.f.readlines()
         self.f.close()
 
-        # Clean the whitespaces
         self.big_gatuadress_list = []
         for gatuadress in self.line_row:
             gatuadress = gatuadress.strip()
@@ -165,7 +162,6 @@ class GeneratorSetup:
         self.line_row = self.f.readlines()
         self.f.close()
 
-        # Clean the whitespaces
         self.big_house_number_list = []
         for house_number in self.line_row:
             house_number = house_number.strip()
@@ -178,7 +174,6 @@ class GeneratorSetup:
         self.line_row = self.f.readlines()
         self.f.close()
 
-        # Clean the whitespaces
         self.big_zip_code_list = []
         for zip_codes in self.line_row:
             zip_codes = zip_codes.strip()
@@ -191,7 +186,6 @@ class GeneratorSetup:
         self.line_row = self.f.readlines()
         self.f.close()
 
-        # Clean the whitespaces
         self.big_city_list = []
         for city in self.line_row:
             city = city.strip()
@@ -204,7 +198,6 @@ class GeneratorSetup:
         self.line_row = self.f.readlines()
         self.f.close()
 
-        # Clean the whitespaces
         self.big_country_list = []
         for country in self.line_row:
             country = country.strip()
@@ -217,7 +210,6 @@ class GeneratorSetup:
         self.line_row = self.f.readlines()
         self.f.close()
 
-        # Clean the whitespaces
         self.big_states_list = []
         for state in self.line_row:
             state = state.strip()
@@ -230,7 +222,6 @@ class GeneratorSetup:
         self.line_row = self.f.readlines()
         self.f.close()
 
-        # Clean the whitespaces
         self.big_company_list = []
         for company in self.line_row:
             company = company.strip()
@@ -243,7 +234,6 @@ class GeneratorSetup:
         self.line_row = self.f.readlines()
         self.f.close()
 
-        # Clean the whitespaces
         self.big_phone_list = []
         for phone in self.line_row:
             phone = phone.strip()
@@ -276,7 +266,7 @@ class GeneratorSetup:
                 temp = adress_house_number
 
                 if x == 0 and temp == '0':
-                    adress_house_number = ""
+                    # ?adress_house_number = ""
                     temp = ""
                     counter = 1
                     adress_house_number = temp
@@ -350,7 +340,7 @@ class GeneratorSetup:
         self.payment = dict(zip(payment_key_list, payment_list))
         return self.payment
 
-    def reg_no_generator(self):  # -----> COMPARE WITH length OF car_reg_no_clean_list??
+    def reg_no_generator(self):
         self.reg_no_list = []
         for i in range(0, 5000):
 
@@ -365,7 +355,7 @@ class GeneratorSetup:
             self.reg_no_list.append(complete_reg_no)
 
             # Here we clean the variables before next turn
-            complete_reg_no = ""
+            # ?complete_reg_no = ""
             self.complete_alpha = ""
             self.complete_numbers = ""
         return self.reg_no_list
@@ -635,14 +625,9 @@ class GeneratorSetup:
         self.customer_paid_bill_id = random.randrange(0, 1)
         return self.customer_paid_bill_id
 
-    def random_orders_order_no(self):  # -----> FOREIGN KEY (NN)
+    def random_orders_order_no(self):
         self.orders_order_no = random.randrange(0, 1)
         return self.orders_order_no
-
-    def random_products_product_id(self):  # -----> FOREIGN KEY (NN)
-        # self.products_product_id = random.randrange(1, ?)
-        # return self.products_product_id
-        pass
 
     def random_quantity(self):
         self.quantity_list = []

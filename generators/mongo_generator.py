@@ -33,7 +33,6 @@ def add_one_item():
 
 def create_mongo_customer(customer):
     my_clean_dict = customer
-    customer = Customer(**customer)
     print()
     db.customers.insert_one(my_clean_dict)
     print("Added mongo customer")
@@ -217,7 +216,7 @@ def load_counter_payments_no():
     return num
 
 
-# Creating 10 clean customers to MONGO DB
+# If MONGO DB is Empty, then create 10 clean customers to MONGO DB first before populating more data.
 # for i in range(0, 20):
 #     mongo_creator.assemble_customer_object()
 #     mongo_creator.customer_list = [mongo_creator.first_name, mongo_creator.last_name, mongo_creator.company,

@@ -1,0 +1,41 @@
+Our MongoDB structure:
+
+Collection: Customers
+-    Customer cars
+-    Payments
+-    Staff has customers
+
+
+Collection: Orders
+-    Order details
+
+
+Collection: Products
+-    Product descriptions
+
+
+Collection: Suppliers
+-    Supplier has cps order
+
+
+Collection: Manufacturers
+-    Manufacturer has cps order
+
+
+Collection: Cps Orders
+-    Staff has cps orders
+
+
+Collection: Staff
+
+
+Collection: Storage
+-    Storage has products
+
+
+### This collection contains 3 parts that are seperated (not connected to each other).
+  If you want to know a customers car, then you have to search on "_id" with "owner_id" from this customers collection.
+  Same goes for other collections.
+
+  If you for example want to know which customer the payment info belongs to, then you have to search with
+  "customer_paid_bill_id" on "_id" ###
