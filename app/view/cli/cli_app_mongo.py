@@ -4,7 +4,7 @@ from pymongo import MongoClient
 
 from app.bll.customer_controller import view_single_mongo_customer, view_all_mongo_customers, insert_one_customer, \
     delete_one_mongo_customer, update_mongo_customer
-from view.cli.main_menu_mongo import mongo_menu
+from app.view.cli.main_menu_mongo import mongo_menu
 from app.view import main
 
 client = MongoClient(f"mongodb://root:slash@localhost:27017")
